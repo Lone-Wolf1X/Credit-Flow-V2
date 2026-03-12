@@ -1,0 +1,128 @@
+// Add these functions to customer_api.php after getCustomerProfile() function
+
+function getBorrowers() {
+    global $conn;
+    
+    $profile_id = $_GET['profile_id'] ?? '';
+    
+    if (empty($profile_id)) {
+        echo json_encode(['success' => false, 'message' => 'Profile ID is required']);
+        return;
+    }
+    
+    $stmt = $conn->prepare("SELECT * FROM borrowers WHERE customer_profile_id = ? ORDER BY created_at DESC");
+    $stmt->bind_param("i", $profile_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    $borrowers = [];
+    while ($row = $result->fetch_assoc()) {
+        $borrowers[] = $row;
+    }
+    
+    echo json_encode(['success' => true, 'data' => $borrowers]);
+}
+
+function getGuarantors() {
+    global $conn;
+    
+    $profile_id = $_GET['profile_id'] ?? '';
+    
+    if (empty($profile_id)) {
+        echo json_encode(['success' => false, 'message' => 'Profile ID is required']);
+        return;
+    }
+    
+    $stmt = $conn->prepare("SELECT * FROM guarantors WHERE customer_profile_id = ? ORDER BY created_at DESC");
+    $stmt->bind_param("i", $profile_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    $guarantors = [];
+    while ($row = $result->fetch_assoc()) {
+        $guarantors[] = $row;
+    }
+    
+    echo json_encode(['success' => true, 'data' => $guarantors]);
+}
+
+function getCollaterals() {
+    global $conn;
+    
+    $profile_id = $_GET['profile_id'] ?? '';
+    
+    if (empty($profile_id)) {
+        echo json_encode(['success' => false, 'message' => 'Profile ID is required']);
+        return;
+    }
+    
+    $stmt = $conn->prepare("SELECT c.*, 
+        CASE 
+            WHEN c.owner_type = 'Borrower' THEN b.full_name
+            WHEN c.owner_type = 'Guarantor' THEN g.full_name
+        END as owner_name
+        FROM collateral c
+        LEFT JOIN borrowers b ON c.owner_id = b.id AND c.owner_type = 'Borrower'
+        LEFT JOIN guarantors g ON c.owner_id = g.id AND c.owner_type = 'Guarantor'
+        WHERE c.customer_profile_id = ? ORDER BY c.created_at DESC");
+    $stmt->bind_param("i", $profile_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    $collaterals = [];
+    while ($row = $result->fetch_assoc()) {
+        $collaterals[] = $row;
+    }
+    
+    echo json_encode(['success' => true, 'data' => $collaterals]);
+}
+
+function getLimits() {
+    global $conn;
+    
+    $profile_id = $_GET['profile_id'] ?? '';
+    
+    if (empty($profile_id)) {
+        echo json_encode(['success' => false, 'message' => 'Profile ID is required']);
+        return;
+    }
+    
+    $stmt = $conn->prepare("SELECT * FROM limit_details WHERE customer_profile_id = ? ORDER BY created_at DESC");
+    $stmt->bind_param("i", $profile_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    $limits = [];
+    while ($row = $result->fetch_assoc()) {
+        $limits[] = $row;
+    }
+    
+    echo json_encode(['success' => true, 'data' => $limits]);
+}
+
+function getLoans() {
+    global $conn;
+    
+    $profile_id = $_GET['profile_id'] ?? '';
+    
+    if (empty($profile_id)) {
+        echo json_encode(['success' => false, 'message' => 'Profile ID is required']);
+        return;
+    }
+    
+    $stmt = $conn->prepare("SELECT ld.*, ls.scheme_name 
+        FROM loan_details ld 
+        LEFT JOIN loan_schemes ls ON ld.scheme_id = ls.id 
+        WHERE ld.customer_profile_id = ? 
+        ORDER BY ld.created_at DESC");
+    $stmt->bind_param("i", $profile_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    $loans = [];
+    while ($row = $result->fetch_assoc()) {
+        $loans[] = $row;
+    }
+    
+    echo json_encode(['success' => true, 'data' => $loans]);
+}

@@ -1,0 +1,18 @@
+Schema Debug 2026-01-29 16:52:52
+
+Table: loan_details
+--------------------------------------------------
+Field                Type                
+--------------------------------------------------
+id                   int(11)             
+customer_profile_id  int(11)             
+loan_type            varchar(100)        
+loan_purpose         varchar(255)        
+amount               decimal(15,2)       
+tenure               int(11)             
+interest_rate        decimal(5,2)        
+base_rate            decimal(5,2)        
+premium              decimal(5,2)        
+created_at           timestamp           
+updated_at           timestamp           
+amount_in_words      varchar(500)        

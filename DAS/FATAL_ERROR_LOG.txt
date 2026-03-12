@@ -1,0 +1,70 @@
+[2026-01-29 18:21:09] SHUTDOWN ERROR: Uncaught mysqli_sql_exception: Unknown column 'sol_name' in 'field list' in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:205
+Stack trace:
+#0 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(205): mysqli->prepare('SELECT id, sol_...')
+#1 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(75): getBranches()
+#2 {main}
+  thrown in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:205
+[2026-01-29 18:25:26] SHUTDOWN ERROR: Uncaught mysqli_sql_exception: Unknown column 'sol_name' in 'field list' in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:205
+Stack trace:
+#0 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(205): mysqli->prepare('SELECT id, sol_...')
+#1 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(75): getBranches()
+#2 {main}
+  thrown in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:205
+[2026-01-29 18:27:46] SHUTDOWN ERROR: Uncaught Error: Failed opening required '../../config/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:37
+Stack trace:
+#0 C:\xampp\htdocs\Credit\DAS\test_branch_api.php(12): include()
+#1 {main}
+  thrown in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:37
+[2026-01-29 18:48:01] SHUTDOWN ERROR: Uncaught Error: Failed opening required '../../config/config.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:37
+Stack trace:
+#0 C:\xampp\htdocs\Credit\DAS\validate_dropdown_api.php(11): include()
+#1 {main}
+  thrown in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:37
+[2026-02-02 16:38:17] SHUTDOWN ERROR: Uncaught mysqli_sql_exception: Unknown column 'ctz_reissued' in 'field list' in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+Stack trace:
+#0 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(600): mysqli->prepare('INSERT INTO bor...')
+#1 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(93): saveBorrower()
+#2 {main}
+  thrown in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+[2026-02-02 16:38:21] SHUTDOWN ERROR: Uncaught mysqli_sql_exception: Unknown column 'ctz_reissued' in 'field list' in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+Stack trace:
+#0 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(600): mysqli->prepare('INSERT INTO bor...')
+#1 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(93): saveBorrower()
+#2 {main}
+  thrown in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+[2026-02-02 16:38:32] SHUTDOWN ERROR: Uncaught mysqli_sql_exception: Unknown column 'ctz_reissued' in 'field list' in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+Stack trace:
+#0 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(600): mysqli->prepare('INSERT INTO bor...')
+#1 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(93): saveBorrower()
+#2 {main}
+  thrown in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+[2026-02-02 17:16:55] SHUTDOWN ERROR: Uncaught mysqli_sql_exception: Unknown column 'ctz_reissued' in 'field list' in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+Stack trace:
+#0 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(600): mysqli->prepare('INSERT INTO bor...')
+#1 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(93): saveBorrower()
+#2 {main}
+  thrown in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+[2026-02-12 16:22:34] SHUTDOWN ERROR: Uncaught mysqli_sql_exception: Unknown column 'ctz_reissued' in 'field list' in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+Stack trace:
+#0 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(600): mysqli->prepare('INSERT INTO bor...')
+#1 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(93): saveBorrower()
+#2 {main}
+  thrown in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+[2026-02-12 16:22:37] SHUTDOWN ERROR: Uncaught mysqli_sql_exception: Unknown column 'ctz_reissued' in 'field list' in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+Stack trace:
+#0 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(600): mysqli->prepare('INSERT INTO bor...')
+#1 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(93): saveBorrower()
+#2 {main}
+  thrown in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+[2026-02-12 16:22:51] SHUTDOWN ERROR: Uncaught mysqli_sql_exception: Unknown column 'ctz_reissued' in 'field list' in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+Stack trace:
+#0 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(600): mysqli->prepare('INSERT INTO bor...')
+#1 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(93): saveBorrower()
+#2 {main}
+  thrown in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+[2026-02-12 16:38:09] SHUTDOWN ERROR: Uncaught mysqli_sql_exception: Unknown column 'ctz_reissued' in 'field list' in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600
+Stack trace:
+#0 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(600): mysqli->prepare('INSERT INTO bor...')
+#1 C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php(93): saveBorrower()
+#2 {main}
+  thrown in C:\xampp\htdocs\Credit\DAS\modules\api\customer_api.php:600

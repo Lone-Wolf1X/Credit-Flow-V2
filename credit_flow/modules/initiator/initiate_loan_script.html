@@ -1,0 +1,16 @@
+</form>
+</div>
+
+<script>
+    // Initialize autocomplete for reviewer and approver
+    document.addEventListener('DOMContentLoaded', function () {
+        if (typeof setupAutocomplete === 'function') {
+            setupMultiUserSelect('reviewer_input', 'reviewer_ids', 'selected_reviewers', 'reviewer');
+            setupAutocomplete('approver_input', 'approver_id', 'approver');
+        } else {
+            console.error('setupAutocomplete function not found. Make sure main.js is loaded.');
+        }
+    });
+</script>
+
+<?php include '../../includes/footer.php'; ?>

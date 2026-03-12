@@ -1,0 +1,1448 @@
+{
+    "customer_profiles": [
+        {
+            "field": "id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "PRI",
+            "default": null
+        },
+        {
+            "field": "customer_id",
+            "type": "varchar(50)",
+            "null": "NO",
+            "key": "UNI",
+            "default": null
+        },
+        {
+            "field": "customer_type",
+            "type": "enum('Individual','Corporate')",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "full_name",
+            "type": "varchar(200)",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "email",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "contact",
+            "type": "varchar(20)",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "created_by",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "province",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "sol",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "status",
+            "type": "enum('Draft','Submitted','Picked','Under Review','Approved','Rejected','Returned')",
+            "null": "YES",
+            "key": "MUL",
+            "default": "Draft"
+        },
+        {
+            "field": "submitted_at",
+            "type": "timestamp",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "approved_by",
+            "type": "int(11)",
+            "null": "YES",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "approved_at",
+            "type": "timestamp",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "rejected_by",
+            "type": "int(11)",
+            "null": "YES",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "rejected_at",
+            "type": "timestamp",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "rejection_reason",
+            "type": "text",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "created_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        },
+        {
+            "field": "updated_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        },
+        {
+            "field": "picked_by",
+            "type": "int(11)",
+            "null": "YES",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "picked_at",
+            "type": "timestamp",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "reviewed_by",
+            "type": "int(11)",
+            "null": "YES",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "reviewed_at",
+            "type": "timestamp",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "return_reason",
+            "type": "text",
+            "null": "YES",
+            "key": "",
+            "default": null
+        }
+    ],
+    "borrowers": [
+        {
+            "field": "id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "PRI",
+            "default": null
+        },
+        {
+            "field": "customer_profile_id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "borrower_type",
+            "type": "enum('Individual','Corporate')",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "is_co_borrower",
+            "type": "tinyint(1)",
+            "null": "YES",
+            "key": "MUL",
+            "default": "0"
+        },
+        {
+            "field": "full_name",
+            "type": "varchar(200)",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "full_name_en",
+            "type": "varchar(255)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "full_name_np",
+            "type": "varchar(255)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "date_of_birth",
+            "type": "date",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "gender",
+            "type": "enum('Male','Female','Other')",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "relationship_status",
+            "type": "enum('Single','Married','Divorced','Widowed')",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "citizenship_number",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "id_issue_date",
+            "type": "date",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "id_issue_district",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "id_issue_authority",
+            "type": "varchar(200)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "id_reissue_date",
+            "type": "date",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "reissue_count",
+            "type": "int(11)",
+            "null": "YES",
+            "key": "",
+            "default": "0"
+        },
+        {
+            "field": "father_name",
+            "type": "varchar(200)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "company_name",
+            "type": "varchar(200)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "registration_no",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "registration_date",
+            "type": "date",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "registration_type",
+            "type": "enum('Proprietorship','Partnership','Private Limited')",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "pan_number",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "pan_issue_date",
+            "type": "date",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "pan_issue_authority",
+            "type": "varchar(200)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "firm_registration_authority",
+            "type": "varchar(200)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "perm_country",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": "Nepal"
+        },
+        {
+            "field": "perm_province",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "perm_district",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "perm_municipality_vdc",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "perm_ward_no",
+            "type": "varchar(10)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "perm_town_village",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "perm_street_name",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "perm_street_number",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "temp_country",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": "Nepal"
+        },
+        {
+            "field": "temp_province",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "temp_district",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "temp_municipality_vdc",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "temp_ward_no",
+            "type": "varchar(10)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "temp_town_village",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "temp_street_name",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "temp_street_number",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_country",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_province",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_district",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_municipality_vdc",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_ward_no",
+            "type": "varchar(10)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_town_village",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_street_name",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_street_number",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "created_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        },
+        {
+            "field": "updated_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        },
+        {
+            "field": "master_borrower_id",
+            "type": "int(11)",
+            "null": "YES",
+            "key": "MUL",
+            "default": null
+        }
+    ],
+    "guarantors": [
+        {
+            "field": "id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "PRI",
+            "default": null
+        },
+        {
+            "field": "customer_profile_id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "guarantor_type",
+            "type": "enum('Individual','Corporate')",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "full_name",
+            "type": "varchar(200)",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "full_name_en",
+            "type": "varchar(255)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "full_name_np",
+            "type": "varchar(255)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "date_of_birth",
+            "type": "date",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "gender",
+            "type": "enum('Male','Female','Other')",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "relationship_status",
+            "type": "enum('Single','Married','Divorced','Widowed')",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "citizenship_number",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "id_issue_date",
+            "type": "date",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "id_issue_district",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "id_issue_authority",
+            "type": "varchar(200)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "id_reissue_date",
+            "type": "date",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "reissue_count",
+            "type": "int(11)",
+            "null": "YES",
+            "key": "",
+            "default": "0"
+        },
+        {
+            "field": "father_name",
+            "type": "varchar(200)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "company_name",
+            "type": "varchar(200)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "registration_no",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "registration_date",
+            "type": "date",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "registration_type",
+            "type": "enum('Proprietorship','Partnership','Private Limited')",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "pan_number",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "pan_issue_date",
+            "type": "date",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "pan_issue_authority",
+            "type": "varchar(200)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "firm_registration_authority",
+            "type": "varchar(200)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "perm_country",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": "Nepal"
+        },
+        {
+            "field": "perm_province",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "perm_district",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "perm_municipality_vdc",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "perm_ward_no",
+            "type": "varchar(10)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "perm_town_village",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "perm_street_name",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "perm_street_number",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "temp_country",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": "Nepal"
+        },
+        {
+            "field": "temp_province",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "temp_district",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "temp_municipality_vdc",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "temp_ward_no",
+            "type": "varchar(10)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "temp_town_village",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "temp_street_name",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "temp_street_number",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_country",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_province",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_district",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_municipality_vdc",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_ward_no",
+            "type": "varchar(10)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_town_village",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_street_name",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "mail_street_number",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "created_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        },
+        {
+            "field": "updated_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        },
+        {
+            "field": "master_guarantor_id",
+            "type": "int(11)",
+            "null": "YES",
+            "key": "MUL",
+            "default": null
+        }
+    ],
+    "collateral": [
+        {
+            "field": "id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "PRI",
+            "default": null
+        },
+        {
+            "field": "customer_profile_id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "collateral_type",
+            "type": "enum('Land','Vehicle')",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "owner_id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "owner_type",
+            "type": "enum('Borrower','Guarantor')",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "land_country",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "land_province",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "land_district",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "land_municipality_vdc",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "land_ward_no",
+            "type": "varchar(10)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "land_sheet_no",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "land_kitta_no",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "land_area",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "land_malpot_office",
+            "type": "varchar(200)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "vehicle_model_no",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "vehicle_engine_no",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "vehicle_chassis_no",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "vehicle_no",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "created_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        },
+        {
+            "field": "updated_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        }
+    ],
+    "loan_details": [
+        {
+            "field": "id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "PRI",
+            "default": null
+        },
+        {
+            "field": "customer_profile_id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "loan_type",
+            "type": "varchar(100)",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "loan_scheme",
+            "type": "varchar(100)",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "loan_approved_date",
+            "type": "date",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "created_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        },
+        {
+            "field": "updated_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        },
+        {
+            "field": "scheme_id",
+            "type": "int(11)",
+            "null": "YES",
+            "key": "MUL",
+            "default": null
+        }
+    ],
+    "limit_details": [
+        {
+            "field": "id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "PRI",
+            "default": null
+        },
+        {
+            "field": "customer_profile_id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "loan_type",
+            "type": "varchar(100)",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "amount",
+            "type": "decimal(15,2)",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "tenure",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "interest_rate",
+            "type": "decimal(5,2)",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "base_rate",
+            "type": "decimal(5,2)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "premium",
+            "type": "decimal(5,2)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "created_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        },
+        {
+            "field": "updated_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        }
+    ],
+    "family_details": [
+        {
+            "field": "id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "PRI",
+            "default": null
+        },
+        {
+            "field": "person_id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "person_type",
+            "type": "enum('Borrower','Guarantor')",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "name",
+            "type": "varchar(200)",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "relation",
+            "type": "varchar(100)",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "created_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        },
+        {
+            "field": "updated_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        }
+    ],
+    "authorized_persons": [
+        {
+            "field": "id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "PRI",
+            "default": null
+        },
+        {
+            "field": "corporate_id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "person_type",
+            "type": "enum('Borrower','Guarantor')",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "name_en",
+            "type": "varchar(255)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "name_np",
+            "type": "varchar(255)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "date_of_birth",
+            "type": "date",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "gender",
+            "type": "varchar(20)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "citizenship_number",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "id_issue_date",
+            "type": "date",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "id_issue_district",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "contact_number",
+            "type": "varchar(20)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "email",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "marital_status",
+            "type": "varchar(50)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "father_name",
+            "type": "varchar(255)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "name",
+            "type": "varchar(200)",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "designation",
+            "type": "varchar(100)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "contact",
+            "type": "varchar(20)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "created_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        },
+        {
+            "field": "updated_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        }
+    ],
+    "loan_schemes": [
+        {
+            "field": "id",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "PRI",
+            "default": null
+        },
+        {
+            "field": "scheme_name",
+            "type": "varchar(200)",
+            "null": "NO",
+            "key": "UNI",
+            "default": null
+        },
+        {
+            "field": "scheme_code",
+            "type": "varchar(50)",
+            "null": "NO",
+            "key": "UNI",
+            "default": null
+        },
+        {
+            "field": "scheme_type",
+            "type": "enum('Home Loan','Vehicle Loan','Personal Loan','Business Loan','Agriculture Loan','Education Loan','Other')",
+            "null": "NO",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "description",
+            "type": "text",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "interest_rate",
+            "type": "decimal(5,2)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "max_tenure_months",
+            "type": "int(11)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "max_loan_amount",
+            "type": "decimal(15,2)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "min_loan_amount",
+            "type": "decimal(15,2)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "template_folder_path",
+            "type": "varchar(500)",
+            "null": "YES",
+            "key": "",
+            "default": null
+        },
+        {
+            "field": "is_active",
+            "type": "tinyint(1)",
+            "null": "YES",
+            "key": "MUL",
+            "default": "1"
+        },
+        {
+            "field": "created_by",
+            "type": "int(11)",
+            "null": "NO",
+            "key": "MUL",
+            "default": null
+        },
+        {
+            "field": "created_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        },
+        {
+            "field": "updated_at",
+            "type": "timestamp",
+            "null": "NO",
+            "key": "",
+            "default": "current_timestamp()"
+        }
+    ]
+}

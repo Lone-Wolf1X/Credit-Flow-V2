@@ -1,0 +1,64 @@
+{
+    "document_type": "mortgage_deed",
+    "description": "Mortgage Deed (Dhito Dastavej) - Property mortgage agreement",
+    "data_sources": {
+        "borrowers": {
+            "table": "borrowers",
+            "prefix": "BR",
+            "max_count": 5,
+            "fields_mapping": "person_fields",
+            "description": "Primary borrowers who are taking the loan"
+        },
+        "guarantors": {
+            "table": "guarantors",
+            "prefix": "GR",
+            "max_count": 5,
+            "fields_mapping": "person_fields",
+            "description": "Guarantors who guarantee the loan repayment"
+        },
+        "collateral_owners": {
+            "source": "collateral.owner_id",
+            "prefix": "CO",
+            "fields_mapping": "person_fields",
+            "description": "Owners of the collateral property being mortgaged"
+        },
+        "collateral": {
+            "table": "collateral",
+            "prefix": "COL",
+            "fields_mapping": "collateral_fields",
+            "description": "Collateral/property details (land, vehicle, etc.)"
+        },
+        "loan": {
+            "table": "loan_details",
+            "prefix": "LN",
+            "fields_mapping": "loan_fields",
+            "description": "Loan details including amount, tenure, interest"
+        },
+        "bank": {
+            "source": "system_settings",
+            "prefix": "BNK",
+            "fields_mapping": "bank_fields",
+            "description": "Bank/branch information"
+        },
+        "witnesses": {
+            "manual": true,
+            "prefix": "WIT",
+            "fields_mapping": "witness_fields",
+            "description": "Witnesses to the mortgage deed"
+        }
+    },
+    "validation_rules": {
+        "required_borrowers": 1,
+        "required_collateral": 1,
+        "required_collateral_owners": 1
+    },
+    "processing_order": [
+        "bank",
+        "loan",
+        "borrowers",
+        "guarantors",
+        "collateral",
+        "collateral_owners",
+        "witnesses"
+    ]
+}

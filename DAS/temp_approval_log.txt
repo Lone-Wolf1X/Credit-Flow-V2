@@ -1,0 +1,100 @@
+﻿[2026-01-28 23:16:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-28 23:16:11] Generating document for template: DPN_2
+[2026-01-28 23:16:11] Document generated successfully with 259 placeholders
+[2026-01-28 23:16:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-28 23:16:11] Generating document for template: Mortgage Deed
+[2026-01-28 23:16:11] Document generated successfully with 233 placeholders
+[2026-01-28 23:16:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-28 23:16:11] Generating document for template: Personal guarantor
+[2026-01-28 23:16:11] Document generated successfully with 221 placeholders
+[2026-01-28 23:16:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-28 23:16:11] Generating document for template: Power OF Attorney
+[2026-01-28 23:16:11] Document generated successfully with 256 placeholders
+[2026-01-28 23:16:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-28 23:16:11] Generating document for template: Rokka letter
+[2026-01-28 23:16:11] Document generated successfully with 250 placeholders
+[2026-01-28 23:16:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 00:34:04] === APPROVAL START for Profile 1 ===
+[2026-01-29 00:34:04] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-29 00:34:04] Found 6 templates for category: Individual
+[2026-01-29 00:34:04] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-29 00:34:04] Generating document for template: DPN 1
+[2026-01-29 00:34:04] Document generated successfully with 269 placeholders
+[2026-01-29 00:34:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 00:34:04] Generating document for template: DPN_2
+[2026-01-29 00:34:04] Document generated successfully with 267 placeholders
+[2026-01-29 00:34:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 00:34:04] Generating document for template: Mortgage Deed
+[2026-01-29 00:34:04] Document generated successfully with 275 placeholders
+[2026-01-29 00:34:04] Group: à¤¸à¤°à¤¿à¤¹à¤¾
+[2026-01-29 00:34:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 00:34:04] Generating document for template: Personal guarantor
+[2026-01-29 00:34:04] Document generated successfully with 195 placeholders
+[2026-01-29 00:34:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 00:34:04] Generating document for template: Power OF Attorney
+[2026-01-29 00:34:04] Document generated successfully with 232 placeholders
+[2026-01-29 00:34:04] Group: Ravi Kumar
+[2026-01-29 00:34:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 00:34:04] Document generated successfully with 232 placeholders
+[2026-01-29 00:34:04] Group: Ram Kumar
+[2026-01-29 00:34:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 00:34:04] Generating document for template: Rokka letter
+[2026-01-29 00:34:04] Document generated successfully with 275 placeholders
+[2026-01-29 00:34:04] Group: à¤¸à¤°à¤¿à¤¹à¤¾
+[2026-01-29 00:34:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:01:11] === APPROVAL START for Profile 1 ===
+[2026-01-29 14:01:11] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-29 14:01:11] Found 6 templates for category: Individual
+[2026-01-29 14:01:11] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-29 14:01:11] Generating document for template: DPN 1
+[2026-01-29 14:01:11] Document generated successfully with 269 placeholders
+[2026-01-29 14:01:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:01:11] Generating document for template: DPN_2
+[2026-01-29 14:01:11] Document generated successfully with 267 placeholders
+[2026-01-29 14:01:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:01:11] Generating document for template: Mortgage Deed
+[2026-01-29 14:01:11] Document generated successfully with 275 placeholders
+[2026-01-29 14:01:11] Group: à¤¸à¤°à¤¿à¤¹à¤¾
+[2026-01-29 14:01:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:01:11] Generating document for template: Personal guarantor
+[2026-01-29 14:01:11] Document generated successfully with 195 placeholders
+[2026-01-29 14:01:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:01:11] Generating document for template: Power OF Attorney
+[2026-01-29 14:01:11] Document generated successfully with 232 placeholders
+[2026-01-29 14:01:11] Group: Ravi Kumar
+[2026-01-29 14:01:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:01:11] Document generated successfully with 232 placeholders
+[2026-01-29 14:01:11] Group: Ram Kumar
+[2026-01-29 14:01:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:01:11] Generating document for template: Rokka letter
+[2026-01-29 14:01:11] Document generated successfully with 275 placeholders
+[2026-01-29 14:01:11] Group: à¤¸à¤°à¤¿à¤¹à¤¾
+[2026-01-29 14:01:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] === APPROVAL START for Profile 1 ===
+[2026-01-29 14:29:52] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-29 14:29:52] Found 6 templates for category: Individual
+[2026-01-29 14:29:52] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-29 14:29:52] Generating document for template: DPN 1
+[2026-01-29 14:29:52] Document generated successfully with 269 placeholders
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] Generating document for template: DPN_2
+[2026-01-29 14:29:52] Document generated successfully with 267 placeholders
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] Generating document for template: Mortgage Deed
+[2026-01-29 14:29:52] Document generated successfully with 275 placeholders
+[2026-01-29 14:29:52] Group: à¤¸à¤°à¤¿à¤¹à¤¾
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] Generating document for template: Personal guarantor
+[2026-01-29 14:29:52] Document generated successfully with 170 placeholders
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] Document generated successfully with 170 placeholders
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] Generating document for template: Power OF Attorney
+[2026-01-29 14:29:52] Document generated successfully with 223 placeholders
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] Document generated successfully with 223 placeholders
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] Generating document for template: Rokka letter
+[2026-01-29 14:29:52] Document generated successfully with 275 placeholders
+[2026-01-29 14:29:52] Group: à¤¸à¤°à¤¿à¤¹à¤¾
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah

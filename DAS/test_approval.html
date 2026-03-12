@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test Approval</title>
+</head>
+
+<body>
+    <h2>Test Document Generation</h2>
+    <button onclick="testApproval()">Test Approve Profile 2</button>
+    <div id="result"></div>
+
+    <script>
+        function testApproval() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Processing...</p>';
+
+            const formData = new FormData();
+            formData.append('action', 'approve_profile');
+            formData.append('profile_id', 2);
+            formData.append('remarks', 'Test approval');
+
+            fetch('modules/api/customer_api.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    console.log('Response headers:', response.headers);
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response:', text);
+                    resultDiv.innerHTML = '<h3>Raw Response:</h3><pre>' + text + '</pre>';
+
+                    try {
+                        const data = JSON.parse(text);
+                        resultDiv.innerHTML += '<h3>Parsed JSON:</h3><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                    } catch (e) {
+                        resultDiv.innerHTML += '<h3>JSON Parse Error:</h3><p>' + e.message + '</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    resultDiv.innerHTML = '<h3>Error:</h3><p>' + error.message + '</p>';
+                });
+        }
+    </script>
+</body>
+
+</html>

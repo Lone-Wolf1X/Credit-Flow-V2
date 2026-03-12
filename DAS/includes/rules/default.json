@@ -1,0 +1,44 @@
+{
+    "document_type": "default",
+    "description": "Default rules for generic documents",
+    "data_sources": {
+        "borrowers": {
+            "table": "borrowers",
+            "prefix": "BR",
+            "max_count": 3,
+            "fields_mapping": "person_fields"
+        },
+        "loan": {
+            "table": "loan_details",
+            "prefix": "LN",
+            "fields_mapping": "loan_fields"
+        },
+        "bank": {
+            "source": "system_settings",
+            "prefix": "BNK",
+            "fields_mapping": "bank_fields"
+        },
+        "guarantors": {
+            "table": "guarantors",
+            "prefix": "GR",
+            "max_count": 3,
+            "fields_mapping": "person_fields"
+        },
+        "collateral": {
+            "table": "collateral",
+            "prefix": "COL",
+            "max_count": 5,
+            "fields_mapping": "collateral_fields"
+        },
+        "collateral_owners": {
+            "source": "derived",
+            "prefix": "COL",
+            "fields_mapping": "person_fields"
+        }
+    },
+    "processing_order": [
+        "bank",
+        "loan",
+        "borrowers"
+    ]
+}

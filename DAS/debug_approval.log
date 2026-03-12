@@ -1,0 +1,857 @@
+[2025-12-21 00:51:20] === APPROVAL START for Profile 2 ===
+[2025-12-21 00:51:20] Scheme ID Found: 8
+[2025-12-21 00:51:20] Profile status updated to Approved. proceeding to document generation.
+[2025-12-21 00:51:20] Generating document for template ID: 13
+[2025-12-21 00:51:20] Generation failed: Error generating document: Could not copy 'C:\xampp\htdocs\Credit\DAS\includes/../' file to 'C:\Users\abhip\AppData\Local\Temp\PhpD7A5.tmp'.
+[2025-12-21 00:54:36] === APPROVAL START for Profile 2 ===
+[2025-12-21 00:54:36] Scheme ID Found: 8
+[2025-12-21 00:54:36] Profile status updated to Approved. proceeding to document generation.
+[2025-12-21 00:54:36] Generating document for template ID: 13
+[2025-12-21 00:54:36] Document generated successfully
+[2025-12-27 04:04:55] === APPROVAL START for Profile 5 ===
+[2025-12-27 04:04:55] Scheme ID Found: 8
+[2025-12-27 04:04:58] === APPROVAL START for Profile 5 ===
+[2025-12-27 04:04:58] Scheme ID Found: 8
+[2025-12-27 04:08:40] === APPROVAL START for Profile 5 ===
+[2025-12-27 04:08:40] Scheme ID Found: 8
+[2025-12-27 04:20:10] === APPROVAL START for Profile 5 ===
+[2025-12-27 04:20:10] Scheme ID Found: 8
+[2025-12-27 04:26:49] === APPROVAL START for Profile 5 ===
+[2025-12-27 04:26:49] Scheme ID Found: 8
+[2025-12-27 04:34:11] === APPROVAL START for Profile 5 ===
+[2025-12-27 04:34:11] Scheme ID Found: 8
+[2025-12-27 04:41:35] === APPROVAL START for Profile 5 ===
+[2025-12-27 04:41:35] Scheme ID Found: 8
+[2025-12-27 04:49:15] === APPROVAL START for Profile 5 ===
+[2025-12-27 04:49:15] Scheme ID Found: 8
+[2025-12-29 23:56:14] === APPROVAL START for Profile 5 ===
+[2025-12-29 23:56:14] Scheme ID Found: 8
+[2025-12-30 00:04:34] === APPROVAL START for Profile 5 ===
+[2025-12-30 00:04:34] Scheme ID Found: 8
+[2025-12-30 00:06:17] === APPROVAL START for Profile 5 ===
+[2025-12-30 00:06:17] Scheme ID Found: 8
+[2025-12-30 00:06:17] Profile status updated to Approved. proceeding to document generation.
+[2025-12-30 00:06:17] Generating document for template ID: 18
+[2025-12-30 00:06:17] Document generated successfully
+[2025-12-30 00:09:49] === APPROVAL START for Profile 5 ===
+[2025-12-30 00:09:49] Scheme ID Found: 8
+[2025-12-30 00:09:49] Profile status updated to Approved. proceeding to document generation.
+[2025-12-30 00:09:49] Generating document for template ID: 18
+[2025-12-30 00:09:49] Document generated successfully
+[2026-01-06 08:28:16] === APPROVAL START for Profile 2 ===
+[2026-01-06 08:28:16] Scheme ID Found: 8
+[2026-01-06 08:28:16] Profile status updated to Approved. proceeding to document generation.
+[2026-01-06 08:28:16] Generating document for template ID: 20
+[2026-01-06 08:28:16] Document generated successfully
+[2026-01-06 08:37:02] === APPROVAL START for Profile 2 ===
+[2026-01-06 08:37:02] Scheme ID Found: 8
+[2026-01-06 08:37:02] Profile status updated to Approved. proceeding to document generation.
+[2026-01-06 08:37:02] Generating document for template ID: 20
+[2026-01-06 08:37:02] Document generated successfully
+[2026-01-06 09:05:16] === APPROVAL START for Profile 2 ===
+[2026-01-06 09:05:16] Scheme ID Found: 8
+[2026-01-06 09:05:16] Profile status updated to Approved. proceeding to document generation.
+[2026-01-06 09:05:16] Generating document for template ID: 20
+[2026-01-06 09:05:16] Document generated successfully
+[2026-01-06 09:11:34] === APPROVAL START for Profile 2 ===
+[2026-01-06 09:11:34] Scheme ID Found: 8
+[2026-01-06 09:11:34] WARNING: No templates found for scheme 8
+[2026-01-06 09:16:00] === APPROVAL START for Profile 2 ===
+[2026-01-06 09:16:00] Scheme ID Found: 8
+[2026-01-06 09:16:00] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-06 09:16:00] Placeholders mapped: 62
+[2026-01-06 09:16:00] Generating document for template: Mortgage Deed
+[2026-01-06 09:16:00] Document generated successfully: profile_2_Mortgage Deed_1767670260.docx
+[2026-01-06 09:16:00] Exception: Unknown column 'customer_profile_id' in 'field list'
+[2026-01-06 09:16:00] FATAL ERROR: Unknown column 'customer_profile_id' in 'field list'
+[2026-01-06 09:19:37] === APPROVAL START for Profile 2 ===
+[2026-01-06 09:19:37] Scheme ID Found: 8
+[2026-01-06 09:19:37] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-06 09:19:37] Placeholders mapped: 62
+[2026-01-06 09:19:37] Generating document for template: Mortgage Deed
+[2026-01-06 09:19:37] Document generated successfully: profile_2_Mortgage Deed_1767670477.docx
+[2026-01-06 09:19:37] Exception: Unknown column 'scheme_id' in 'field list'
+[2026-01-06 09:19:37] FATAL ERROR: Unknown column 'scheme_id' in 'field list'
+[2026-01-06 19:50:04] === APPROVAL START for Profile 2 ===
+[2026-01-06 19:50:04] Scheme ID Found: 8
+[2026-01-06 19:50:04] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-06 19:50:04] Placeholders mapped: 62
+[2026-01-06 19:50:04] Generating document for template: Mortgage Deed
+[2026-01-06 19:50:04] Document generated successfully: profile_2_Mortgage Deed_1767708304.docx
+[2026-01-06 19:50:04] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_2` FOREIGN KEY (`template_id`) REFERENCES `templates` (`id`))
+[2026-01-06 19:50:04] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_2` FOREIGN KEY (`template_id`) REFERENCES `templates` (`id`))
+[2026-01-06 20:14:23] === APPROVAL START for Profile 2 ===
+[2026-01-06 20:14:23] Scheme ID Found: 8
+[2026-01-06 20:14:23] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-06 20:14:23] Placeholders mapped: 62
+[2026-01-06 20:14:23] Generating document for template: Mortgage Deed
+[2026-01-06 20:14:23] Document generated successfully: profile_2_Mortgage Deed_1767709763.docx
+[2026-01-06 20:14:23] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_2` FOREIGN KEY (`template_id`) REFERENCES `templates` (`id`))
+[2026-01-06 20:14:23] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_2` FOREIGN KEY (`template_id`) REFERENCES `templates` (`id`))
+[2026-01-06 20:16:20] === APPROVAL START for Profile 1 ===
+[2026-01-06 20:16:20] Scheme ID Found: 8
+[2026-01-06 20:16:20] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-06 20:16:20] Placeholders mapped: 62
+[2026-01-06 20:16:20] Generating document for template: Mortgage Deed
+[2026-01-06 20:16:20] Document generated successfully: profile_1_Mortgage Deed_1767709880.docx
+[2026-01-06 20:16:20] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_2` FOREIGN KEY (`template_id`) REFERENCES `templates` (`id`))
+[2026-01-06 20:16:20] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_2` FOREIGN KEY (`template_id`) REFERENCES `templates` (`id`))
+[2026-01-06 20:19:11] === APPROVAL START for Profile 2 ===
+[2026-01-06 20:19:11] Scheme ID Found: 8
+[2026-01-06 20:19:11] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-06 20:19:11] Placeholders mapped: 62
+[2026-01-06 20:19:11] Generating document for template: Mortgage Deed
+[2026-01-06 20:19:11] Document generated successfully: profile_2_Mortgage Deed_1767710051.docx
+[2026-01-06 20:19:11] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-06 20:19:11] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-08 22:54:20] === APPROVAL START for Profile 2 ===
+[2026-01-08 22:54:20] Scheme ID Found: 8
+[2026-01-08 22:54:20] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 22:54:25] === APPROVAL START for Profile 2 ===
+[2026-01-08 22:54:25] Scheme ID Found: 8
+[2026-01-08 22:54:25] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 22:59:02] === APPROVAL START for Profile 2 ===
+[2026-01-08 22:59:02] Scheme ID Found: 8
+[2026-01-08 22:59:02] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 22:59:02] Generating document for template: Mortgage Deed
+[2026-01-08 22:59:02] Document generated successfully with 170 placeholders
+[2026-01-08 22:59:02] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-08 22:59:02] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-08 23:20:54] === APPROVAL START for Profile 2 ===
+[2026-01-08 23:20:54] Scheme ID Found: 8
+[2026-01-08 23:20:54] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 23:20:54] Generating document for template: Mortgage Deed
+[2026-01-08 23:21:03] === APPROVAL START for Profile 2 ===
+[2026-01-08 23:21:03] Scheme ID Found: 8
+[2026-01-08 23:21:03] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 23:21:03] Generating document for template: Mortgage Deed
+[2026-01-08 23:24:26] === APPROVAL START for Profile 2 ===
+[2026-01-08 23:24:26] Scheme ID Found: 8
+[2026-01-08 23:24:26] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 23:24:26] Generating document for template: Mortgage Deed
+[2026-01-08 23:55:38] === APPROVAL START for Profile 2 ===
+[2026-01-08 23:55:38] Scheme ID Found: 8
+[2026-01-08 23:55:38] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 23:55:38] Generating document for template: Mortgage Deed
+[2026-01-08 23:55:40] === APPROVAL START for Profile 2 ===
+[2026-01-08 23:55:40] Scheme ID Found: 8
+[2026-01-08 23:55:40] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 23:55:40] Generating document for template: Mortgage Deed
+[2026-01-08 23:55:41] === APPROVAL START for Profile 2 ===
+[2026-01-08 23:55:41] Scheme ID Found: 8
+[2026-01-08 23:55:41] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 23:55:41] Generating document for template: Mortgage Deed
+[2026-01-08 23:55:41] === APPROVAL START for Profile 2 ===
+[2026-01-08 23:55:41] Scheme ID Found: 8
+[2026-01-08 23:55:41] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 23:55:41] Generating document for template: Mortgage Deed
+[2026-01-08 23:55:41] === APPROVAL START for Profile 2 ===
+[2026-01-08 23:55:41] Scheme ID Found: 8
+[2026-01-08 23:55:41] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 23:55:41] Generating document for template: Mortgage Deed
+[2026-01-08 23:59:01] === APPROVAL START for Profile 2 ===
+[2026-01-08 23:59:01] Scheme ID Found: 8
+[2026-01-08 23:59:01] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 23:59:01] Generating document for template: Mortgage Deed
+[2026-01-08 23:59:03] === APPROVAL START for Profile 2 ===
+[2026-01-08 23:59:03] Scheme ID Found: 8
+[2026-01-08 23:59:03] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 23:59:03] Generating document for template: Mortgage Deed
+[2026-01-08 23:59:03] === APPROVAL START for Profile 2 ===
+[2026-01-08 23:59:03] Scheme ID Found: 8
+[2026-01-08 23:59:03] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 23:59:03] Generating document for template: Mortgage Deed
+[2026-01-08 23:59:03] === APPROVAL START for Profile 2 ===
+[2026-01-08 23:59:03] Scheme ID Found: 8
+[2026-01-08 23:59:03] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 23:59:03] Generating document for template: Mortgage Deed
+[2026-01-08 23:59:04] === APPROVAL START for Profile 2 ===
+[2026-01-08 23:59:04] Scheme ID Found: 8
+[2026-01-08 23:59:04] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-08 23:59:04] Generating document for template: Mortgage Deed
+[2026-01-09 00:02:21] === APPROVAL START for Profile 2 ===
+[2026-01-09 00:02:21] Scheme ID Found: 8
+[2026-01-09 00:02:21] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-09 00:02:21] Generating document for template: Mortgage Deed
+[2026-01-09 00:07:35] === APPROVAL START for Profile 2 ===
+[2026-01-09 00:07:35] Scheme ID Found: 8
+[2026-01-09 00:07:35] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-09 00:07:35] Generating document for template: Mortgage Deed
+[2026-01-09 00:07:35] Document generated successfully with 170 placeholders
+[2026-01-09 00:07:35] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 00:07:35] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 00:10:41] === APPROVAL START for Profile 4 ===
+[2026-01-09 00:10:41] ERROR: No loan details found
+[2026-01-09 00:11:34] === APPROVAL START for Profile 4 ===
+[2026-01-09 00:11:34] ERROR: No loan details found
+[2026-01-09 00:19:36] === APPROVAL START for Profile 2 ===
+[2026-01-09 00:19:36] Scheme ID Found: 8
+[2026-01-09 00:19:36] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-09 00:19:36] Generating document for template: Mortgage Deed
+[2026-01-09 00:19:36] Document generated successfully with 170 placeholders
+[2026-01-09 00:19:36] Saved to folder: 2025002_Ramesh_Mahato
+[2026-01-09 00:19:36] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 00:19:36] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 00:22:19] === APPROVAL START for Profile 2 ===
+[2026-01-09 00:22:19] Scheme ID Found: 8
+[2026-01-09 00:22:19] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-09 00:22:19] Generating document for template: Mortgage Deed
+[2026-01-09 00:22:19] Document generated successfully with 170 placeholders
+[2026-01-09 00:22:19] Saved to folder: 2025002_Ramesh_Mahato
+[2026-01-09 00:22:19] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 00:22:19] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 00:56:22] === APPROVAL START for Profile 2 ===
+[2026-01-09 00:56:22] Scheme ID Found: 8
+[2026-01-09 00:56:22] WARNING: No templates found for scheme 8
+[2026-01-09 00:59:15] === APPROVAL START for Profile 2 ===
+[2026-01-09 00:59:15] Scheme ID Found: 8
+[2026-01-09 00:59:15] WARNING: No templates found for scheme 8
+[2026-01-09 01:04:08] === APPROVAL START for Profile 2 ===
+[2026-01-09 01:04:08] Scheme ID Found: 8
+[2026-01-09 01:04:08] WARNING: No templates found for scheme 8
+[2026-01-09 01:32:36] === APPROVAL START for Profile 2 ===
+[2026-01-09 01:32:36] Scheme ID Found: 8
+[2026-01-09 01:32:36] WARNING: No templates found for scheme 8
+[2026-01-09 01:45:18] === APPROVAL START for Profile 2 ===
+[2026-01-09 01:45:18] Scheme ID Found: 8
+[2026-01-09 01:45:18] WARNING: No templates found for scheme 8
+[2026-01-09 01:51:36] === APPROVAL START for Profile 2 ===
+[2026-01-09 01:51:36] Scheme ID Found: 8
+[2026-01-09 01:51:36] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-09 01:51:36] Generating document for template: Mortgage Deed
+[2026-01-09 01:51:36] Document generated successfully with 132 placeholders
+[2026-01-09 01:51:36] Saved to folder: 2025002_Ramesh_Mahato
+[2026-01-09 01:51:36] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 01:51:36] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 09:07:43] === APPROVAL START for Profile 2 ===
+[2026-01-09 09:07:43] Scheme ID Found: 8
+[2026-01-09 09:07:43] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-09 09:07:43] Generating document for template: Mortgage Deed
+[2026-01-09 09:07:43] Document generated successfully with 130 placeholders
+[2026-01-09 09:07:43] Saved to folder: 2025002_Ramesh_Mahato
+[2026-01-09 09:07:43] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 09:07:43] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 09:10:59] === APPROVAL START for Profile 2 ===
+[2026-01-09 09:10:59] Scheme ID Found: 8
+[2026-01-09 09:10:59] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-09 09:10:59] Generating document for template: Mortgage Deed
+[2026-01-09 09:10:59] Document generated successfully with 130 placeholders
+[2026-01-09 09:10:59] Saved to folder: 2025002_Ramesh_Mahato
+[2026-01-09 09:10:59] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 09:10:59] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 09:16:49] === APPROVAL START for Profile 2 ===
+[2026-01-09 09:16:49] Scheme ID Found: 8
+[2026-01-09 09:16:49] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-09 09:16:49] Generating document for template: Mortgage Deed
+[2026-01-09 09:16:49] Document generated successfully with 130 placeholders
+[2026-01-09 09:16:49] Saved to folder: 2025002_Ramesh_Mahato
+[2026-01-09 09:16:49] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 09:16:49] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 09:24:52] === APPROVAL START for Profile 2 ===
+[2026-01-09 09:24:52] Scheme ID Found: 8
+[2026-01-09 09:24:52] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-09 09:24:52] Generating document for template: Mortgage Deed
+[2026-01-09 09:24:52] Document generated successfully with 130 placeholders
+[2026-01-09 09:24:52] Saved to folder: 2025002_Ramesh_Mahato
+[2026-01-09 09:24:52] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 09:24:52] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 09:28:59] === APPROVAL START for Profile 2 ===
+[2026-01-09 09:28:59] Scheme ID Found: 8
+[2026-01-09 09:28:59] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-09 09:28:59] Generating document for template: Mortgage Deed
+[2026-01-09 09:28:59] Document generated successfully with 130 placeholders
+[2026-01-09 09:28:59] Saved to folder: 2025002_Ramesh_Mahato
+[2026-01-09 09:28:59] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 09:28:59] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 09:32:01] === APPROVAL START for Profile 2 ===
+[2026-01-09 09:32:01] Scheme ID Found: 8
+[2026-01-09 09:32:01] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-09 09:32:01] Generating document for template: Mortgage Deed
+[2026-01-09 09:32:01] Document generated successfully with 128 placeholders
+[2026-01-09 09:32:01] Saved to folder: 2025002_Ramesh_Mahato
+[2026-01-09 09:32:01] Exception: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-09 09:32:01] FATAL ERROR: Cannot add or update a child row: a foreign key constraint fails (`das_db`.`generated_documents`, CONSTRAINT `generated_documents_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE)
+[2026-01-12 23:29:50] === APPROVAL START for Profile 2 ===
+[2026-01-12 23:29:50] Scheme ID Found: 8
+[2026-01-12 23:29:50] WARNING: No templates found for scheme 8
+[2026-01-12 23:38:32] === APPROVAL START for Profile 2 ===
+[2026-01-12 23:38:32] Scheme ID Found: 8
+[2026-01-12 23:38:32] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-12 23:38:32] Generating document for template: Mortgage Deed
+[2026-01-13 06:37:45] === APPROVAL START for Profile 2 ===
+[2026-01-13 06:37:45] Scheme ID Found: 8
+[2026-01-13 06:37:46] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-13 06:37:46] Generating document for template: Mortgage Deed
+[2026-01-13 06:37:46] Document generated successfully with 126 placeholders
+[2026-01-13 06:37:46] Saved to folder: 2025002_Ramesh_Mahato
+[2026-01-13 09:16:19] === APPROVAL START for Profile 2 ===
+[2026-01-13 09:16:19] Scheme ID Found: 8
+[2026-01-13 09:16:19] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-13 09:16:19] Generating document for template: Mortgage Deed
+[2026-01-13 09:16:19] Document generated successfully with 126 placeholders
+[2026-01-13 09:16:19] Saved to folder: 2025002_Ramesh_Mahato
+[2026-01-13 20:22:42] === APPROVAL START for Profile 2 ===
+[2026-01-13 20:22:42] Scheme ID Found: 8
+[2026-01-13 20:22:42] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-13 20:22:42] Generating document for template: Mortgage Deed
+[2026-01-13 20:22:43] Document generated successfully with 126 placeholders
+[2026-01-13 20:22:43] Saved to folder: 2025002_Ramesh_Mahato
+[2026-01-13 20:22:43] Generating document for template: Loan Deed
+[2026-01-13 20:22:43] Document generated successfully with 141 placeholders
+[2026-01-13 20:22:43] Saved to folder: 2025002_Ramesh_Mahato
+[2026-01-20 22:58:21] === APPROVAL START for Profile 1 ===
+[2026-01-20 22:58:21] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-20 22:58:21] Found 1 templates for category: Individual
+[2026-01-20 22:58:21] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-20 22:58:21] Generating document for template: Mortgage Deed
+[2026-01-20 22:58:22] Document generated successfully with 174 placeholders
+[2026-01-20 22:58:22] Saved to folder: 2026001_Ram_Kumar
+[2026-01-20 22:58:22] Legacy 'customers' record missing for ID 2026001. Creating it...
+[2026-01-21 01:05:24] === APPROVAL START for Profile 1 ===
+[2026-01-21 01:05:24] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-21 01:05:24] Found 2 templates for category: Individual
+[2026-01-21 01:05:24] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-21 01:05:24] Generating document for template: Loan Deed
+[2026-01-21 01:05:24] Document generated successfully with 181 placeholders
+[2026-01-21 01:05:24] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-21 01:05:24] Generating document for template: Mortgage Deed
+[2026-01-21 01:05:24] Document generated successfully with 173 placeholders
+[2026-01-21 01:05:24] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-21 08:07:33] === APPROVAL START for Profile 1 ===
+[2026-01-21 08:07:33] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-21 08:07:33] Found 2 templates for category: Individual
+[2026-01-21 08:07:33] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-21 08:07:33] Generating document for template: Loan Deed
+[2026-01-21 08:07:33] Document generated successfully with 180 placeholders
+[2026-01-21 08:07:33] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-21 08:07:33] Generating document for template: Mortgage Deed
+[2026-01-21 08:07:33] Document generated successfully with 170 placeholders
+[2026-01-21 08:07:33] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-21 23:58:53] === APPROVAL START for Profile 1 ===
+[2026-01-21 23:58:53] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-21 23:58:53] Found 2 templates for category: Individual
+[2026-01-21 23:58:53] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-21 23:58:53] Generating document for template: Loan Deed
+[2026-01-21 23:58:53] Document generated successfully with 223 placeholders
+[2026-01-21 23:58:53] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-21 23:58:53] Generating document for template: Mortgage Deed
+[2026-01-21 23:58:53] Document generated successfully with 213 placeholders
+[2026-01-21 23:58:53] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 00:12:49] === APPROVAL START for Profile 1 ===
+[2026-01-22 00:12:49] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-22 00:12:49] Found 2 templates for category: Individual
+[2026-01-22 00:12:49] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-22 00:12:49] Generating document for template: Loan Deed
+[2026-01-22 00:12:49] Document generated successfully with 223 placeholders
+[2026-01-22 00:12:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 00:12:49] Generating document for template: Mortgage Deed
+[2026-01-22 00:12:49] Document generated successfully with 213 placeholders
+[2026-01-22 00:12:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 00:27:36] === APPROVAL START for Profile 1 ===
+[2026-01-22 00:27:36] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-22 00:27:36] Found 2 templates for category: Individual
+[2026-01-22 00:27:36] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-22 00:27:36] Generating document for template: Loan Deed
+[2026-01-22 00:27:36] Document generated successfully with 223 placeholders
+[2026-01-22 00:27:36] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 00:27:36] Generating document for template: Mortgage Deed
+[2026-01-22 00:27:36] Document generated successfully with 213 placeholders
+[2026-01-22 00:27:36] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 00:35:04] === APPROVAL START for Profile 1 ===
+[2026-01-22 00:35:04] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-22 00:35:04] Found 2 templates for category: Individual
+[2026-01-22 00:35:04] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-22 00:35:04] Generating document for template: Loan Deed
+[2026-01-22 00:35:04] Document generated successfully with 223 placeholders
+[2026-01-22 00:35:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 00:35:04] Generating document for template: Mortgage Deed
+[2026-01-22 00:35:04] Document generated successfully with 213 placeholders
+[2026-01-22 00:35:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 07:09:57] === APPROVAL START for Profile 1 ===
+[2026-01-22 07:09:57] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-22 07:09:57] Found 3 templates for category: Individual
+[2026-01-22 07:09:57] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-22 07:09:57] Generating document for template: Loan Deed
+[2026-01-22 07:09:58] Document generated successfully with 223 placeholders
+[2026-01-22 07:09:58] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 07:09:58] Generating document for template: Mortgage Deed
+[2026-01-22 07:09:58] Document generated successfully with 213 placeholders
+[2026-01-22 07:09:58] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 07:09:58] Generating document for template: Rokka letter
+[2026-01-22 07:09:58] Document generated successfully with 54 placeholders
+[2026-01-22 07:09:58] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 07:24:50] === APPROVAL START for Profile 1 ===
+[2026-01-22 07:24:50] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-22 07:24:50] Found 3 templates for category: Individual
+[2026-01-22 07:24:50] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-22 07:24:50] Generating document for template: Loan Deed
+[2026-01-22 07:24:50] Document generated successfully with 223 placeholders
+[2026-01-22 07:24:50] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 07:24:51] Generating document for template: Mortgage Deed
+[2026-01-22 07:24:51] Document generated successfully with 213 placeholders
+[2026-01-22 07:24:51] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 07:24:51] Generating document for template: Rokka letter
+[2026-01-22 07:24:51] Document generated successfully with 54 placeholders
+[2026-01-22 07:24:51] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 07:36:52] === APPROVAL START for Profile 1 ===
+[2026-01-22 07:36:52] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-22 07:36:52] Found 3 templates for category: Individual
+[2026-01-22 07:36:52] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-22 07:36:52] Generating document for template: Loan Deed
+[2026-01-22 07:36:52] Document generated successfully with 223 placeholders
+[2026-01-22 07:36:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 07:36:52] Generating document for template: Mortgage Deed
+[2026-01-22 07:36:52] Document generated successfully with 213 placeholders
+[2026-01-22 07:36:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 07:36:52] Generating document for template: Rokka letter
+[2026-01-22 07:36:52] Document generated successfully with 54 placeholders
+[2026-01-22 07:36:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 07:44:14] === APPROVAL START for Profile 1 ===
+[2026-01-22 07:44:14] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-22 07:44:14] Found 3 templates for category: Individual
+[2026-01-22 07:44:14] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-22 07:44:14] Generating document for template: Loan Deed
+[2026-01-22 07:44:15] Document generated successfully with 229 placeholders
+[2026-01-22 07:44:15] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 07:44:15] Generating document for template: Mortgage Deed
+[2026-01-22 07:44:15] Document generated successfully with 230 placeholders
+[2026-01-22 07:44:15] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-22 07:44:15] Generating document for template: Rokka letter
+[2026-01-22 07:44:15] Document generated successfully with 224 placeholders
+[2026-01-22 07:44:15] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-28 23:16:10] === APPROVAL START for Profile 1 ===
+[2026-01-28 23:16:10] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-28 23:16:10] Found 6 templates for category: Individual
+[2026-01-28 23:16:10] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-28 23:16:10] Generating document for template: DPN 1
+[2026-01-28 23:16:11] Document generated successfully with 260 placeholders
+[2026-01-28 23:16:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-28 23:16:11] Generating document for template: DPN_2
+[2026-01-28 23:16:11] Document generated successfully with 259 placeholders
+[2026-01-28 23:16:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-28 23:16:11] Generating document for template: Mortgage Deed
+[2026-01-28 23:16:11] Document generated successfully with 233 placeholders
+[2026-01-28 23:16:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-28 23:16:11] Generating document for template: Personal guarantor
+[2026-01-28 23:16:11] Document generated successfully with 221 placeholders
+[2026-01-28 23:16:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-28 23:16:11] Generating document for template: Power OF Attorney
+[2026-01-28 23:16:11] Document generated successfully with 256 placeholders
+[2026-01-28 23:16:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-28 23:16:11] Generating document for template: Rokka letter
+[2026-01-28 23:16:11] Document generated successfully with 250 placeholders
+[2026-01-28 23:16:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 00:34:04] === APPROVAL START for Profile 1 ===
+[2026-01-29 00:34:04] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-29 00:34:04] Found 6 templates for category: Individual
+[2026-01-29 00:34:04] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-29 00:34:04] Generating document for template: DPN 1
+[2026-01-29 00:34:04] Document generated successfully with 269 placeholders
+[2026-01-29 00:34:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 00:34:04] Generating document for template: DPN_2
+[2026-01-29 00:34:04] Document generated successfully with 267 placeholders
+[2026-01-29 00:34:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 00:34:04] Generating document for template: Mortgage Deed
+[2026-01-29 00:34:04] Document generated successfully with 275 placeholders
+[2026-01-29 00:34:04] Group: सरिहा
+[2026-01-29 00:34:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 00:34:04] Generating document for template: Personal guarantor
+[2026-01-29 00:34:04] Document generated successfully with 195 placeholders
+[2026-01-29 00:34:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 00:34:04] Generating document for template: Power OF Attorney
+[2026-01-29 00:34:04] Document generated successfully with 232 placeholders
+[2026-01-29 00:34:04] Group: Ravi Kumar
+[2026-01-29 00:34:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 00:34:04] Document generated successfully with 232 placeholders
+[2026-01-29 00:34:04] Group: Ram Kumar
+[2026-01-29 00:34:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 00:34:04] Generating document for template: Rokka letter
+[2026-01-29 00:34:04] Document generated successfully with 275 placeholders
+[2026-01-29 00:34:04] Group: सरिहा
+[2026-01-29 00:34:04] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:01:11] === APPROVAL START for Profile 1 ===
+[2026-01-29 14:01:11] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-29 14:01:11] Found 6 templates for category: Individual
+[2026-01-29 14:01:11] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-29 14:01:11] Generating document for template: DPN 1
+[2026-01-29 14:01:11] Document generated successfully with 269 placeholders
+[2026-01-29 14:01:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:01:11] Generating document for template: DPN_2
+[2026-01-29 14:01:11] Document generated successfully with 267 placeholders
+[2026-01-29 14:01:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:01:11] Generating document for template: Mortgage Deed
+[2026-01-29 14:01:11] Document generated successfully with 275 placeholders
+[2026-01-29 14:01:11] Group: सरिहा
+[2026-01-29 14:01:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:01:11] Generating document for template: Personal guarantor
+[2026-01-29 14:01:11] Document generated successfully with 195 placeholders
+[2026-01-29 14:01:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:01:11] Generating document for template: Power OF Attorney
+[2026-01-29 14:01:11] Document generated successfully with 232 placeholders
+[2026-01-29 14:01:11] Group: Ravi Kumar
+[2026-01-29 14:01:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:01:11] Document generated successfully with 232 placeholders
+[2026-01-29 14:01:11] Group: Ram Kumar
+[2026-01-29 14:01:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:01:11] Generating document for template: Rokka letter
+[2026-01-29 14:01:11] Document generated successfully with 275 placeholders
+[2026-01-29 14:01:11] Group: सरिहा
+[2026-01-29 14:01:11] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] === APPROVAL START for Profile 1 ===
+[2026-01-29 14:29:52] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-29 14:29:52] Found 6 templates for category: Individual
+[2026-01-29 14:29:52] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-29 14:29:52] Generating document for template: DPN 1
+[2026-01-29 14:29:52] Document generated successfully with 269 placeholders
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] Generating document for template: DPN_2
+[2026-01-29 14:29:52] Document generated successfully with 267 placeholders
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] Generating document for template: Mortgage Deed
+[2026-01-29 14:29:52] Document generated successfully with 275 placeholders
+[2026-01-29 14:29:52] Group: सरिहा
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] Generating document for template: Personal guarantor
+[2026-01-29 14:29:52] Document generated successfully with 170 placeholders
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] Document generated successfully with 170 placeholders
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] Generating document for template: Power OF Attorney
+[2026-01-29 14:29:52] Document generated successfully with 223 placeholders
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] Document generated successfully with 223 placeholders
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 14:29:52] Generating document for template: Rokka letter
+[2026-01-29 14:29:52] Document generated successfully with 275 placeholders
+[2026-01-29 14:29:52] Group: सरिहा
+[2026-01-29 14:29:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 15:48:52] === APPROVAL START for Profile 1 ===
+[2026-01-29 15:48:52] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-29 15:48:52] Found 6 templates for category: Individual
+[2026-01-29 15:48:52] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-29 15:48:52] Generating document for template: DPN 1
+[2026-01-29 15:48:52] Document generated successfully with 273 placeholders
+[2026-01-29 15:48:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 15:48:52] Generating document for template: DPN_2
+[2026-01-29 15:48:52] Document generated successfully with 271 placeholders
+[2026-01-29 15:48:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 15:48:52] Generating document for template: Mortgage Deed
+[2026-01-29 15:48:52] DEBUG: Split Malpot Logic for Mortgage Deed
+[2026-01-29 15:48:52] Document generated successfully with 279 placeholders
+[2026-01-29 15:48:52] Group: सरिहा
+[2026-01-29 15:48:52] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 15:48:52] Generating document for template: Personal guarantor
+[2026-01-29 15:48:52] DEBUG: Split Guarantor Logic for Personal guarantor
+[2026-01-29 15:48:53] Document generated successfully with 173 placeholders
+[2026-01-29 15:48:53] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 15:48:53] Document generated successfully with 173 placeholders
+[2026-01-29 15:48:53] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 15:48:53] Generating document for template: Power OF Attorney
+[2026-01-29 15:48:53] DEBUG: Split Guarantor Logic for Power OF Attorney
+[2026-01-29 15:48:53] Document generated successfully with 227 placeholders
+[2026-01-29 15:48:53] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 15:48:53] Document generated successfully with 227 placeholders
+[2026-01-29 15:48:53] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 15:48:53] Generating document for template: Rokka letter
+[2026-01-29 15:48:53] DEBUG: Split Malpot Logic for Rokka letter
+[2026-01-29 15:48:53] Document generated successfully with 279 placeholders
+[2026-01-29 15:48:53] Group: सरिहा
+[2026-01-29 15:48:53] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 16:33:59] === APPROVAL START for Profile 1 ===
+[2026-01-29 16:33:59] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-29 16:33:59] Found 6 templates for category: Individual
+[2026-01-29 16:33:59] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-29 16:33:59] Generating document for template: DPN 1
+[2026-01-29 16:33:59] Document generated successfully with 273 placeholders
+[2026-01-29 16:33:59] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 16:33:59] Generating document for template: DPN_2
+[2026-01-29 16:33:59] Document generated successfully with 271 placeholders
+[2026-01-29 16:33:59] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 16:33:59] Generating document for template: Mortgage Deed
+[2026-01-29 16:33:59] DEBUG: Split Malpot Logic for Mortgage Deed
+[2026-01-29 16:33:59] Document generated successfully with 279 placeholders
+[2026-01-29 16:33:59] Group: सरिहा
+[2026-01-29 16:33:59] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 16:33:59] Generating document for template: Personal guarantor
+[2026-01-29 16:33:59] DEBUG: Split Guarantor Logic for Personal guarantor
+[2026-01-29 16:33:59] Document generated successfully with 173 placeholders
+[2026-01-29 16:33:59] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 16:33:59] Document generated successfully with 173 placeholders
+[2026-01-29 16:33:59] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 16:33:59] Generating document for template: Power OF Attorney
+[2026-01-29 16:33:59] DEBUG: Split Guarantor Logic for Power OF Attorney
+[2026-01-29 16:33:59] Document generated successfully with 227 placeholders
+[2026-01-29 16:33:59] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 16:33:59] Document generated successfully with 227 placeholders
+[2026-01-29 16:33:59] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 16:33:59] Generating document for template: Rokka letter
+[2026-01-29 16:33:59] DEBUG: Split Malpot Logic for Rokka letter
+[2026-01-29 16:33:59] Document generated successfully with 279 placeholders
+[2026-01-29 16:33:59] Group: सरिहा
+[2026-01-29 16:33:59] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:17:02] === APPROVAL START for Profile 1 ===
+[2026-01-29 17:17:02] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-29 17:17:02] Found 6 templates for category: Individual
+[2026-01-29 17:17:02] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-29 17:17:02] Generating document for template: DPN 1
+[2026-01-29 17:17:02] Document generated successfully with 316 placeholders
+[2026-01-29 17:17:02] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:17:02] Generating document for template: DPN_2
+[2026-01-29 17:17:02] Document generated successfully with 313 placeholders
+[2026-01-29 17:17:02] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:17:02] Generating document for template: Mortgage Deed
+[2026-01-29 17:17:02] DEBUG: Split Malpot Logic for Mortgage Deed
+[2026-01-29 17:17:02] Document generated successfully with 322 placeholders
+[2026-01-29 17:17:02] Group: सरिहा
+[2026-01-29 17:17:02] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:17:02] Generating document for template: Personal guarantor
+[2026-01-29 17:17:02] DEBUG: Split Guarantor Logic for Personal guarantor
+[2026-01-29 17:17:02] Document generated successfully with 170 placeholders
+[2026-01-29 17:17:02] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:17:02] Document generated successfully with 170 placeholders
+[2026-01-29 17:17:02] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:17:02] Document generated successfully with 170 placeholders
+[2026-01-29 17:17:02] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:17:02] Generating document for template: Power OF Attorney
+[2026-01-29 17:17:02] DEBUG: Split Guarantor Logic for Power OF Attorney
+[2026-01-29 17:17:03] Document generated successfully with 227 placeholders
+[2026-01-29 17:17:03] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:17:03] Document generated successfully with 227 placeholders
+[2026-01-29 17:17:03] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:17:03] Document generated successfully with 227 placeholders
+[2026-01-29 17:17:03] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:17:03] Generating document for template: Rokka letter
+[2026-01-29 17:17:03] DEBUG: Split Malpot Logic for Rokka letter
+[2026-01-29 17:17:03] Document generated successfully with 322 placeholders
+[2026-01-29 17:17:03] Group: सरिहा
+[2026-01-29 17:17:03] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:43:10] === APPROVAL START for Profile 1 ===
+[2026-01-29 17:43:10] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-29 17:43:10] Found 6 templates for category: Individual
+[2026-01-29 17:43:10] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-29 17:43:10] Generating document for template: DPN 1
+[2026-01-29 17:43:10] Document generated successfully with 316 placeholders
+[2026-01-29 17:43:10] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:43:10] Generating document for template: DPN_2
+[2026-01-29 17:43:10] Document generated successfully with 313 placeholders
+[2026-01-29 17:43:10] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:43:10] Generating document for template: Mortgage Deed
+[2026-01-29 17:43:10] DEBUG: Split Malpot Logic for Mortgage Deed
+[2026-01-29 17:43:10] Document generated successfully with 322 placeholders
+[2026-01-29 17:43:10] Group: सरिहा
+[2026-01-29 17:43:10] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:43:10] Generating document for template: Personal guarantor
+[2026-01-29 17:43:10] DEBUG: Split Guarantor Logic for Personal guarantor
+[2026-01-29 17:43:10] Document generated successfully with 168 placeholders
+[2026-01-29 17:43:10] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:43:10] Document generated successfully with 168 placeholders
+[2026-01-29 17:43:10] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:43:10] Document generated successfully with 168 placeholders
+[2026-01-29 17:43:10] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:43:10] Generating document for template: Power OF Attorney
+[2026-01-29 17:43:10] DEBUG: Split Guarantor Logic for Power OF Attorney
+[2026-01-29 17:43:10] Document generated successfully with 227 placeholders
+[2026-01-29 17:43:10] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:43:10] Document generated successfully with 227 placeholders
+[2026-01-29 17:43:10] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:43:10] Document generated successfully with 227 placeholders
+[2026-01-29 17:43:10] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:43:10] Generating document for template: Rokka letter
+[2026-01-29 17:43:10] DEBUG: Split Malpot Logic for Rokka letter
+[2026-01-29 17:43:10] Document generated successfully with 322 placeholders
+[2026-01-29 17:43:10] Group: सरिहा
+[2026-01-29 17:43:10] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:48:23] === APPROVAL START for Profile 1 ===
+[2026-01-29 17:48:23] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-29 17:48:23] Found 6 templates for category: Individual
+[2026-01-29 17:48:23] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-29 17:48:23] Generating document for template: DPN 1
+[2026-01-29 17:48:23] Document generated successfully with 316 placeholders
+[2026-01-29 17:48:23] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:48:23] Generating document for template: DPN_2
+[2026-01-29 17:48:23] Document generated successfully with 313 placeholders
+[2026-01-29 17:48:23] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:48:23] Generating document for template: Mortgage Deed
+[2026-01-29 17:48:23] DEBUG: Split Malpot Logic for Mortgage Deed
+[2026-01-29 17:48:23] Document generated successfully with 322 placeholders
+[2026-01-29 17:48:23] Group: सरिहा
+[2026-01-29 17:48:23] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:48:23] Generating document for template: Personal guarantor
+[2026-01-29 17:48:23] DEBUG: Split Guarantor Logic for Personal guarantor
+[2026-01-29 17:48:23] Document generated successfully with 168 placeholders
+[2026-01-29 17:48:23] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:48:23] Document generated successfully with 168 placeholders
+[2026-01-29 17:48:23] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:48:23] Document generated successfully with 168 placeholders
+[2026-01-29 17:48:23] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:48:23] Generating document for template: Power OF Attorney
+[2026-01-29 17:48:23] DEBUG: Split Guarantor Logic for Power OF Attorney
+[2026-01-29 17:48:23] Document generated successfully with 227 placeholders
+[2026-01-29 17:48:23] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:48:23] Document generated successfully with 227 placeholders
+[2026-01-29 17:48:23] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:48:23] Document generated successfully with 227 placeholders
+[2026-01-29 17:48:23] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:48:23] Generating document for template: Rokka letter
+[2026-01-29 17:48:23] DEBUG: Split Malpot Logic for Rokka letter
+[2026-01-29 17:48:23] Document generated successfully with 322 placeholders
+[2026-01-29 17:48:23] Group: सरिहा
+[2026-01-29 17:48:23] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:59:48] === APPROVAL START for Profile 1 ===
+[2026-01-29 17:59:48] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-29 17:59:48] Found 7 templates for category: Individual
+[2026-01-29 17:59:48] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-29 17:59:48] Generating document for template: DPN 1
+[2026-01-29 17:59:48] Document generated successfully with 316 placeholders
+[2026-01-29 17:59:48] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:59:48] Generating document for template: DPN_2
+[2026-01-29 17:59:48] Document generated successfully with 313 placeholders
+[2026-01-29 17:59:48] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:59:48] Generating document for template: Loan Deed
+[2026-01-29 17:59:48] Document generated successfully with 265 placeholders
+[2026-01-29 17:59:48] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:59:48] Generating document for template: Mortgage Deed
+[2026-01-29 17:59:48] DEBUG: Split Malpot Logic for Mortgage Deed
+[2026-01-29 17:59:49] Document generated successfully with 322 placeholders
+[2026-01-29 17:59:49] Group: सरिहा
+[2026-01-29 17:59:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:59:49] Generating document for template: Personal guarantor
+[2026-01-29 17:59:49] DEBUG: Split Guarantor Logic for Personal guarantor
+[2026-01-29 17:59:49] Document generated successfully with 168 placeholders
+[2026-01-29 17:59:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:59:49] Document generated successfully with 168 placeholders
+[2026-01-29 17:59:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:59:49] Document generated successfully with 168 placeholders
+[2026-01-29 17:59:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:59:49] Generating document for template: Power OF Attorney
+[2026-01-29 17:59:49] DEBUG: Split Guarantor Logic for Power OF Attorney
+[2026-01-29 17:59:49] Document generated successfully with 227 placeholders
+[2026-01-29 17:59:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:59:49] Document generated successfully with 227 placeholders
+[2026-01-29 17:59:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:59:49] Document generated successfully with 227 placeholders
+[2026-01-29 17:59:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 17:59:49] Generating document for template: Rokka letter
+[2026-01-29 17:59:49] DEBUG: Split Malpot Logic for Rokka letter
+[2026-01-29 17:59:49] Document generated successfully with 322 placeholders
+[2026-01-29 17:59:49] Group: सरिहा
+[2026-01-29 17:59:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 18:00:48] === APPROVAL START for Profile 1 ===
+[2026-01-29 18:00:48] Customer Profile Found: 2026001, Template Category: Individual
+[2026-01-29 18:00:48] Found 7 templates for category: Individual
+[2026-01-29 18:00:48] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-29 18:00:48] Generating document for template: DPN 1
+[2026-01-29 18:00:48] Document generated successfully with 316 placeholders
+[2026-01-29 18:00:48] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 18:00:48] Generating document for template: DPN_2
+[2026-01-29 18:00:48] Document generated successfully with 313 placeholders
+[2026-01-29 18:00:48] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 18:00:48] Generating document for template: Loan Deed
+[2026-01-29 18:00:48] Document generated successfully with 265 placeholders
+[2026-01-29 18:00:48] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 18:00:48] Generating document for template: Mortgage Deed
+[2026-01-29 18:00:48] DEBUG: Split Malpot Logic for Mortgage Deed
+[2026-01-29 18:00:48] Document generated successfully with 322 placeholders
+[2026-01-29 18:00:48] Group: सरिहा
+[2026-01-29 18:00:48] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 18:00:48] Generating document for template: Personal guarantor
+[2026-01-29 18:00:48] DEBUG: Split Guarantor Logic for Personal guarantor
+[2026-01-29 18:00:49] Document generated successfully with 168 placeholders
+[2026-01-29 18:00:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 18:00:49] Document generated successfully with 168 placeholders
+[2026-01-29 18:00:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 18:00:49] Document generated successfully with 168 placeholders
+[2026-01-29 18:00:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 18:00:49] Generating document for template: Power OF Attorney
+[2026-01-29 18:00:49] DEBUG: Split Guarantor Logic for Power OF Attorney
+[2026-01-29 18:00:49] Document generated successfully with 227 placeholders
+[2026-01-29 18:00:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 18:00:49] Document generated successfully with 227 placeholders
+[2026-01-29 18:00:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 18:00:49] Document generated successfully with 227 placeholders
+[2026-01-29 18:00:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-29 18:00:49] Generating document for template: Rokka letter
+[2026-01-29 18:00:49] DEBUG: Split Malpot Logic for Rokka letter
+[2026-01-29 18:00:49] Document generated successfully with 322 placeholders
+[2026-01-29 18:00:49] Group: सरिहा
+[2026-01-29 18:00:49] Saved to folder: 2026001_Rameshwar_Prasad_Sah
+[2026-01-30 04:10:49] === APPROVAL START for Profile 9 ===
+[2026-01-30 04:10:49] Customer Profile Found: 2026002, Template Category: Individual
+[2026-01-30 04:10:49] Found 7 templates for category: Individual
+[2026-01-30 04:10:49] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-30 04:10:49] Generating document for template: DPN 1
+[2026-01-30 04:10:49] Document generated successfully with 307 placeholders
+[2026-01-30 04:10:49] Saved to folder: 2026002_Saroj_Chaudhary
+[2026-01-30 04:10:49] Legacy 'customers' record missing for ID 2026002. Creating it...
+[2026-01-30 04:10:49] Generating document for template: DPN_2
+[2026-01-30 04:10:50] Document generated successfully with 304 placeholders
+[2026-01-30 04:10:50] Saved to folder: 2026002_Saroj_Chaudhary
+[2026-01-30 04:10:50] Generating document for template: Loan Deed
+[2026-01-30 04:10:50] Document generated successfully with 259 placeholders
+[2026-01-30 04:10:50] Saved to folder: 2026002_Saroj_Chaudhary
+[2026-01-30 04:10:50] Generating document for template: Mortgage Deed
+[2026-01-30 04:10:50] DEBUG: Split Malpot Logic for Mortgage Deed
+[2026-01-30 04:10:50] Document generated successfully with 311 placeholders
+[2026-01-30 04:10:50] Group: सिरहा
+[2026-01-30 04:10:50] Saved to folder: 2026002_Saroj_Chaudhary
+[2026-01-30 04:10:50] Generating document for template: Personal guarantor
+[2026-01-30 04:10:50] DEBUG: Split Guarantor Logic for Personal guarantor
+[2026-01-30 04:10:50] Document generated successfully with 162 placeholders
+[2026-01-30 04:10:50] Saved to folder: 2026002_Saroj_Chaudhary
+[2026-01-30 04:10:50] Document generated successfully with 162 placeholders
+[2026-01-30 04:10:50] Saved to folder: 2026002_Saroj_Chaudhary
+[2026-01-30 04:10:50] Document generated successfully with 162 placeholders
+[2026-01-30 04:10:50] Saved to folder: 2026002_Saroj_Chaudhary
+[2026-01-30 04:10:50] Generating document for template: Power OF Attorney
+[2026-01-30 04:10:50] DEBUG: Split Guarantor Logic for Power OF Attorney
+[2026-01-30 04:10:50] Document generated successfully with 221 placeholders
+[2026-01-30 04:10:50] Saved to folder: 2026002_Saroj_Chaudhary
+[2026-01-30 04:10:50] Document generated successfully with 221 placeholders
+[2026-01-30 04:10:50] Saved to folder: 2026002_Saroj_Chaudhary
+[2026-01-30 04:10:50] Document generated successfully with 221 placeholders
+[2026-01-30 04:10:50] Saved to folder: 2026002_Saroj_Chaudhary
+[2026-01-30 04:10:50] Generating document for template: Rokka letter
+[2026-01-30 04:10:50] DEBUG: Split Malpot Logic for Rokka letter
+[2026-01-30 04:10:50] Document generated successfully with 311 placeholders
+[2026-01-30 04:10:50] Group: सिरहा
+[2026-01-30 04:10:50] Saved to folder: 2026002_Saroj_Chaudhary
+[2026-01-30 04:19:19] === APPROVAL START for Profile 10 ===
+[2026-01-30 04:19:19] Customer Profile Found: 2026003, Template Category: Individual
+[2026-01-30 04:19:19] Found 7 templates for category: Individual
+[2026-01-30 04:19:19] Profile status updated to Approved. Proceeding to document generation.
+[2026-01-30 04:19:19] Generating document for template: DPN 1
+[2026-01-30 04:19:19] Document generated successfully with 307 placeholders
+[2026-01-30 04:19:19] Saved to folder: 2026003_Roshan_Sharma
+[2026-01-30 04:19:19] Legacy 'customers' record missing for ID 2026003. Creating it...
+[2026-01-30 04:19:19] Generating document for template: DPN_2
+[2026-01-30 04:19:19] Document generated successfully with 304 placeholders
+[2026-01-30 04:19:19] Saved to folder: 2026003_Roshan_Sharma
+[2026-01-30 04:19:19] Generating document for template: Loan Deed
+[2026-01-30 04:19:19] Document generated successfully with 247 placeholders
+[2026-01-30 04:19:19] Saved to folder: 2026003_Roshan_Sharma
+[2026-01-30 04:19:19] Generating document for template: Mortgage Deed
+[2026-01-30 04:19:19] DEBUG: Split Malpot Logic for Mortgage Deed
+[2026-01-30 04:19:19] Document generated successfully with 311 placeholders
+[2026-01-30 04:19:19] Group: सिरहा
+[2026-01-30 04:19:19] Saved to folder: 2026003_Roshan_Sharma
+[2026-01-30 04:19:19] Generating document for template: Personal guarantor
+[2026-01-30 04:19:19] DEBUG: Split Guarantor Logic for Personal guarantor
+[2026-01-30 04:19:19] Document generated successfully with 144 placeholders
+[2026-01-30 04:19:19] Saved to folder: 2026003_Roshan_Sharma
+[2026-01-30 04:19:19] Document generated successfully with 144 placeholders
+[2026-01-30 04:19:19] Saved to folder: 2026003_Roshan_Sharma
+[2026-01-30 04:19:19] Document generated successfully with 144 placeholders
+[2026-01-30 04:19:19] Saved to folder: 2026003_Roshan_Sharma
+[2026-01-30 04:19:19] Generating document for template: Power OF Attorney
+[2026-01-30 04:19:19] DEBUG: Split Guarantor Logic for Power OF Attorney
+[2026-01-30 04:19:20] Document generated successfully with 221 placeholders
+[2026-01-30 04:19:20] Saved to folder: 2026003_Roshan_Sharma
+[2026-01-30 04:19:20] Document generated successfully with 221 placeholders
+[2026-01-30 04:19:20] Saved to folder: 2026003_Roshan_Sharma
+[2026-01-30 04:19:20] Document generated successfully with 221 placeholders
+[2026-01-30 04:19:20] Saved to folder: 2026003_Roshan_Sharma
+[2026-01-30 04:19:20] Generating document for template: Rokka letter
+[2026-01-30 04:19:20] DEBUG: Split Malpot Logic for Rokka letter
+[2026-01-30 04:19:20] Document generated successfully with 311 placeholders
+[2026-01-30 04:19:20] Group: सिरहा
+[2026-01-30 04:19:20] Saved to folder: 2026003_Roshan_Sharma

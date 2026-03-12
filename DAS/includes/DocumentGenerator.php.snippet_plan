@@ -1,0 +1,167 @@
+
+    /**
+     * Generate Documents Grouped by Malpot Office
+     * 
+     * Splits generation into multiple files if collateral exists under different Malpot offices.
+     * Returns an array of results (one for each generated file).
+     */
+    public function generateDocumentsGroupedByMalpot($templatePath, $profileId, $docType) {
+        $results = [];
+        
+        try {
+            // 1. Fetch ALL Data first
+            $ruleEngine = new DocumentRuleEngine($docType, $this->conn);
+            $fullData = $ruleEngine->fetchData($profileId);
+            
+            // 2. Identify Unique Malpot Offices
+            $malpotGroups = [];
+            
+            if (isset($fullData['collateral']) && is_array($fullData['collateral'])) {
+                foreach ($fullData['collateral'] as $item) {
+                    // Use 'land_malpot_office' or default to 'Unknown'
+                    // Clean the name for grouping (remove spaces, etc. if needed, but keeping original for display)
+                    $malpot = trim($item['land_malpot_office'] ?? 'Others');
+                    if (empty($malpot)) $malpot = 'Others';
+                    
+                    if (!isset($malpotGroups[$malpot])) {
+                        $malpotGroups[$malpot] = [];
+                    }
+                    $malpotGroups[$malpot][] = $item;
+                }
+            }
+            
+            // 3. If no collateral or only one group, just generate once
+            if (empty($malpotGroups)) {
+                // No collateral, just generate standard doc
+                $res = $this->generateDocument($templatePath, $profileId, $docType);
+                // Standardize output structure
+                $res['malpot_office'] = 'General';
+                return [$res];
+            }
+            
+            // 4. Generate Document for EACH Malpot Group
+            foreach ($malpotGroups as $officeName => $items) {
+                // Create a Deep Copy of Data for this iteration
+                $groupData = $fullData;
+                
+                // OVERWRITE collateral specific arrays with FILTERED items
+                $groupData['collateral'] = $items;
+                
+                // Also update the 'persons' lists? 
+                // Technically borrowers/guarantors are global, but Collateral OWNERS might need filtering?
+                // The current logic passes full lists. The collateral blocks use the filtered 'collateral' items.
+                // Collateral OWNERS block: Usually we list ALL owners, or only owners relevant to THIS malpot?
+                // User requirement: "Same owner same office..." implies we focus on the property.
+                // For now, we will filter 'collateral' items. The Collateral Owner Table (${collateral_owner_block}) 
+                // typically lists EVERYONE who pledged collateral. 
+                // If I have Land A (Malpot X) and Land B (Malpot Y), do I show BOTH owners in separate deeds?
+                // Yes, usually the deed mentions who is pledging what.
+                // Refinement: Filter 'collateral_owners' to only those owning the filtered items?
+                // Let's implement that refinement for cleaner docs.
+                
+                // Filter Collateral Owners associated with these items
+                $relevantOwnerIds = [];
+                foreach ($items as $ci) {
+                    if (isset($ci['owner_id'])) $relevantOwnerIds[] = $ci['owner_id'];
+                }
+                
+                if (isset($groupData['persons']['collateral_owners'])) {
+                    $filteredOwners = [];
+                    foreach ($groupData['persons']['collateral_owners'] as $co) {
+                        if (in_array($co['id'], $relevantOwnerIds)) {
+                             $filteredOwners[] = $co;
+                        }
+                    }
+                    $groupData['persons']['collateral_owners'] = $filteredOwners;
+                }
+                
+                // Now Generate with this specific Data Set
+                // We need a version of generateDocument that accepts DATA instead of fetching it.
+                // Or we temporarily hack it by creating a method 'generateFromData'.
+                $res = $this->generateFromData($templatePath, $profileId, $docType, $groupData, $officeName);
+                $res['malpot_office'] = $officeName;
+                $results[] = $res;
+            }
+            
+        } catch (Exception $e) {
+             return [['success' => false, 'error' => $e->getMessage()]];
+        }
+        
+        return $results;
+    }
+
+    /**
+     * Generate Document from Pre-fetched Data (Internal Helper)
+     */
+    private function generateFromData($templatePath, $customerProfileId, $documentType, $data, $suffixRaw = '') {
+         try {
+             // Rule Engine: Map placeholders
+             $ruleEngine = new DocumentRuleEngine($documentType, $this->conn);
+             $placeholders = $ruleEngine->mapToPlaceholders($data);
+             
+             // Load template
+             $templateProcessor = new TemplateProcessor($templatePath);
+             
+             // PRE-PROCESS BLOCKS (with filtered data)
+             $blockData = [];
+             if (isset($data['persons']['borrowers'])) $blockData['borrower_block'] = $data['persons']['borrowers'];
+             if (isset($data['persons']['guarantors'])) $blockData['guarantor_block'] = $data['persons']['guarantors'];
+             if (isset($data['persons']['collateral_owners'])) $blockData['collateral_owner_block'] = $data['persons']['collateral_owners'];
+             if (isset($data['collateral'])) $blockData['collateral_block'] = $data['collateral'];
+             
+             $this->processBlocks($templateProcessor, $blockData);
+             
+             // --- EXISTING PLACEHOLDER REPLACEMENT LOGIC (Duplicated or extracted) ---
+             // To avoid huge code duplication, we should refactor generateDocument to call this method.
+             // But for safety now, I will include the core logic here or refactor generateDocument.
+             
+             // For safety/speed: I will reuse the logic by copying the core parts of generateDocument 
+             // but saving with a suffix.
+             
+             // [Standard Placeholder Loop code...]
+             // Copy-paste logic from lines 128-158 of existing generateDocument
+             $variableCounts = $templateProcessor->getVariableCount();
+             foreach ($variableCounts as $var => $count) {
+                 $value = $placeholders[$var] ?? null;
+                 if ($value !== null && $value !== '') {
+                     for ($i = 0; $i < $count; $i++) {
+                         try { $this->setValuePreservingFormat($templateProcessor, $var, $value); } catch(Exception $e) {}
+                     }
+                 } else {
+                     $templateProcessor->setValue($var, ' ');
+                 }
+             }
+
+             // Folder & Filename
+             $profile_name = $this->getProfileName($customerProfileId);
+             $customer_id = $this->getCustomerID($customerProfileId);
+             $folder_name = $customer_id . '_' . $this->sanitizeFilename($profile_name);
+             $outputDir = __DIR__ . '/../generated_documents/' . $folder_name . '/';
+             if (!file_exists($outputDir)) mkdir($outputDir, 0777, true);
+             
+             $template_basename = pathinfo($templatePath, PATHINFO_FILENAME);
+             $timestamp = date('YmdHis');
+             
+             // SUFFIX HANDLING
+             $suffixClean = $this->sanitizeFilename($suffixRaw);
+             if (!empty($suffixClean)) $suffixClean = '_' . $suffixClean;
+             
+             $outputFilename = $this->sanitizeFilename($template_basename) . $suffixClean . '_' . $timestamp . '.docx';
+             $outputPath = $outputDir . $outputFilename;
+             
+             $templateProcessor->saveAs($outputPath);
+             $relativePath = 'generated_documents/' . $folder_name . '/' . $outputFilename;
+             
+             return [
+                 'success' => true,
+                 'output_path' => $outputPath,
+                 'relative_path' => $relativePath,
+                 'customer_profile_id' => $customerProfileId,
+                 'placeholders_count' => count($placeholders),
+                 'folder_name' => $folder_name
+             ];
+             
+         } catch (Exception $e) {
+             return ['success' => false, 'error' => $e->getMessage()];
+         }
+    }

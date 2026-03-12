@@ -1,0 +1,274 @@
+/* ============================================================================
+   PREETI FONT STYLESHEET
+   Document Automation System (DAS)
+   
+   Purpose: Apply Preeti font to all Nepali text input and display fields
+   Usage: Include this CSS in all pages with Nepali text
+============================================================================ */
+
+/* Font Face Declaration */
+@font-face {
+    font-family: 'Preeti';
+    src: url('../fonts/Preeti Normal.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ============================================================================
+   INPUT FIELDS - Nepali Text Entry
+============================================================================ */
+
+/* Main class for Nepali input fields - NO font by default, only on focus */
+.nepali-input,
+.preeti-input {
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    border-left: 3px solid #0d6efd;
+    /* Blue indicator for Preeti fields */
+}
+
+/* Textarea with Preeti font - NO font by default */
+textarea.nepali-input {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* Keep placeholder text in English */
+.nepali-input::placeholder,
+.preeti-input::placeholder {
+    font-family: Arial, sans-serif !important;
+    font-size: 13px !important;
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Focus state - ONLY apply Preeti font when focused */
+.nepali-input:focus,
+.preeti-input:focus {
+    font-family: 'Preeti', sans-serif !important;
+    font-size: 32px !important;
+    border-left-color: #0a58ca;
+    border-left-width: 4px;
+}
+
+textarea.nepali-input:focus {
+    font-family: 'Preeti', sans-serif !important;
+    font-size: 28px !important;
+}
+
+/* ============================================================================
+   DISPLAY TEXT - Show Preeti Data
+============================================================================ */
+
+/* General Preeti text display */
+.preeti-text {
+    font-family: 'Preeti', sans-serif !important;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Large Preeti text (for headings, important info) */
+.preeti-large {
+    font-family: 'Preeti', sans-serif !important;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1.6;
+}
+
+/* Small Preeti text (for tables, compact views) */
+.preeti-small {
+    font-family: 'Preeti', sans-serif !important;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* ============================================================================
+   TABLE CELLS - Database Viewer
+============================================================================ */
+
+/* Table cell with Preeti font */
+.preeti-cell {
+    font-family: 'Preeti', sans-serif !important;
+    font-size: 15px;
+    line-height: 1.5;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+/* Table header with Preeti */
+.preeti-header {
+    font-family: 'Preeti', sans-serif !important;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* ============================================================================
+   LABELS - Keep in English
+============================================================================ */
+
+/* Ensure labels stay in English even if parent has Preeti */
+label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+    font-size: 14px;
+}
+
+.form-label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+}
+
+/* ============================================================================
+   CARDS & SECTIONS - Mixed Content
+============================================================================ */
+
+/* Profile detail view with Preeti */
+.profile-detail .preeti-value {
+    font-family: 'Preeti', sans-serif !important;
+    font-size: 15px;
+    color: #212529;
+    font-weight: 500;
+}
+
+/* Read-only display */
+.preeti-readonly {
+    font-family: 'Preeti', sans-serif !important;
+    font-size: 14px;
+    background-color: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+}
+
+/* ============================================================================
+   BUTTONS & BADGES (Keep in English)
+============================================================================ */
+
+button,
+.btn {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+}
+
+.badge {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+}
+
+/* ============================================================================
+   SELECT DROPDOWNS - Mixed
+============================================================================ */
+
+/* If dropdown shows Nepali options */
+select.nepali-options {
+    font-family: 'Preeti', sans-serif !important;
+    font-size: 15px;
+}
+
+select.nepali-options option {
+    font-family: 'Preeti', sans-serif !important;
+}
+
+/* ============================================================================
+   UTILITY CLASSES
+============================================================================ */
+
+/* Force English font (override Preeti in specific areas) */
+.force-english {
+    font-family: Arial, sans-serif !important;
+}
+
+/* Preeti with specific sizes */
+.preeti-xs {
+    font-size: 11px !important;
+}
+
+.preeti-sm {
+    font-size: 13px !important;
+}
+
+.preeti-md {
+    font-size: 15px !important;
+}
+
+.preeti-lg {
+    font-size: 17px !important;
+}
+
+.preeti-xl {
+    font-size: 20px !important;
+}
+
+/* ============================================================================
+   RESPONSIVE ADJUSTMENTS
+============================================================================ */
+
+@media (max-width: 768px) {
+
+    .nepali-input,
+    .preeti-input {
+        font-size: 15px !important;
+    }
+
+    .preeti-text {
+        font-size: 13px;
+    }
+
+    .preeti-large {
+        font-size: 16px;
+    }
+}
+
+/* ============================================================================
+   PRINT STYLES
+============================================================================ */
+
+@media print {
+
+    .nepali-input,
+    .preeti-input,
+    .preeti-text,
+    .preeti-cell {
+        font-family: 'Preeti', sans-serif !important;
+    }
+}
+
+/* ============================================================================
+   HELPER NOTICE STYLES
+============================================================================ */
+
+/* Preeti font indicator notice */
+.preeti-font-notice {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.preeti-font-notice i {
+    font-size: 18px;
+}
+
+.preeti-font-notice .btn-close {
+    filter: invert(1);
+}
+
+/* Field indicator tooltip */
+.nepali-field-indicator {
+    position: relative;
+}
+
+.nepali-field-indicator::before {
+    content: "नेपाली";
+    position: absolute;
+    top: -8px;
+    right: 10px;
+    background: #0d6efd;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Preeti', sans-serif;
+}

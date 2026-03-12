@@ -1,0 +1,405 @@
+2025-12-16 19:19:04 - POST received:
+Array
+(
+    [cap_id] => PML-RTL-TL-006
+    [add_new_cap] => 
+)
+
+REQUEST_METHOD: POST
+submit_profile_global isset: NO
+
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+2025-12-16 19:19:11 - POST received:
+Array
+(
+    [submit_profile_global] => 1
+    [comment] => 
+)
+
+REQUEST_METHOD: POST
+submit_profile_global isset: YES
+
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+2025-12-16 19:28:04 - POST received:
+Array
+(
+    [submit_profile_global] => 1
+    [comment] => 
+)
+
+REQUEST_METHOD: POST
+submit_profile_global isset: YES
+
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+2025-12-16 19:29:58 - POST received:
+Array
+(
+    [submit_profile_global] => 1
+    [comment] => 
+)
+
+REQUEST_METHOD: POST
+submit_profile_global isset: YES
+
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler
+CHECKPOINT 3: After CAP submit handler
+CHECKPOINT 1: After critical upload handler
+CHECKPOINT 2: After document upload handler

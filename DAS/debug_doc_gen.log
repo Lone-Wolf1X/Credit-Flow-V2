@@ -1,0 +1,56 @@
+[2025-12-21 00:51:20] Starting generateDocument for Profile 2, Template 13
+[2025-12-21 00:51:20] EXCEPTION: Could not copy 'C:\xampp\htdocs\Credit\DAS\includes/../' file to 'C:\Users\abhip\AppData\Local\Temp\PhpD7A5.tmp'.
+[2025-12-21 00:54:36] Starting generateDocument for Profile 2, Template 13
+[2025-12-21 00:54:36] SUCCESS: Document generated at C:\xampp\htdocs\Credit\DAS\includes/../generated/2025002_Test/2025002_test_loan_agreement_20251221_005436.docx (ID: 9)
+[2025-12-27 04:37:34] Starting generateDocument for Profile 5, Template 18
+[2025-12-27 04:37:49] Starting generateDocument for Profile 5, Template 18
+[2025-12-27 04:38:13] Starting generateDocument for Profile 5, Template 18
+[2025-12-27 04:40:22] Starting generateDocument for Profile 5, Template 18
+[2025-12-27 04:40:22] SUCCESS: Document generated at C:\xampp\htdocs\Credit\DAS\includes/../documents/profile_5/original_20251227_044022_694f125a1e380.docx (ID: 1) - Profile-based storage
+[2025-12-30 00:06:17] Starting generateDocument for Profile 5, Template 18
+[2025-12-30 00:06:17] SUCCESS: Document generated at C:\xampp\htdocs\Credit\DAS\includes/../documents/profile_5/original_20251230_000617_6952c69d53fc4.docx (ID: 2) - Profile-based storage
+[2025-12-30 00:09:49] Starting generateDocument for Profile 5, Template 18
+[2025-12-30 00:09:49] SUCCESS: Document generated at C:\xampp\htdocs\Credit\DAS\includes/../documents/profile_5/original_20251230_000949_6952c7716dbdd.docx (ID: 3) - Profile-based storage
+[2026-01-06 08:28:16] Starting generateDocument for Profile 2, Template 20
+[2026-01-06 08:28:16] SUCCESS: Document generated at C:\xampp\htdocs\Credit\DAS\includes/../documents/profile_2/original_20260106_082816_695c76c435d73.docx (ID: 4) - Profile-based storage
+[2026-01-06 08:37:02] Starting generateDocument for Profile 2, Template 20
+[2026-01-06 08:37:02] SUCCESS: Document generated at C:\xampp\htdocs\Credit\DAS\includes/../documents/profile_2/original_20260106_083702_695c78d2510a5.docx (ID: 5) - Profile-based storage
+[2026-01-06 09:05:16] Starting generateDocument for Profile 2, Template 20
+[2026-01-06 09:05:16] SUCCESS: Document generated at C:\xampp\htdocs\Credit\DAS\includes/../documents/profile_2/original_20260106_090516_695c7f7050c64.docx (ID: 6) - Profile-based storage
+[2026-01-13 06:34:04] Starting generateDocument for Profile 2, Template 23
+[2026-01-13 06:34:04] Profile validated: Customer ID 2025002
+[2026-01-13 06:34:04] Template found: Mortgage Deed
+[2026-01-13 06:34:04] Template path from DB: templates/ptl/mortgage_deed_2.docx
+[2026-01-13 06:34:04] Full template path: C:\xampp\htdocs\Credit\DAS\includes/../templates/ptl/mortgage_deed_2.docx
+[2026-01-13 06:34:04] Template file exists and is readable
+[2026-01-13 06:34:04] Creating PHPWord TemplateProcessor
+[2026-01-13 06:34:04] Filling borrower placeholders
+[2026-01-13 06:34:04] Filling guarantor placeholders
+[2026-01-13 06:34:04] Filling collateral placeholders
+[2026-01-13 06:34:04] Filling loan placeholders
+[2026-01-13 06:34:04] Filling system placeholders
+[2026-01-13 06:34:04] Creating profile directory: C:\xampp\htdocs\Credit\DAS\includes/../documents/profile_2
+[2026-01-13 06:34:04] Saving document to: C:\xampp\htdocs\Credit\DAS\includes/../documents/profile_2/original_20260113_063404_69659680411dc.docx
+[2026-01-13 06:34:04] SUCCESS: Document generated at C:\xampp\htdocs\Credit\DAS\includes/../documents/profile_2/original_20260113_063404_69659680411dc.docx (ID: 7) - Profile-based storage
+[2026-01-13 06:47:40] SmartDocumentGenerator: Starting generation for Profile 2, Type: mortgage_deed
+[2026-01-13 06:47:40] Profile validated: Customer ID 2025002
+[2026-01-13 06:47:40] Borrower count: 1
+[2026-01-13 06:47:40] Selected template: Mortgage Deed (ID: 27)
+[2026-01-13 06:47:40] Template path: C:\xampp\htdocs\Credit\DAS\includes/../templates/ptl/mortgage_deed_1.docx
+[2026-01-13 06:47:40] Extracted 31 placeholders from template
+[2026-01-13 06:48:02] SmartDocumentGenerator: Starting generation for Profile 2, Type: mortgage_deed
+[2026-01-13 06:48:02] Profile validated: Customer ID 2025002
+[2026-01-13 06:48:02] Borrower count: 1
+[2026-01-13 06:48:02] Selected template: Mortgage Deed (ID: 27)
+[2026-01-13 06:48:02] Template path: C:\xampp\htdocs\Credit\DAS\includes/../templates/ptl/mortgage_deed_1.docx
+[2026-01-13 06:48:02] Extracted 31 placeholders from template
+[2026-01-13 06:49:27] SmartDocumentGenerator: Starting generation for Profile 2, Type: mortgage_deed
+[2026-01-13 06:49:27] Profile validated: Customer ID 2025002
+[2026-01-13 06:49:27] Borrower count: 1
+[2026-01-13 06:49:27] Selected template: Mortgage Deed (ID: 27)
+[2026-01-13 06:49:27] Template path: C:\xampp\htdocs\Credit\DAS\includes/../templates/ptl/mortgage_deed_1.docx
+[2026-01-13 06:49:27] Extracted 31 placeholders from template
+[2026-01-13 06:49:27] Mapped data for 43 placeholders
+[2026-01-13 06:49:27] Filled 21 placeholders, 10 missing
+[2026-01-13 06:49:27] Saved document: C:\xampp\htdocs\Credit\DAS\includes/../documents/profile_2/doc_20260113_064927_69659a1b64343.docx
+[2026-01-13 06:49:27] Saved to database with ID: 8

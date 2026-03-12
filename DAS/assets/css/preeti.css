@@ -1,0 +1,25 @@
+/* Preeti Font Definition */
+@font-face {
+    font-family: 'Preeti';
+    src: url('../fonts/preeti.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Preeti Font Styling for Inputs */
+.preeti-font {
+    font-family: 'Preeti', 'Courier New', monospace !important;
+    font-size: 20px !important;
+    line-height: 1.6 !important;
+}
+
+/* Unicode Font Styling */
+.unicode-font {
+    font-family: 'Noto Sans Devanagari', 'Segoe UI', sans-serif !important;
+    font-size: 18px !important;
+}
+
+/* Input field transition */
+.nepali-input {
+    transition: font-family 0.2s ease, font-size 0.2s ease;
+}

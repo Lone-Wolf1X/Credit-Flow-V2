@@ -1,0 +1,45 @@
+
+    /**
+     * Generate Documents Grouped by Guarantor (One per Guarantor)
+     * Useful for Power of Attorney where each guarantor signs individually.
+     */
+    public function generateDocumentsGroupedByGuarantor($templatePath, $profileId, $docType) {
+        $results = [];
+        
+        try {
+            // 1. Fetch ALL Data first
+            $ruleEngine = new DocumentRuleEngine($docType, $this->conn);
+            $fullData = $ruleEngine->fetchData($profileId);
+            
+            // 2. Check if there are guarantors
+            if (empty($fullData['persons']['guarantors'])) {
+                 // No guarantors? Generate one generic doc (it might be blank or for borrower)
+                 $res = $this->generateDocument($templatePath, $profileId, $docType);
+                 $res['group_name'] = 'General';
+                 return [$res];
+            }
+            
+            // 3. Generate Document for EACH Guarantor
+            foreach ($fullData['persons']['guarantors'] as $guarantor) {
+                // Create a Copy of Data
+                $groupData = $fullData;
+                
+                // OVERWRITE guarantors array to ONLY contain this single guarantor
+                // This ensures ${GR1_...} placeholders map to THIS guarantor
+                $groupData['persons']['guarantors'] = [$guarantor];
+                
+                // Use Name as suffix
+                $suffix = $guarantor['full_name_en'] ?? $guarantor['full_name'] ?? ('Guarantor_' . $guarantor['id']);
+                
+                // Generate
+                $res = $this->generateFromData($templatePath, $profileId, $docType, $groupData, $suffix);
+                $res['group_name'] = $suffix;
+                $results[] = $res;
+            }
+            
+        } catch (Exception $e) {
+             return [['success' => false, 'error' => $e->getMessage()]];
+        }
+        
+        return $results;
+    }
