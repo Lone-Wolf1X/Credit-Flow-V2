@@ -66,11 +66,11 @@ exports.getUserByStaffIdOrEmail = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
     const { id } = req.params;
-    const { name, email, staff_id, role, branch_id, designation, province_id } = req.body;
+    const { name, email, staff_id, role, branch_id, designation, province_id, limit_power } = req.body;
     try {
         const result = await db.query(
-            'UPDATE users SET name = $1, email = $2, staff_id = $3, role = $4, branch_id = $5, designation = $6, province_id = $7 WHERE id = $8 RETURNING id, name, email, staff_id, role, branch_id, designation, province_id',
-            [name, email, staff_id, role, branch_id, designation, province_id, id]
+            'UPDATE users SET name = $1, email = $2, staff_id = $3, role = $4, branch_id = $5, designation = $6, province_id = $7, limit_power = $8 WHERE id = $9 RETURNING id, name, email, staff_id, role, branch_id, designation, province_id, limit_power',
+            [name, email, staff_id, role, branch_id, designation, province_id, limit_power || 0, id]
         );
         res.json(result.rows[0]);
     } catch (err) {

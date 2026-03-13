@@ -93,7 +93,7 @@ const AdminDesignations = () => {
                         <UserCheck size={24} className="text-primary" style={{ marginBottom: '10px' }} />
                         <h4>Authority Status</h4>
                         <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '5px' }}>
-                            All Branch Managers are restricted to <b>25 Lakh</b> limits until manually overridden.
+                            Designation limits are active. Check the <b>Authority Matrix</b> for specific user overrides and custom lending powers.
                         </div>
                     </div>
                 </div>

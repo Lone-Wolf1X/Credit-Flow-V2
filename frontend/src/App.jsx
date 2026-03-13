@@ -27,10 +27,13 @@ const ProtectedRoute = ({ children }) => {
 
 import AppraisalPage from './pages/AppraisalPage';
 
+import { Toaster } from 'react-hot-toast';
+
 function App() {
     return (
         <AuthProvider>
             <SocketProvider>
+                <Toaster position="top-right" />
                 <Router>
                     <Routes>
                         <Route path="/login" element={<LoginPage />} />
@@ -44,6 +47,7 @@ function App() {
                         <Route path="/admin/security" element={<ProtectedRoute><SecurityLogs /></ProtectedRoute>} />
                         <Route path="/admin/matrix" element={<ProtectedRoute><AuthorityMatrix /></ProtectedRoute>} />
                         <Route path="/leads/:id" element={<ProtectedRoute><LeadDetailsPage /></ProtectedRoute>} />
+                        <Route path="/appraisals" element={<ProtectedRoute><AppraisalPage /></ProtectedRoute>} />
                         <Route path="/appraisal/:id" element={<ProtectedRoute><AppraisalPage /></ProtectedRoute>} />
                         <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
                     </Routes>

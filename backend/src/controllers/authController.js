@@ -4,7 +4,7 @@ const db = require('../db');
 require('dotenv').config();
 
 exports.register = async (req, res) => {
-    const { name, email, staff_id, password, role, branch_id, designation, province_id } = req.body;
+    const { name, email, staff_id, password, role, branch_id, designation, province_id, limit_power } = req.body;
     try {
         const userExists = await db.query('SELECT * FROM users WHERE email = $1 OR staff_id = $2', [email, staff_id]);
         if (userExists.rows.length > 0) return res.status(400).json({ message: 'User already exists' });
@@ -13,8 +13,8 @@ exports.register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         const newUserResult = await db.query(
-            'INSERT INTO users (name, email, staff_id, password, role, branch_id, designation, province_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id',
-            [name, email, staff_id, hashedPassword, role, branch_id, designation, province_id]
+            'INSERT INTO users (name, email, staff_id, password, role, branch_id, designation, province_id, limit_power) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id',
+            [name, email, staff_id, hashedPassword, role, branch_id, designation, province_id, limit_power || 0]
         );
         const user = newUserResult.rows[0];
 
@@ -79,7 +79,9 @@ exports.getMe = async (req, res) => {
     try {
         const user = await db.query(`
             SELECT u.id, u.name, u.email, u.staff_id, u.role, u.branch_id, u.designation, u.province_id, u.must_reset_password, 
-                   d.default_power_limit as power_limit,
+                   u.limit_power as custom_limit,
+                   d.default_power_limit as designation_limit,
+                   GREATEST(COALESCE(u.limit_power, 0), COALESCE(d.default_power_limit, 0)) as power_limit,
                    b.name as branch_name, b.sol_id, p.name as province_name
             FROM users u
             LEFT JOIN branches b ON u.branch_id = b.id

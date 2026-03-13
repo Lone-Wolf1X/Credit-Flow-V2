@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "name": "Super Admin",
+    "email": "admin@bank.com",
+    "staff_id": "ADMIN01",
+    "password": "$2b$10$2Se1eFklaIrMvL07FW0ZJeVi38sRGHs/7tjTA6r.b1Ikax7ZlG6Fe",
+    "role": "Admin",
+    "branch_id": 1,
+    "province_id": 3,
+    "designation": "Chief",
+    "must_reset_password": false,
+    "created_at": "2026-03-12T20:30:37.093Z"
+  },
+  {
+    "id": 3,
+    "name": "Staff Member 101",
+    "email": "staff101@bank.com",
+    "staff_id": "101",
+    "password": "$2b$10$2Se1eFklaIrMvL07FW0ZJeVi38sRGHs/7tjTA6r.b1Ikax7ZlG6Fe",
+    "role": "Staff",
+    "branch_id": 1,
+    "province_id": 3,
+    "designation": "Officer",
+    "must_reset_password": true,
+    "created_at": "2026-03-12T20:30:37.095Z"
+  },
+  {
+    "id": 4,
+    "name": "Staff Member 102",
+    "email": "staff102@bank.com",
+    "staff_id": "102",
+    "password": "$2b$10$2Se1eFklaIrMvL07FW0ZJeVi38sRGHs/7tjTA6r.b1Ikax7ZlG6Fe",
+    "role": "Staff",
+    "branch_id": 1,
+    "province_id": 3,
+    "designation": "Manager",
+    "must_reset_password": true,
+    "created_at": "2026-03-12T20:30:37.095Z"
+  },
+  {
+    "id": 5,
+    "name": "Staff Member 103",
+    "email": "staff103@bank.com",
+    "staff_id": "103",
+    "password": "$2b$10$2Se1eFklaIrMvL07FW0ZJeVi38sRGHs/7tjTA6r.b1Ikax7ZlG6Fe",
+    "role": "Staff",
+    "branch_id": 1,
+    "province_id": 3,
+    "designation": "Officer",
+    "must_reset_password": true,
+    "created_at": "2026-03-12T20:30:37.095Z"
+  },
+  {
+    "id": 6,
+    "name": "Staff Member 104",
+    "email": "staff104@bank.com",
+    "staff_id": "104",
+    "password": "$2b$10$2Se1eFklaIrMvL07FW0ZJeVi38sRGHs/7tjTA6r.b1Ikax7ZlG6Fe",
+    "role": "Staff",
+    "branch_id": 1,
+    "province_id": 3,
+    "designation": "Assistant",
+    "must_reset_password": true,
+    "created_at": "2026-03-12T20:30:37.096Z"
+  },
+  {
+    "id": 2,
+    "name": "Staff Member 100",
+    "email": "staff100@bank.com",
+    "staff_id": "100",
+    "password": "$2b$10$CbUm6vH/Pt70Zj0BcPjB7uWIUdCdwDcb7vvO1g3Q03LgQRKaQrxdK",
+    "role": "Staff",
+    "branch_id": 1,
+    "province_id": 3,
+    "designation": "Assistant",
+    "must_reset_password": false,
+    "created_at": "2026-03-12T20:30:37.094Z"
+  }
+]

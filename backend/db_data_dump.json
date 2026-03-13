@@ -1,0 +1,69 @@
+{
+  "designations": [
+    {
+      "id": 6,
+      "name": "Relationship Manager",
+      "default_power_limit": "1000000.00",
+      "created_at": "2026-03-12T21:08:32.933Z"
+    },
+    {
+      "id": 1,
+      "name": "Assistant",
+      "default_power_limit": "1000000.00",
+      "created_at": "2026-03-12T20:30:37.090Z"
+    },
+    {
+      "id": 2,
+      "name": "Officer",
+      "default_power_limit": "2000000.00",
+      "created_at": "2026-03-12T20:30:37.090Z"
+    },
+    {
+      "id": 7,
+      "name": "Branch Manager",
+      "default_power_limit": "2500000.00",
+      "created_at": "2026-03-12T21:08:32.934Z"
+    },
+    {
+      "id": 3,
+      "name": "Manager",
+      "default_power_limit": "10000000.00",
+      "created_at": "2026-03-12T20:30:37.090Z"
+    },
+    {
+      "id": 4,
+      "name": "Chief",
+      "default_power_limit": "50000000.00",
+      "created_at": "2026-03-12T20:30:37.090Z"
+    },
+    {
+      "id": 8,
+      "name": "Province Head",
+      "default_power_limit": "100000000.00",
+      "created_at": "2026-03-12T21:08:32.935Z"
+    },
+    {
+      "id": 9,
+      "name": "Credit Head",
+      "default_power_limit": "500000000.00",
+      "created_at": "2026-03-12T21:08:32.936Z"
+    },
+    {
+      "id": 10,
+      "name": "CEO",
+      "default_power_limit": "9999999999.00",
+      "created_at": "2026-03-12T21:08:32.937Z"
+    }
+  ],
+  "branches": [
+    {
+      "id": 1,
+      "name": "Main Branch",
+      "short_name": null,
+      "sol_id": "001",
+      "location": "Kathmandu",
+      "province_id": 3,
+      "created_at": "2026-03-12T20:30:37.092Z"
+    }
+  ]
+}

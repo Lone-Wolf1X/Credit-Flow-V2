@@ -6,7 +6,7 @@ const UserManagement = () => {
     const [branches, setBranches] = useState([]);
     const [designations, setDesignations] = useState([]);
     const [provinces, setProvinces] = useState([]);
-    const [formData, setFormData] = useState({ name: '', email: '', staff_id: '', role: 'Staff', branch_id: '', designation: '', province_id: '' });
+    const [formData, setFormData] = useState({ name: '', email: '', staff_id: '', role: 'Staff', branch_id: '', designation: '', province_id: '', limit_power: 0 });
     const [isEditing, setIsEditing] = useState(false);
     const [editId, setEditId] = useState(null);
     const [isTransferModalOpen, setTransferModalOpen] = useState(false);
@@ -70,7 +70,7 @@ const UserManagement = () => {
     };
 
     const handleCancel = () => {
-        setFormData({ name: '', email: '', staff_id: '', role: 'Staff', branch_id: '', designation: '', province_id: '' });
+        setFormData({ name: '', email: '', staff_id: '', role: 'Staff', branch_id: '', designation: '', province_id: '', limit_power: 0 });
         setIsEditing(false);
         setEditId(null);
     };
@@ -153,6 +153,10 @@ const UserManagement = () => {
                             ))}
                         </select>
                     </div>
+                    <div className="form-group">
+                        <label>Power Limit (रु)</label>
+                        <input type="number" name="limit_power" value={formData.limit_power} onChange={handleChange} />
+                    </div>
                 </div>
                 <div className="form-row">
                     <div className="form-group">
@@ -201,6 +205,7 @@ const UserManagement = () => {
                         <th style={{ padding: '10px' }}>Province</th>
                         <th style={{ padding: '10px' }}>Branch</th>
                         <th style={{ padding: '10px' }}>Designation</th>
+                        <th style={{ padding: '10px' }}>Power (रु)</th>
                         <th style={{ padding: '10px' }}>Role</th>
                         <th style={{ padding: '10px' }}>Actions</th>
                     </tr>
@@ -213,6 +218,9 @@ const UserManagement = () => {
                             <td style={{ padding: '10px' }}>{u.province_name || 'N/A'}</td>
                             <td style={{ padding: '10px' }}>{u.branch_name || 'N/A'}</td>
                             <td style={{ padding: '10px' }}>{u.designation}</td>
+                            <td style={{ padding: '10px', fontWeight: 'bold', color: 'var(--primary)' }}>
+                                {u.limit_power ? parseInt(u.limit_power).toLocaleString() : '0'}
+                            </td>
                             <td style={{ padding: '10px' }}>{u.role}</td>
                             <td style={{ padding: '10px' }}>
                                 <button className="btn" onClick={() => handleEdit(u)} style={{ marginRight: '5px' }}>Edit</button>

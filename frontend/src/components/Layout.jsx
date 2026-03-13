@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Menu, X, LogOut, User, Award, ChevronRight, LayoutDashboard, GitMerge, FileText, Settings, Users, Home, Shield, TrendingUp, Search } from 'lucide-react';
+import { Menu, X, LogOut, User, Award, ChevronRight, LayoutDashboard, GitMerge, FileText, Settings, Users, Home, Shield, TrendingUp, Search, Calculator } from 'lucide-react';
 import NotificationBell from './NotificationBell';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -27,6 +27,7 @@ const Layout = ({ children }) => {
     const menuItems = [
         { name: 'Dashboard', path: '/', icon: <LayoutDashboard size={20} /> },
         { name: 'Leads', path: '/leads', icon: <Home size={20} /> },
+        { name: 'Appraisals', path: '/appraisals', icon: <Calculator size={20} /> },
         { name: 'Workflows', path: '/workflows', icon: <GitMerge size={20} /> },
         { name: 'Memos', path: '/memos', icon: <FileText size={20} /> }
     ];

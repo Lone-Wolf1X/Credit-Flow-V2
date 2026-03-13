@@ -37,10 +37,24 @@ const Dashboard = () => {
             const leads = leadsRes.data;
             const workflows = workflowsRes.data;
             
-            const total = leads.length;
-            const active = workflows.length;
-            const converted = leads.filter(l => l.status === 'Converted').length;
-            const pendingAn = leads.filter(l => l.status === 'Analysis').length;
+            // Role-based filtering
+            let filteredLeads = leads;
+            let filteredWorkflows = workflows;
+            
+            if (user?.role !== 'Admin') {
+                if (user?.designation === 'Branch Manager') {
+                    filteredLeads = leads.filter(l => l.branch_id === user.branch_id);
+                    filteredWorkflows = workflows.filter(w => w.current_handler_id === user.id);
+                } else if (user?.designation === 'Province Head') {
+                    // Assuming leads have province_id or we filter by branch's province
+                    filteredWorkflows = workflows.filter(w => w.current_handler_id === user.id);
+                }
+            }
+
+            const total = filteredLeads.length;
+            const active = filteredWorkflows.length;
+            const converted = filteredLeads.filter(l => l.status === 'Converted').length;
+            const pendingAn = filteredLeads.filter(l => l.status === 'Analysis' || l.status === 'Ongoing').length;
             const rate = total > 0 ? ((converted / total) * 100).toFixed(1) : 0;
 
             setStats({
@@ -78,7 +92,7 @@ const Dashboard = () => {
                         fontSize: '0.8rem', 
                         fontWeight: '600', 
                         color: trend.startsWith('+') ? '#10b981' : '#ef4444',
-                        background: trend.startsWith('+') ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+                        background: trend.startsWith('+') ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
                         padding: '4px 10px',
                         borderRadius: '20px',
                         height: 'fit-content',
@@ -96,7 +110,6 @@ const Dashboard = () => {
                     <h2 style={{ fontSize: '2rem', margin: 0, fontWeight: '700', color: 'var(--text-main)' }}>{value}</h2>
                 </div>
             </div>
-            {/* Subtle background decoration */}
             <div style={{ 
                 position: 'absolute', 
                 bottom: '-20px', 
@@ -109,15 +122,22 @@ const Dashboard = () => {
         </div>
     );
 
+    const getRoleTitle = () => {
+        if (user?.role === 'Admin') return 'Central Administration';
+        if (user?.designation === 'Branch Manager') return `Branch Command: ${user.branch_name}`;
+        if (user?.designation === 'Province Head') return `Provincial Oversight: ${user.province_name}`;
+        return 'Staff Operations';
+    };
+
     return (
         <div style={{ padding: '24px', width: '100%' }}>
             <div style={{ marginBottom: '32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                     <h1 style={{ fontSize: '2rem', fontWeight: '800', margin: '0 0 8px 0', color: 'var(--text-main)' }}>
-                        Performance Dashboard
+                        {getRoleTitle()}
                     </h1>
                     <p style={{ color: 'var(--text-muted)', margin: 0 }}>
-                        Welcome back, <span style={{ color: 'var(--primary)', fontWeight: '600' }}>{user?.name}</span>. Here's what's happening today.
+                        Welcome back, <span style={{ color: 'var(--primary)', fontWeight: '600' }}>{user?.name}</span>. {user?.role === 'Admin' ? "System status is stable." : "Here is your current queue overview."}
                     </p>
                 </div>
                 <div style={{ display: 'flex', gap: '12px' }}>
@@ -131,7 +151,7 @@ const Dashboard = () => {
             <div className="dashboard-grid" style={{ marginBottom: '32px' }}>
                 <KpiCard 
                     icon={Users} 
-                    label="Total Lead Inflow" 
+                    label={user?.role === 'Admin' ? "System Wide Leads" : "Branch/Region Leads"} 
                     value={stats.totalLeads} 
                     trend="+12%" 
                     color="var(--primary)" 
@@ -139,15 +159,15 @@ const Dashboard = () => {
                 />
                 <KpiCard 
                     icon={GitMerge} 
-                    label="Under Analysis" 
-                    value={stats.pendingAnalysis} 
+                    label="My Pending Reviews" 
+                    value={stats.activeWorkflows} 
                     trend="+5%" 
                     color="#8b5cf6" 
                     bg="rgba(139, 92, 246, 0.15)"
                 />
                 <KpiCard 
                     icon={ShieldCheck} 
-                    label="Converted & Secured" 
+                    label="Portfolio Conversions" 
                     value={stats.conversions} 
                     trend="+8%" 
                     color="var(--accent)" 
@@ -155,7 +175,7 @@ const Dashboard = () => {
                 />
                 <KpiCard 
                     icon={TrendingUp} 
-                    label="Conversion Yield" 
+                    label="Efficiency Yield" 
                     value={`${stats.conversionRate}%`} 
                     trend="+2.4%" 
                     color="var(--warning)" 

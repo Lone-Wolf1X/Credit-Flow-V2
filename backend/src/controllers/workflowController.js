@@ -29,7 +29,10 @@ exports.initializeWorkflow = async (lead_id, proposed_limit, initiator_id) => {
  * Submit a Review (Branch/Province/HO)
  */
 exports.submitReview = async (req, res) => {
-    const { lead_id, status, confidence_level, feedback, conditions } = req.body;
+    const { 
+        lead_id, status, confidence_level, feedback, conditions,
+        income_assessment, collateral_assessment, identity_assessment, other_assessment 
+    } = req.body;
     const reviewer_id = req.user.id;
 
     try {
@@ -42,12 +45,18 @@ exports.submitReview = async (req, res) => {
             [reviewer_id]
         );
         const user = userRes.rows[0];
+        const effective_limit = parseFloat(user.limit_power) > 0 ? parseFloat(user.limit_power) : parseFloat(user.default_power_limit);
 
-        // 1. Log the Review
+        // 1. Log the Review with assessments
         await db.query(
-            `INSERT INTO lead_reviews (lead_id, reviewer_id, level, review_status, confidence_level, feedback, conditions)
-             VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-            [lead_id, reviewer_id, user.designation, status, confidence_level, feedback, conditions]
+            `INSERT INTO lead_reviews (
+                lead_id, reviewer_id, level, review_status, confidence_level, feedback, conditions,
+                income_assessment, collateral_assessment, identity_assessment, other_assessment
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+            [
+                lead_id, reviewer_id, user.designation, status, confidence_level, feedback, conditions,
+                income_assessment, collateral_assessment, identity_assessment, other_assessment
+            ]
         );
 
         // 2. Decision Logic
@@ -56,38 +65,41 @@ exports.submitReview = async (req, res) => {
         let next_step = workflow.current_step;
 
         if (status === 'Approved') {
-            if (user.default_power_limit >= workflow.power_level_required) {
-                // Within power - Push for Appraisal
+            const hierarchy = ['Branch Manager', 'Province Head', 'Credit Head', 'Deputy CEO', 'CEO'];
+            const currentIndex = hierarchy.indexOf(user.designation);
+            
+            if (effective_limit >= workflow.power_level_required || user.designation === 'CEO') {
                 next_status = 'Approved';
                 next_step = 'Appraisal Ready';
-                // Update Lead Status
-                await db.query("UPDATE leads SET status = 'Appraisal' WHERE lead_id = $1", [lead_id]);
-            } else {
-                // Beyond power - Escalate to Province or HO
-                next_status = 'Review';
                 if (user.designation === 'Branch Manager') {
-                    // Escalate to Province Head
-                    const phRes = await db.query(
-                        "SELECT id FROM users WHERE province_id = $1 AND designation = 'Province Head' LIMIT 1",
-                        [user.province_id]
-                    );
-                    next_handler = phRes.rows[0]?.id || workflow.current_handler_id;
-                    next_step = 'Provincial Review';
-                } else if (user.designation === 'Province Head') {
-                    // Escalate to Credit Head / HO
-                    const hoRes = await db.query(
-                        "SELECT id FROM users WHERE designation = 'Credit Head' LIMIT 1"
-                    );
-                    next_handler = hoRes.rows[0]?.id || workflow.current_handler_id;
-                    next_step = 'HO Review';
+                    await db.query("UPDATE leads SET status = 'Analysis' WHERE lead_id = $1", [lead_id]);
                 }
+            } else {
+                // Escalate to next level
+                const nextDesignation = hierarchy[currentIndex + 1] || 'CEO';
+                let nextHandlerQuery = "SELECT id FROM users WHERE designation = $1 LIMIT 1";
+                let queryParams = [nextDesignation];
+                
+                if (nextDesignation === 'Province Head') {
+                    nextHandlerQuery = "SELECT id FROM users WHERE province_id = $1 AND designation = $2 LIMIT 1";
+                    queryParams = [user.province_id, nextDesignation];
+                }
+
+                const nextHandlerRes = await db.query(nextHandlerQuery, queryParams);
+                next_status = 'Review';
+                next_handler = nextHandlerRes.rows[0]?.id || workflow.current_handler_id;
+                next_step = `${nextDesignation} Review`;
             }
-        } else if (status === 'Defended') {
-             // File stays at current level for further discussion/defending
+        }
+ else if (status === 'Defended') {
              next_status = 'Defended';
         } else if (status === 'Further Discussion') {
              next_status = 'Analysis';
              next_step = 'Re-Analysis';
+        } else if (status === 'Declined') {
+            next_status = 'Declined';
+            next_step = 'Rejected';
+            await db.query("UPDATE leads SET status = 'Rejected' WHERE lead_id = $1", [lead_id]);
         }
 
         await db.query(
@@ -112,21 +124,96 @@ exports.getLeadWorkflow = async (req, res) => {
         const workflow = await db.query(
             `SELECT w.*, u.name as handler_name, u.designation as handler_designation 
              FROM workflows w 
+             JOIN leads l ON w.lead_id = l.lead_id
              LEFT JOIN users u ON w.current_handler_id = u.id 
-             WHERE w.lead_id = $1`,
+             WHERE l.lead_id = $1 OR l.id::text = $1`,
             [lead_id]
         );
         
         const reviews = await db.query(
             `SELECT r.*, u.name as reviewer_name 
              FROM lead_reviews r 
+             JOIN leads l ON r.lead_id = l.lead_id
              JOIN users u ON r.reviewer_id = u.id 
-             WHERE r.lead_id = $1 ORDER BY r.review_date ASC`,
+             WHERE l.lead_id = $1 OR l.id::text = $1 
+             ORDER BY r.review_date ASC`,
             [lead_id]
         );
 
-        res.json({ workflow: workflow.rows[0], reviews: reviews.rows });
+        res.json({ workflow: workflow.rows[0] || null, reviews: reviews.rows });
     } catch (err) {
+        console.error('getLeadWorkflow error:', err);
+        res.status(500).json({ error: err.message });
+    }
+};
+/**
+ * Reappeal a decision
+ */
+exports.reappealReview = async (req, res) => {
+    const { lead_id, feedback } = req.body;
+    const reappealer_id = req.user.id;
+
+    try {
+        const workflowRes = await db.query('SELECT * FROM workflows WHERE lead_id = $1', [lead_id]);
+        if (workflowRes.rows.length === 0) return res.status(404).json({ error: 'Workflow not found' });
+        const workflow = workflowRes.rows[0];
+
+        // Find the last review that was NOT a reappeal
+        const lastReviewRes = await db.query(
+            `SELECT r.*, u.designation 
+             FROM lead_reviews r 
+             JOIN users u ON r.reviewer_id = u.id 
+             WHERE r.lead_id = $1 AND r.review_status IN ('Declined', 'Approved') 
+             ORDER BY r.review_date DESC LIMIT 1`,
+            [lead_id]
+        );
+
+        if (lastReviewRes.rows.length === 0) {
+            return res.status(400).json({ error: 'No decision found to reappeal' });
+        }
+
+        const lastReview = lastReviewRes.rows[0];
+        const hierarchy = ['Branch Manager', 'Province Head', 'Credit Head', 'Deputy CEO', 'CEO'];
+        const lastIndex = hierarchy.indexOf(lastReview.designation);
+        
+        // Next level above the person who gave the decision
+        const nextDesignation = hierarchy[lastIndex + 1] || 'CEO';
+        
+        const nextHandlerRes = await db.query(
+            "SELECT id FROM users WHERE designation = $1 LIMIT 1",
+            [nextDesignation]
+        );
+
+        const next_handler = nextHandlerRes.rows[0]?.id || workflow.current_handler_id;
+        const next_step = `${nextDesignation} Review (Reappealed)`;
+
+        // 1. Log the Reappeal
+        await db.query(
+            `INSERT INTO lead_reviews (lead_id, reviewer_id, level, review_status, feedback) 
+             VALUES ($1, $2, $3, $4, $5)`,
+            [lead_id, reappealer_id, req.user.designation, 'Reappealed', feedback]
+        );
+
+        // 2. Update Workflow
+        await db.query(
+            `UPDATE workflows 
+             SET file_status = 'Analysis', current_step = $1, current_handler_id = $2, updated_at = CURRENT_TIMESTAMP
+             WHERE lead_id = $3`,
+            [next_step, next_handler, lead_id]
+        );
+
+        // 3. Ensure lead status is Analysis
+        await db.query("UPDATE leads SET status = 'Analysis' WHERE lead_id = $1", [lead_id]);
+
+        // 4. Award Defense Points (+15 points for defending a file)
+        await db.query(
+            "INSERT INTO point_logs (user_id, lead_id, points, type, description) VALUES ($1, $2, $3, $4, $5)",
+            [reappealer_id, lead_id, 15, 'Reappeal_Defense', `Defended position against ${lastReview.designation}'s decision`]
+        );
+
+        res.json({ message: 'Reappeal submitted successfully', next_handler, next_step });
+    } catch (err) {
+        console.error('reappealReview error:', err);
         res.status(500).json({ error: err.message });
     }
 };
