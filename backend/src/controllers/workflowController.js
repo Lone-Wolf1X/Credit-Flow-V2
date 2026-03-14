@@ -1,24 +1,61 @@
 const db = require('../db');
+const workflowService = require('../services/workflowService');
 
 /**
  * Initialize a workflow for a new lead
  */
-exports.initializeWorkflow = async (lead_id, proposed_limit, initiator_id) => {
+exports.initializeWorkflow = async (lead_id, proposed_limit, initiator_id, is_direct_appraisal = false) => {
     try {
-        // Find the BM of the branch
-        const branchRes = await db.query('SELECT branch_id FROM leads WHERE lead_id = $1', [lead_id]);
-        const branch_id = branchRes.rows[0].branch_id;
+        const leadRes = await db.query('SELECT branch_id, loan_segment, loan_type FROM leads WHERE lead_id = $1', [lead_id]);
+        const lead = leadRes.rows[0];
         
-        const bmRes = await db.query(
-            "SELECT id FROM users WHERE branch_id = $1 AND designation = 'Branch Manager' LIMIT 1",
-            [branch_id]
+        const initiatorRes = await db.query('SELECT designation FROM users WHERE id = $1', [initiator_id]);
+        const initiator_designation = initiatorRes.rows[0]?.designation || 'Staff';
+
+        const escalation = await workflowService.getEscalationPath(
+            lead.loan_segment, 
+            lead.loan_type, 
+            proposed_limit, 
+            lead.branch_id,
+            initiator_designation
         );
-        const bm_id = bmRes.rows[0]?.id;
+
+        // Find a handler user matching reviewer_designation
+        // If it's BM, we need branch_id. If PH, we need parent_hub_id.
+        let handler_id = null;
+        
+        if (escalation.reviewer_designation === 'Branch Manager') {
+            const res = await db.query(
+                "SELECT id FROM users WHERE branch_id = $1 AND designation = 'Branch Manager' LIMIT 1",
+                [lead.branch_id]
+            );
+            handler_id = res.rows[0]?.id;
+        } else if (escalation.reviewer_designation === 'Province Head') {
+            const branchRes = await db.query('SELECT parent_hub_id FROM branches WHERE id = $1', [lead.branch_id]);
+            const parent_hub_id = branchRes.rows[0]?.parent_hub_id;
+            const res = await db.query(
+                "SELECT id FROM users WHERE branch_id = $1 AND designation = 'Province Head' LIMIT 1",
+                [parent_hub_id]
+            );
+            handler_id = res.rows[0]?.id;
+        } else if (escalation.reviewer_designation === 'Credit Head') {
+            const res = await db.query("SELECT id FROM users WHERE designation = 'Central Head' LIMIT 1");
+            handler_id = res.rows[0]?.id;
+        } else if (escalation.reviewer_designation === 'CEO') {
+            const res = await db.query("SELECT id FROM users WHERE designation = 'CEO' LIMIT 1");
+            handler_id = res.rows[0]?.id;
+        }
 
         await db.query(
-            `INSERT INTO workflows (lead_id, file_status, current_step, current_handler_id, power_level_required)
-             VALUES ($1, 'Pending', 'Branch Review', $2, $3)`,
-            [lead_id, bm_id || initiator_id, proposed_limit]
+            `INSERT INTO workflows (lead_id, file_status, current_step, current_handler_id, power_level_required, assigned_role)
+             VALUES ($1, 'Pending', $2, $3, $4, $5)`,
+            [
+                lead_id, 
+                is_direct_appraisal ? 'Appraisal Ready' : `${escalation.reviewer_designation} Review`, 
+                handler_id || initiator_id, 
+                proposed_limit,
+                escalation.reviewer_designation
+            ]
         );
     } catch (err) {
         console.error('initializeWorkflow error:', err);
@@ -40,6 +77,9 @@ exports.submitReview = async (req, res) => {
         if (workflowRes.rows.length === 0) return res.status(404).json({ error: 'Workflow not found' });
         const workflow = workflowRes.rows[0];
 
+        const leadRes = await db.query('SELECT * FROM leads WHERE lead_id = $1', [lead_id]);
+        const lead = leadRes.rows[0];
+
         const userRes = await db.query(
             'SELECT u.*, d.default_power_limit FROM users u JOIN designations d ON u.designation = d.name WHERE u.id = $1',
             [reviewer_id]
@@ -47,7 +87,7 @@ exports.submitReview = async (req, res) => {
         const user = userRes.rows[0];
         const effective_limit = parseFloat(user.limit_power) > 0 ? parseFloat(user.limit_power) : parseFloat(user.default_power_limit);
 
-        // 1. Log the Review with assessments
+        // 1. Log the Review
         await db.query(
             `INSERT INTO lead_reviews (
                 lead_id, reviewer_id, level, review_status, confidence_level, feedback, conditions,
@@ -63,39 +103,58 @@ exports.submitReview = async (req, res) => {
         let next_status = workflow.file_status;
         let next_handler = workflow.current_handler_id;
         let next_step = workflow.current_step;
+        let next_role = workflow.assigned_role;
 
         if (status === 'Approved') {
-            const hierarchy = ['Branch Manager', 'Province Head', 'Credit Head', 'Deputy CEO', 'CEO'];
-            const currentIndex = hierarchy.indexOf(user.designation);
+            const initiatorRes = await db.query('SELECT designation FROM users WHERE id = $1', [lead.initiator_id]);
+            const initiator_designation = initiatorRes.rows[0]?.designation || 'Staff';
+
+            const escalation = await workflowService.getEscalationPath(
+                lead.loan_segment, 
+                lead.loan_type, 
+                lead.proposed_limit, 
+                lead.branch_id,
+                initiator_designation
+            );
             
-            if (effective_limit >= workflow.power_level_required || user.designation === 'CEO') {
+            // Check if current user has enough power to be the FINAL approver
+            if (effective_limit >= workflow.power_level_required || user.designation === 'CEO' || user.designation === escalation.approver_designation) {
                 next_status = 'Approved';
-                next_step = 'Appraisal Ready';
-                if (user.designation === 'Branch Manager') {
-                    await db.query("UPDATE leads SET status = 'Analysis' WHERE lead_id = $1", [lead_id]);
-                }
+                next_step = 'Sanctioned';
+                next_role = null;
+                next_handler = null;
+                await db.query("UPDATE leads SET status = 'Appraised' WHERE lead_id = $1", [lead_id]);
             } else {
-                // Escalate to next level
-                const nextDesignation = hierarchy[currentIndex + 1] || 'CEO';
-                let nextHandlerQuery = "SELECT id FROM users WHERE designation = $1 LIMIT 1";
-                let queryParams = [nextDesignation];
+                // Escalate to next Hub Level
+                const branchRes = await db.query('SELECT hub_type, parent_hub_id FROM branches WHERE id = $1', [user.branch_id]);
+                const branch = branchRes.rows[0];
                 
-                if (nextDesignation === 'Province Head') {
-                    nextHandlerQuery = "SELECT id FROM users WHERE province_id = $1 AND designation = $2 LIMIT 1";
-                    queryParams = [user.province_id, nextDesignation];
+                let nextHubId = branch.parent_hub_id;
+                let nextRole = 'Province Head';
+                
+                if (user.designation === 'Province Head') {
+                    nextRole = 'Credit Head';
+                } else if (user.designation === 'Credit Head' || user.designation === 'Central Head') {
+                    nextRole = 'CEO';
                 }
 
-                const nextHandlerRes = await db.query(nextHandlerQuery, queryParams);
+                // Find a user in the next hub with that designation
+                const nextUserRes = await db.query(
+                    "SELECT id FROM users WHERE designation = $1 AND (branch_id = $2 OR branch_id IS NULL) LIMIT 1",
+                    [nextRole === 'Credit Head' ? 'Central Head' : nextRole, nextHubId]
+                );
+
                 next_status = 'Review';
-                next_handler = nextHandlerRes.rows[0]?.id || workflow.current_handler_id;
-                next_step = `${nextDesignation} Review`;
+                next_role = nextRole;
+                next_handler = nextUserRes.rows[0]?.id || null;
+                next_step = `${next_role} Review`;
             }
-        }
- else if (status === 'Defended') {
-             next_status = 'Defended';
-        } else if (status === 'Further Discussion') {
+        } else if (status === 'Further Discussion' || status === 'Returned') {
              next_status = 'Analysis';
              next_step = 'Re-Analysis';
+             // Return to initiator
+             next_handler = lead.initiator_id;
+             next_role = 'Initiator';
         } else if (status === 'Declined') {
             next_status = 'Declined';
             next_step = 'Rejected';
@@ -103,9 +162,9 @@ exports.submitReview = async (req, res) => {
         }
 
         await db.query(
-            `UPDATE workflows SET file_status = $1, current_step = $2, current_handler_id = $3, updated_at = CURRENT_TIMESTAMP
-             WHERE lead_id = $4`,
-            [next_status, next_step, next_handler, lead_id]
+            `UPDATE workflows SET file_status = $1, current_step = $2, current_handler_id = $3, assigned_role = $4, updated_at = CURRENT_TIMESTAMP
+             WHERE lead_id = $5`,
+            [next_status, next_step, next_handler, next_role, lead_id]
         );
 
         res.json({ message: 'Review submitted successfully', next_status, next_step });
@@ -214,6 +273,32 @@ exports.reappealReview = async (req, res) => {
         res.json({ message: 'Reappeal submitted successfully', next_handler, next_step });
     } catch (err) {
         console.error('reappealReview error:', err);
+        res.status(500).json({ error: err.message });
+    }
+};
+/**
+ * Get all workflows (optionally filtered by branch_id)
+ */
+exports.getAllWorkflows = async (req, res) => {
+    try {
+        const { role, branch_id } = req.user;
+        let query = `
+            SELECT w.*, l.customer_name, l.proposed_limit, b.name as branch_name 
+            FROM workflows w
+            JOIN leads l ON w.lead_id = l.lead_id
+            JOIN branches b ON l.branch_id = b.id
+        `;
+        let params = [];
+
+        if (role !== 'Admin') {
+            query += " WHERE l.branch_id = $1";
+            params.push(branch_id);
+        }
+
+        const result = await db.query(query, params);
+        res.json(result.rows);
+    } catch (err) {
+        console.error('getAllWorkflows error:', err);
         res.status(500).json({ error: err.message });
     }
 };

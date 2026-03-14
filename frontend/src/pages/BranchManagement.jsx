@@ -95,8 +95,10 @@ const BranchManagement = () => {
             <table style={{ width: '100%', marginTop: '30px', borderCollapse: 'collapse' }}>
                 <thead>
                     <tr style={{ borderBottom: '1px solid var(--glass-border)', textAlign: 'left' }}>
+                        <th style={{ padding: '10px' }}>Branch Name</th>
                         <th style={{ padding: '10px' }}>Short Name</th>
                         <th style={{ padding: '10px' }}>SOL ID</th>
+                        <th style={{ padding: '10px' }}>Location</th>
                         <th style={{ padding: '10px' }}>Province</th>
                         <th style={{ padding: '10px' }}>Actions</th>
                     </tr>
@@ -104,8 +106,10 @@ const BranchManagement = () => {
                 <tbody>
                     {branches.map(b => (
                         <tr key={b.id} style={{ borderBottom: '1px solid var(--glass-border)' }}>
+                            <td style={{ padding: '10px' }}>{b.name}</td>
                             <td style={{ padding: '10px' }}>{b.short_name}</td>
                             <td style={{ padding: '10px' }}>{b.sol_id}</td>
+                            <td style={{ padding: '10px' }}>{b.location}</td>
                             <td style={{ padding: '10px' }}>{b.province}</td>
                             <td style={{ padding: '10px' }}>
                                 <button className="btn" onClick={() => handleEdit(b)} style={{ marginRight: '5px' }}>Edit</button>

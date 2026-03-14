@@ -13,7 +13,9 @@ export const SocketProvider = ({ children }) => {
             const newSocket = io('http://localhost:5000');
             setSocket(newSocket);
 
-            newSocket.emit('join', user.id);
+            newSocket.on('connect', () => {
+                newSocket.emit('join', user.id);
+            });
 
             return () => newSocket.close();
         }

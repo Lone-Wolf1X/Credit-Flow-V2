@@ -197,17 +197,16 @@ const LeadsPage = () => {
                                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
                                                     <span style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--primary)', letterSpacing: '1px' }}>{l.lead_id}</span>
                                                     <div style={{ display: 'flex', gap: '8px' }}>
-                                                        <span style={{ 
-                                                            padding: '4px 10px', borderRadius: '20px', fontSize: '0.65rem', fontWeight: '900',
-                                                            background: l.risk_category === 'Low' ? '#dcfce7' : l.risk_category === 'High' ? '#fee2e2' : '#fef3c7',
-                                                            color: l.risk_category === 'Low' ? '#166534' : l.risk_category === 'High' ? '#b91c1c' : '#92400e'
-                                                        }}>
+                                                        <span className={`badge ${
+                                                            l.risk_category === 'Low' ? 'badge-success' : 
+                                                            l.risk_category === 'High' ? 'badge-danger' : 'badge-neutral'
+                                                        }`}>
                                                             {l.risk_category || 'Moderate'} Risk
                                                         </span>
-                                                        <span style={{ 
-                                                            padding: '4px 12px', borderRadius: '20px', fontSize: '0.65rem', fontWeight: '900',
-                                                            background: style.bg, color: style.color, textTransform: 'uppercase'
-                                                        }}>
+                                                        <span className={`badge ${
+                                                            l.status === 'Active' || l.status === 'Converted' ? 'badge-success' : 
+                                                            l.status === 'Draft' ? 'badge-pending' : 'badge-danger'
+                                                        }`}>
                                                             {l.status}
                                                         </span>
                                                     </div>
@@ -245,73 +244,67 @@ const LeadsPage = () => {
                                 })}
                             </div>
                         ) : (
-                            <div className="glass-card" style={{ padding: '0', overflowX: 'auto', borderRadius: '15px' }}>
-                                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '1000px' }}>
-                                    <thead style={{ background: 'rgba(0,0,0,0.02)', borderBottom: '1px solid var(--glass-border)' }}>
+                            <div className="table-container">
+                                <table className="data-table">
+                                    <thead>
                                         <tr>
-                                            <th style={{ padding: '15px 20px', fontSize: '0.85rem', fontWeight: '800' }}>Lead ID</th>
-                                            <th style={{ padding: '15px 20px', fontSize: '0.85rem', fontWeight: '800' }}>Customer</th>
-                                            <th style={{ padding: '15px 20px', fontSize: '0.85rem', fontWeight: '800' }}>Loan Type</th>
-                                            <th style={{ padding: '15px 20px', fontSize: '0.85rem', fontWeight: '800' }}>Proposed Limit</th>
-                                            <th style={{ padding: '15px 20px', fontSize: '0.85rem', fontWeight: '800' }}>Score</th>
-                                            <th style={{ padding: '15px 20px', fontSize: '0.85rem', fontWeight: '800' }}>Risk</th>
-                                            <th style={{ padding: '15px 20px', fontSize: '0.85rem', fontWeight: '800' }}>Status</th>
-                                            <th style={{ padding: '15px 20px', fontSize: '0.85rem', fontWeight: '800' }}>Action</th>
+                                            <th>Lead ID</th>
+                                            <th>Customer</th>
+                                            <th>Loan Type</th>
+                                            <th>Proposed Limit</th>
+                                            <th>Score</th>
+                                            <th>Risk</th>
+                                            <th>Initiator</th>
+                                            <th>Status</th>
+                                            <th style={{ textAlign: 'right' }}>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {filteredLeads.map((l, idx) => {
-                                            const statusStyle = getStatusStyle(l.status);
-                                            return (
-                                                <motion.tr 
-                                                    key={l.id}
-                                                    initial={{ opacity: 0, x: -10 }}
-                                                    animate={{ opacity: 1, x: 0 }}
-                                                    transition={{ delay: idx * 0.03 }}
-                                                    style={{ borderBottom: '1px solid var(--glass-border)', cursor: 'pointer' }}
-                                                    onClick={() => navigate(`/leads/${l.id}`)}
-                                                    whileHover={{ background: 'rgba(0,0,0,0.01)' }}
-                                                >
-                                                    <td style={{ padding: '15px 20px' }}>
-                                                        <span style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--primary)' }}>{l.lead_id}</span>
-                                                    </td>
-                                                    <td style={{ padding: '15px 20px' }}>
-                                                        <div style={{ fontWeight: '700' }}>{l.customer_name}</div>
-                                                        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{l.customer_type}</div>
-                                                    </td>
-                                                    <td style={{ padding: '15px 20px', fontSize: '0.9rem' }}>{l.loan_type}</td>
-                                                    <td style={{ padding: '15px 20px', fontWeight: '700' }}>रु {parseFloat(l.proposed_limit || 0).toLocaleString()}</td>
-                                                    <td style={{ padding: '15px 20px' }}>
-                                                        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                                            <span style={{ fontWeight: '800', color: 'var(--primary)' }}>{l.lqs_score || 0}</span>
-                                                            <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>/ 100</span>
-                                                        </div>
-                                                    </td>
-                                                    <td style={{ padding: '15px 20px' }}>
-                                                        <span style={{ 
-                                                            padding: '4px 10px', borderRadius: '20px', fontSize: '0.65rem', fontWeight: '800',
-                                                            background: l.risk_category === 'Low' ? '#dcfce7' : l.risk_category === 'High' ? '#fee2e2' : '#fef3c7',
-                                                            color: l.risk_category === 'Low' ? '#166534' : l.risk_category === 'High' ? '#b91c1c' : '#92400e'
-                                                        }}>
-                                                            {l.risk_category || 'Moderate'}
-                                                        </span>
-                                                    </td>
-                                                    <td style={{ padding: '15px 20px' }}>
-                                                        <span style={{ 
-                                                            padding: '4px 12px', borderRadius: '20px', fontSize: '0.65rem', fontWeight: '800',
-                                                            background: statusStyle.bg, color: statusStyle.color
-                                                        }}>
-                                                            {l.status}
-                                                        </span>
-                                                    </td>
-                                                    <td style={{ padding: '15px 20px' }}>
-                                                        <button className="btn btn-secondary" style={{ padding: '5px 10px', fontSize: '0.8rem', borderRadius: '8px' }}>
-                                                            <Eye size={14} />
-                                                        </button>
-                                                    </td>
-                                                </motion.tr>
-                                            );
-                                        })}
+                                        {filteredLeads.map((l, idx) => (
+                                            <tr 
+                                                key={l.id}
+                                                onClick={() => navigate(`/leads/${l.id}`)}
+                                                style={{ cursor: 'pointer' }}
+                                            >
+                                                <td className="font-bold text-primary">{l.lead_id}</td>
+                                                <td>
+                                                    <div className="font-bold">{l.customer_name}</div>
+                                                    <div className="text-xs color-muted">{l.customer_type}</div>
+                                                </td>
+                                                <td className="text-sm">{l.loan_type}</td>
+                                                <td className="font-bold">रु {parseFloat(l.proposed_limit || 0).toLocaleString()}</td>
+                                                <td>
+                                                    <div className="flex-center">
+                                                        <span className="font-black text-primary">{l.lqs_score || 0}</span>
+                                                        <span className="text-xs color-muted">/ 100</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span className={`badge ${
+                                                        l.risk_category === 'Low' ? 'badge-success' : 
+                                                        l.risk_category === 'High' ? 'badge-danger' : 'badge-neutral'
+                                                    }`}>
+                                                        {l.risk_category || 'Moderate'}
+                                                    </span>
+                                                </td>
+                                                <td className="text-sm font-bold">
+                                                    {l.initiator_name || 'Staff Member'}
+                                                </td>
+                                                <td>
+                                                    <span className={`badge ${
+                                                        l.status === 'Active' || l.status === 'Converted' ? 'badge-success' : 
+                                                        l.status === 'Draft' ? 'badge-pending' : 'badge-danger'
+                                                    }`}>
+                                                        {l.status}
+                                                    </span>
+                                                </td>
+                                                <td style={{ textAlign: 'right' }}>
+                                                    <button className="action-btn">
+                                                        <Eye size={16} />
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>

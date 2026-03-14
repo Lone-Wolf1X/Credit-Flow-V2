@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Menu, X, LogOut, User, Award, ChevronRight, LayoutDashboard, GitMerge, FileText, Settings, Users, Home, Shield, TrendingUp, Search, Calculator } from 'lucide-react';
+import { Menu, X, LogOut, User, Award, ChevronRight, LayoutDashboard, GitMerge, FileText, Settings, Users, Home, Shield, TrendingUp, Search, Calculator, ShieldCheck, Layers } from 'lucide-react';
 import NotificationBell from './NotificationBell';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -29,7 +29,9 @@ const Layout = ({ children }) => {
         { name: 'Leads', path: '/leads', icon: <Home size={20} /> },
         { name: 'Appraisals', path: '/appraisals', icon: <Calculator size={20} /> },
         { name: 'Workflows', path: '/workflows', icon: <GitMerge size={20} /> },
-        { name: 'Memos', path: '/memos', icon: <FileText size={20} /> }
+        { name: 'Memos', path: '/memos', icon: <FileText size={20} /> },
+        { name: 'CIC', path: '/cic', icon: <Shield size={20} /> },
+        { name: 'Valuators', path: '/valuators', icon: <ShieldCheck size={20} /> }
     ];
 
     if (user?.role === 'Admin') {
@@ -38,7 +40,8 @@ const Layout = ({ children }) => {
             { name: 'Branch Management', path: '/admin/branches', icon: <Settings size={20} /> },
             { name: 'Staff Performance', path: '/admin/scores', icon: <Award size={20} /> },
             { name: 'Security Logs', path: '/admin/security', icon: <Shield size={20} /> },
-            { name: 'Authority Matrix', path: '/admin/matrix', icon: <TrendingUp size={20} /> }
+            { name: 'Authority Matrix', path: '/admin/matrix', icon: <TrendingUp size={20} /> },
+            { name: 'Valuation Policies', path: '/admin/policies', icon: <Layers size={20} /> }
         );
     }
 

@@ -28,8 +28,16 @@ const AppraisalPage = () => {
     
     // Form State
     const [activeTab, setActiveTab] = useState('Borrower Info');
+    const [initiationData, setInitiationData] = useState({
+        loan_connection_type: 'New Loan',
+        loan_segment: 'Retail',
+        loan_type: 'Personal Term Loan',
+        proposed_limit: ''
+    });
+
     const [appraisalData, setAppraisalData] = useState({
         loan_type: 'New Loan',
+        cap_id: '',
         borrower_details: {
             age: '', phone: '', pan: '', group_indebtedness: 0, relation: '',
             purpose: 'For personal Obligations', banking_since: ''
@@ -136,9 +144,13 @@ const AppraisalPage = () => {
     };
 
     const handleCreateDirect = async (leadId) => {
+        if (!leadId) return toast.error('Please select a lead');
         try {
-            const res = await api.post('/appraisals/direct', { lead_id: leadId });
-            toast.success('Appraisal Shell Created');
+            const res = await api.post('/appraisals/direct', { 
+                lead_id: leadId,
+                ...initiationData
+            });
+            toast.success('Appraisal Initiated with CAP ID: ' + res.data.cap_id);
             navigate(`/appraisal/${leadId}`);
             setShowCreateModal(false);
         } catch (err) {
@@ -304,7 +316,23 @@ const AppraisalPage = () => {
                                 <ArrowLeft size={18} /> Back to List
                             </button>
                             <h1 style={{ fontWeight: '900', margin: 0 }}>Full Mortgage Appraisal</h1>
-                            <p style={{ color: 'var(--text-muted)' }}>Customer: <strong>{appraisalData.customer_name}</strong> | ID: {appraisalData.lead_identifier}</p>
+                            <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginTop: '5px' }}>
+                                <span className="badge badge-info">{appraisalData.cap_id}</span>
+                                <span style={{ color: 'var(--text-muted)' }}>|</span>
+                                <p style={{ color: 'var(--text-muted)', margin: 0 }}>
+                                    Customer: <strong>{appraisalData.customer_name}</strong> | 
+                                    Product: <strong>{appraisalData.loan_type}</strong> ({appraisalData.loan_connection_type})
+                                </p>
+                                <span style={{ color: 'var(--text-muted)' }}>|</span>
+                                <div style={{ display: 'flex', gap: '5px' }}>
+                                    <span className="badge badge-warning" title="Required Approval Authority">
+                                        Authority: {appraisalData.escalation?.approver_designation || 'Determining...'}
+                                    </span>
+                                    <span className="badge badge-secondary">
+                                        Limit: रु {Number(appraisalData.proposed_limit).toLocaleString()}
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                         <div style={{ display: 'flex', gap: '10px' }}>
                             <button className="btn btn-accent" onClick={handleDownloadDocx}>
@@ -366,23 +394,25 @@ const AppraisalPage = () => {
                                             <h2 style={{ marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                                                 <Users className="text-primary" /> Borrower Profile
                                             </h2>
-                                            <div className="form-group">
-                                                <label>Appraisal Objective</label>
-                                                <select value={appraisalData.loan_type} onChange={e => setAppraisalData({...appraisalData, loan_type: e.target.value})}>
-                                                    <option>New Loan</option><option>Renewal</option><option>Enhancement</option><option>Restructuring</option>
-                                                </select>
-                                            </div>
-                                            <div className="form-row">
+                                            <div className="grid-3">
+                                                <div className="form-group">
+                                                    <label>Appraisal Objective</label>
+                                                    <select value={appraisalData.loan_type} onChange={e => setAppraisalData({...appraisalData, loan_type: e.target.value})}>
+                                                        <option>New Loan</option><option>Renewal</option><option>Enhancement</option><option>Restructuring</option>
+                                                    </select>
+                                                </div>
                                                 <div className="form-group"><label>Age</label><input type="number" value={appraisalData.borrower_details.age} onChange={e => setAppraisalData({...appraisalData, borrower_details: {...appraisalData.borrower_details, age: e.target.value}})} /></div>
                                                 <div className="form-group"><label>PAN No.</label><input type="text" value={appraisalData.borrower_details.pan} onChange={e => setAppraisalData({...appraisalData, borrower_details: {...appraisalData.borrower_details, pan: e.target.value}})} /></div>
                                             </div>
-                                            <div className="form-group">
-                                                <label>Purpose of Loan</label>
-                                                <textarea rows="2" value={appraisalData.borrower_details.purpose} onChange={e => setAppraisalData({...appraisalData, borrower_details: {...appraisalData.borrower_details, purpose: e.target.value}})} />
-                                            </div>
-                                            <div className="form-group">
-                                                <label>Group Indebtedness (रु in Lacs)</label>
-                                                <input type="number" value={appraisalData.borrower_details.group_indebtedness} onChange={e => setAppraisalData({...appraisalData, borrower_details: {...appraisalData.borrower_details, group_indebtedness: e.target.value}})} />
+                                            <div className="grid-3" style={{ marginTop: '20px' }}>
+                                                <div className="form-group" style={{ gridColumn: 'span 2' }}>
+                                                    <label>Purpose of Loan</label>
+                                                    <textarea rows="2" value={appraisalData.borrower_details.purpose} onChange={e => setAppraisalData({...appraisalData, borrower_details: {...appraisalData.borrower_details, purpose: e.target.value}})} />
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Group Indebtedness (रु in Lacs)</label>
+                                                    <input type="number" value={appraisalData.borrower_details.group_indebtedness} onChange={e => setAppraisalData({...appraisalData, borrower_details: {...appraisalData.borrower_details, group_indebtedness: e.target.value}})} />
+                                                </div>
                                             </div>
                                         </>
                                     )}
@@ -393,7 +423,7 @@ const AppraisalPage = () => {
                                                 <Briefcase className="text-primary" /> Multi-Source Income Assessment
                                             </h2>
                                             <div style={{ background: '#f8fafc', padding: '20px', borderRadius: '15px' }}>
-                                                <div className="form-row" style={{ marginBottom: '20px' }}>
+                                                <div className="grid-3" style={{ marginBottom: '20px' }}>
                                                     <div className="form-group">
                                                         <label>Agriculture Gross (रु)</label>
                                                         <input type="number" value={appraisalData.income_details.agriculture_gross} onChange={e => setAppraisalData({...appraisalData, income_details: {...appraisalData.income_details, agriculture_gross: e.target.value}})} />
@@ -404,8 +434,12 @@ const AppraisalPage = () => {
                                                         <input type="number" value={appraisalData.income_details.remittance_gross} onChange={e => setAppraisalData({...appraisalData, income_details: {...appraisalData.income_details, remittance_gross: e.target.value}})} />
                                                         <small className="text-primary">Considered: {appraisalData.income_details.remittance_net.toLocaleString()} (100%)</small>
                                                     </div>
+                                                    <div className="form-group">
+                                                        <label>Rental Gross (रु)</label>
+                                                        <input type="number" value={appraisalData.income_details.rental_gross} onChange={e => setAppraisalData({...appraisalData, income_details: {...appraisalData.income_details, rental_gross: e.target.value}})} />
+                                                    </div>
                                                 </div>
-                                                <div className="form-row">
+                                                <div className="grid-3">
                                                     <div className="form-group">
                                                         <label>Salary Gross (रु)</label>
                                                         <input type="number" value={appraisalData.income_details.salary_gross} onChange={e => setAppraisalData({...appraisalData, income_details: {...appraisalData.income_details, salary_gross: e.target.value}})} />
@@ -415,10 +449,6 @@ const AppraisalPage = () => {
                                                         <input type="number" value={appraisalData.income_details.salary_tds} onChange={e => setAppraisalData({...appraisalData, income_details: {...appraisalData.income_details, salary_tds: e.target.value}})} />
                                                         <small className="text-primary">Net Salary: {appraisalData.income_details.salary_net.toLocaleString()}</small>
                                                     </div>
-                                                </div>
-                                                <div className="form-group" style={{ marginTop: '15px' }}>
-                                                    <label>Rental Gross (रु)</label>
-                                                    <input type="number" value={appraisalData.income_details.rental_gross} onChange={e => setAppraisalData({...appraisalData, income_details: {...appraisalData.income_details, rental_gross: e.target.value}})} />
                                                 </div>
                                             </div>
                                         </>
@@ -446,12 +476,14 @@ const AppraisalPage = () => {
                                             <h2 style={{ marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                                                 <MapPin className="text-primary" /> Collateral Specifications
                                             </h2>
-                                            <div className="form-row">
+                                            <div className="grid-3">
                                                 <div className="form-group"><label>Plot No(s)</label><input type="text" value={appraisalData.collateral_details.plot_no} onChange={e => setAppraisalData({...appraisalData, collateral_details: {...appraisalData.collateral_details, plot_no: e.target.value}})} /></div>
                                                 <div className="form-group"><label>Area (Sqr. Ft/Ropani)</label><input type="text" value={appraisalData.collateral_details.area} onChange={e => setAppraisalData({...appraisalData, collateral_details: {...appraisalData.collateral_details, area: e.target.value}})} /></div>
+                                                <div className="form-group"><label>Owner Name</label><input type="text" value={appraisalData.collateral_details.owner_name} onChange={e => setAppraisalData({...appraisalData, collateral_details: {...appraisalData.collateral_details, owner_name: e.target.value}})} /></div>
                                             </div>
-                                            <div className="form-group"><label>Owner Name</label><input type="text" value={appraisalData.collateral_details.owner_name} onChange={e => setAppraisalData({...appraisalData, collateral_details: {...appraisalData.collateral_details, owner_name: e.target.value}})} /></div>
-                                            <div className="form-group"><label>Distance from Main road / Accessibility</label><input type="text" value={appraisalData.collateral_details.accessibility} onChange={e => setAppraisalData({...appraisalData, collateral_details: {...appraisalData.collateral_details, accessibility: e.target.value}})} /></div>
+                                            <div className="grid-3" style={{ marginTop: '20px' }}>
+                                                <div className="form-group" style={{ gridColumn: 'span 2' }}><label>Distance from Main road / Accessibility</label><input type="text" value={appraisalData.collateral_details.accessibility} onChange={e => setAppraisalData({...appraisalData, collateral_details: {...appraisalData.collateral_details, accessibility: e.target.value}})} /></div>
+                                            </div>
                                         </>
                                     )}
 
@@ -569,21 +601,101 @@ const AppraisalPage = () => {
             {/* CREATE MODAL */}
             {showCreateModal && (
                 <div className="modal-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div className="glass-card" style={{ width: '500px', padding: '30px', background: 'white' }}>
-                        <h2 style={{ margin: '0 0 10px 0', fontWeight: '900' }}>Initiate New Appraisal</h2>
-                        <p style={{ color: 'var(--text-muted)', marginBottom: '20px' }}>Select an eligible lead to start formal appraisal.</p>
+                    <div className="glass-card" style={{ width: '600px', padding: '30px', background: 'white', maxHeight: '90vh', overflowY: 'auto' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                            <h2 style={{ margin: 0, fontWeight: '900' }}>Initiate New Appraisal</h2>
+                            <button onClick={() => setShowCreateModal(false)} className="btn btn-sm btn-secondary">✕</button>
+                        </div>
                         
                         <div className="form-group">
                             <label>Pick Lead</label>
-                            <select id="leadPicker" style={{ width: '100%', padding: '12px' }}>
+                            <select id="leadPicker" style={{ width: '100%', padding: '12px', border: '1px solid #ddd', borderRadius: '8px' }}>
                                 <option value="">-- Select Lead --</option>
                                 {leads.map(l => <option key={l.id} value={l.lead_id}>{l.customer_name} ({l.lead_id})</option>)}
                             </select>
                         </div>
+
+                        <div className="form-row">
+                            <div className="form-group" style={{ flex: 1 }}>
+                                <label>Connection Type</label>
+                                <select 
+                                    value={initiationData.loan_connection_type} 
+                                    onChange={e => setInitiationData({...initiationData, loan_connection_type: e.target.value})}
+                                    style={{ width: '100%', padding: '12px' }}
+                                >
+                                    <option value="New Loan">New Loan</option>
+                                    <option value="Renewal">Renewal</option>
+                                    <option value="Enhancement">Enhancement</option>
+                                    <option value="Reduction">Reduction</option>
+                                    <option value="Restructure">Restructure</option>
+                                </select>
+                            </div>
+                            <div className="form-group" style={{ flex: 1 }}>
+                                <label>Loan Segment</label>
+                                <select 
+                                    value={initiationData.loan_segment} 
+                                    onChange={e => setInitiationData({...initiationData, loan_segment: e.target.value})}
+                                    style={{ width: '100%', padding: '12px' }}
+                                >
+                                    <option value="Retail">Retail</option>
+                                    <option value="Corporate">Corporate</option>
+                                    <option value="SME/MSME">SME/MSME</option>
+                                    <option value="Micro">Micro</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className="form-group">
+                            <label>Product Select</label>
+                            <select 
+                                value={initiationData.loan_type} 
+                                onChange={e => setInitiationData({...initiationData, loan_type: e.target.value})}
+                                style={{ width: '100%', padding: '12px' }}
+                            >
+                                <option value="">-- Select Product --</option>
+                                {initiationData.loan_segment === 'Retail' && (
+                                    <>
+                                        <option value="Personal Term Loan">Personal Term Loan (PML)</option>
+                                        <option value="Mortgage Plus Overdraft Loan">Mortgage Plus Overdraft Loan (MPOD)</option>
+                                        <option value="Hire Purchase Loan">Hire Purchase Loan (HPL)</option>
+                                        <option value="Housing Loan">Housing Loan (HSL)</option>
+                                        <option value="Professional Loan">Professional Loan (PROFL)</option>
+                                        <option value="Loan Against Fixed Deposit Receipt">Loan Against Fixed Deposit Receipt (LAFDR)</option>
+                                    </>
+                                )}
+                                {initiationData.loan_segment === 'Corporate' && (
+                                    <>
+                                        <option value="Working Term Loan">Working Term Loan (WTL)</option>
+                                        <option value="Mortgage Term Loan">Mortgage Term Loan (MTL)</option>
+                                        <option value="Deprived Sector Lending">Deprived Sector Lending (DSL)</option>
+                                        <option value="Micro Loan">Micro Loan (MCOR)</option>
+                                    </>
+                                )}
+                                {initiationData.loan_segment === 'SME/MSME' && (
+                                    <>
+                                        <option value="SME Business Loan">SME Business Loan</option>
+                                        <option value="MSME Loan">MSME Loan</option>
+                                    </>
+                                )}
+                            </select>
+                        </div>
+
+                        <div className="form-group">
+                            <label>Proposed Amount (रु)</label>
+                            <input 
+                                type="number" 
+                                placeholder="Enter amount in NPR" 
+                                value={initiationData.proposed_limit}
+                                onChange={e => setInitiationData({...initiationData, proposed_limit: e.target.value})}
+                                style={{ width: '100%', padding: '12px' }} 
+                            />
+                        </div>
                         
-                        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '20px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '30px' }}>
                             <button className="btn btn-secondary" onClick={() => setShowCreateModal(false)}>Cancel</button>
-                            <button className="btn btn-primary" onClick={() => handleCreateDirect(document.getElementById('leadPicker').value)}>Initiate Appraisal</button>
+                            <button className="btn btn-primary" style={{ padding: '12px 30px' }} onClick={() => handleCreateDirect(document.getElementById('leadPicker').value)}>
+                                Generate CAP ID & Start
+                            </button>
                         </div>
                     </div>
                 </div>

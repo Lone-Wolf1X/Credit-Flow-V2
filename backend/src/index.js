@@ -47,6 +47,9 @@ app.use('/api/audit', require('./routes/auditRoutes'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/appraisals', require('./routes/appraisalRoutes'));
+app.use('/api/valuators', require('./routes/valuatorRoutes'));
+app.use('/api/cics', require('./routes/cicRoutes'));
+app.use('/api/policies', require('./routes/policyRoutes'));
 
 // Static folder for uploads
 app.use('/uploads', express.static('uploads'));

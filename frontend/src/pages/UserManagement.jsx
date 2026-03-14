@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
+import { Edit, ArrowRightLeft, Key, Trash2, UserPlus, RefreshCw } from 'lucide-react';
 
 const UserManagement = () => {
     const [users, setUsers] = useState([]);
@@ -168,7 +169,12 @@ const UserManagement = () => {
                     </div>
                     <div className="form-group">
                         <label>Province</label>
-                        <select name="province_id" value={formData.province_id} onChange={handleChange} required>
+                        <select 
+                            name="province_id" 
+                            value={formData.province_id} 
+                            onChange={handleChange} 
+                            required
+                        >
                             <option value="">Select Province</option>
                             {provinces.map(p => (
                                 <option key={p.id} value={p.id}>{p.name}</option>
@@ -176,11 +182,32 @@ const UserManagement = () => {
                         </select>
                     </div>
                     <div className="form-group">
-                        <label>Branch (SOL ID)</label>
-                        <select name="branch_id" value={formData.branch_id} onChange={handleChange} required>
-                            <option value="">Select Branch</option>
-                            {branches.map(b => (
-                                <option key={b.id} value={b.id}>{b.name} ({b.sol_id})</option>
+                        <label>Hub / Branch (SOL ID)</label>
+                        <select 
+                            name="branch_id" 
+                            value={formData.branch_id} 
+                            onChange={(e) => {
+                                const bid = e.target.value;
+                                const selectedBranch = branches.find(b => b.id.toString() === bid);
+                                if (selectedBranch) {
+                                    setFormData({
+                                        ...formData,
+                                        branch_id: bid,
+                                        province_id: selectedBranch.province_id || formData.province_id
+                                    });
+                                } else {
+                                    setFormData({ ...formData, branch_id: bid });
+                                }
+                            }} 
+                            required
+                        >
+                            <option value="">Select Hub</option>
+                            {['Department', 'Province', 'Branch'].map(type => (
+                                <optgroup key={type} label={type + 's'}>
+                                    {branches.filter(b => b.hub_type === type).map(b => (
+                                        <option key={b.id} value={b.id}>{b.name} ({b.sol_id})</option>
+                                    ))}
+                                </optgroup>
                             ))}
                         </select>
                     </div>
@@ -197,41 +224,66 @@ const UserManagement = () => {
                 </div>
             </form>
 
-            <table style={{ width: '100%', marginTop: '30px', borderCollapse: 'collapse' }}>
-                <thead>
-                    <tr style={{ borderBottom: '1px solid var(--glass-border)', textAlign: 'left' }}>
-                        <th style={{ padding: '10px' }}>Name</th>
-                        <th style={{ padding: '10px' }}>Staff ID</th>
-                        <th style={{ padding: '10px' }}>Province</th>
-                        <th style={{ padding: '10px' }}>Branch</th>
-                        <th style={{ padding: '10px' }}>Designation</th>
-                        <th style={{ padding: '10px' }}>Power (रु)</th>
-                        <th style={{ padding: '10px' }}>Role</th>
-                        <th style={{ padding: '10px' }}>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map(u => (
-                        <tr key={u.id} style={{ borderBottom: '1px solid var(--glass-border)' }}>
-                            <td style={{ padding: '10px' }}>{u.name}</td>
-                            <td style={{ padding: '10px' }}>{u.staff_id}</td>
-                            <td style={{ padding: '10px' }}>{u.province_name || 'N/A'}</td>
-                            <td style={{ padding: '10px' }}>{u.branch_name || 'N/A'}</td>
-                            <td style={{ padding: '10px' }}>{u.designation}</td>
-                            <td style={{ padding: '10px', fontWeight: 'bold', color: 'var(--primary)' }}>
-                                {u.limit_power ? parseInt(u.limit_power).toLocaleString() : '0'}
-                            </td>
-                            <td style={{ padding: '10px' }}>{u.role}</td>
-                            <td style={{ padding: '10px' }}>
-                                <button className="btn" onClick={() => handleEdit(u)} style={{ marginRight: '5px' }}>Edit</button>
-                                <button className="btn" onClick={() => handleTransferClick(u)} style={{ marginRight: '5px', background: 'var(--accent)' }}>Transfer</button>
-                                <button className="btn" onClick={() => handleResetClick(u)} style={{ marginRight: '5px', background: 'var(--secondary)', color: 'var(--primary)' }}>Reset Pwd</button>
-                                <button className="btn" onClick={() => handleDelete(u.id)} style={{ background: 'var(--danger)' }}>Delete</button>
-                            </td>
+            <div className="table-container">
+                <table className="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Staff ID</th>
+                            <th>Hub Type</th>
+                            <th>Province</th>
+                            <th>Branch</th>
+                            <th>Designation</th>
+                            <th>Power (रु)</th>
+                            <th>Role</th>
+                            <th style={{ textAlign: 'right' }}>Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {users.map(u => (
+                            <tr key={u.id}>
+                                <td className="font-bold">{u.name}</td>
+                                <td>{u.staff_id}</td>
+                                <td>
+                                    <span className={`badge ${
+                                        u.hub_type === 'Department' ? 'badge-primary' : 
+                                        u.hub_type === 'Province' ? 'badge-success' : 'badge-neutral'
+                                    }`}>
+                                        {u.hub_type || 'Branch'}
+                                    </span>
+                                </td>
+                                <td>{u.province_name || 'N/A'}</td>
+                                <td>{u.branch_name || 'N/A'}</td>
+                                <td>{u.designation}</td>
+                                <td className="font-black text-primary">
+                                    {u.limit_power ? parseInt(u.limit_power).toLocaleString() : '0'}
+                                </td>
+                                <td>
+                                    <span className={`badge ${u.role === 'Admin' ? 'badge-danger' : 'badge-neutral'}`}>
+                                        {u.role}
+                                    </span>
+                                </td>
+                                <td style={{ textAlign: 'right' }}>
+                                    <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
+                                        <button onClick={() => handleEdit(u)} className="action-btn" title="Edit User">
+                                            <Edit size={16} />
+                                        </button>
+                                        <button onClick={() => handleTransferClick(u)} className="action-btn" title="Transfer Hub" style={{ color: 'var(--accent)' }}>
+                                            <ArrowRightLeft size={16} />
+                                        </button>
+                                        <button onClick={() => handleResetClick(u)} className="action-btn" title="Reset Password" style={{ color: '#92400e' }}>
+                                            <Key size={16} />
+                                        </button>
+                                        <button onClick={() => handleDelete(u.id)} className="action-btn danger" title="Delete User">
+                                            <Trash2 size={16} />
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
 
             {/* Transfer Modal */}
             {isTransferModalOpen && (

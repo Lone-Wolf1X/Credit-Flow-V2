@@ -12,7 +12,8 @@ exports.createLead = async (req, res) => {
         is_individual, is_existing_customer,
         collateral_type, estimated_collateral_value, undivided_family_members,
         is_pep, has_legal_dispute, primary_income, secondary_income,
-        other_income_amount, other_income_source
+        other_income_amount, other_income_source, loan_segment,
+        is_direct_appraisal
     } = req.body;
 
     try {
@@ -23,7 +24,7 @@ exports.createLead = async (req, res) => {
         const lead_id = `L-${dateStr}-${seq}`;
 
         // Calculate Initial LQS
-        const lqs_score = scoringService.calculateLQS({
+        const lqs_score = is_direct_appraisal ? 100 : scoringService.calculateLQS({
             customer_name, customer_type, income_source, 
             proposed_limit, is_individual, is_existing_customer,
             undivided_family_members, is_pep, has_legal_dispute,
@@ -42,34 +43,44 @@ exports.createLead = async (req, res) => {
                 is_individual, initiator_id, current_owner_id, status, branch_id,
                 collateral_type, estimated_collateral_value, undivided_family_members,
                 is_pep, has_legal_dispute, primary_income, secondary_income,
-                other_income_amount, other_income_source
+                other_income_amount, other_income_source, loan_segment
             ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, (SELECT branch_id FROM users WHERE id = $11),
-                $14, $15, $16, $17, $18, $19, $20, $21, $22) RETURNING *`,
+                $14, $15, $16, $17, $18, $19, $20, $21, $22, $23) RETURNING *`,
             [
                 lead_id, customer_name, customer_type || 'Individual', contact_number, address,
                 loan_type || 'New', loan_scheme, income_source, proposed_limit || 0,
                 is_individual === 'true' || is_individual === true, req.user.id, req.user.id, 'Analysis',
                 collateral_type, estimated_collateral_value || 0, undivided_family_members || 1,
                 is_pep === 'true' || is_pep === true, has_legal_dispute === 'true' || has_legal_dispute === true,
-                primary_income || 0, secondary_income || 0, other_income_amount || 0, other_income_source
+                primary_income || 0, secondary_income || 0, other_income_amount || 0, other_income_source,
+                loan_segment
             ]
         );
 
         const lead = result.rows[0];
 
-        // Save Initial Score
+        // Save Initial Score (and Phase 2 dummy scores if direct appraisal)
         await db.query(
-            "INSERT INTO lead_scoring (lead_id, lqs_score, risk_category) VALUES ($1, $2, $3)",
-            [lead_id, lqs_score, risk_category]
+            "INSERT INTO lead_scoring (lead_id, lqs_score, risk_category, sv_score, fcs_score, deviation_percentage, deviation_alerts) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+            [lead_id, lqs_score, risk_category, is_direct_appraisal ? 100 : null, is_direct_appraisal ? 100 : null, is_direct_appraisal ? 0 : null, is_direct_appraisal ? '[]' : null]
         );
 
+        if (is_direct_appraisal) {
+            // Bypass Phase 2 Verification
+            await db.query(
+                `INSERT INTO lead_verified_data (lead_id, verified_income, verified_collateral_value, cib_report_status, kyc_status, verification_notes, staff_id)
+                 VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+                [lead_id, proposed_limit, estimated_collateral_value || 0, 'Clear', 'Completed', 'System Auto-Bypass for Existing Bank File', req.user.id]
+            );
+        }
+
         // Initialize Workflow
-        await workflowController.initializeWorkflow(lead_id, parseFloat(proposed_limit || 0), req.user.id);
+        await workflowController.initializeWorkflow(lead_id, parseFloat(proposed_limit || 0), req.user.id, is_direct_appraisal);
 
         // Log LP Points
         await db.query(
             "INSERT INTO point_logs (user_id, lead_id, points, type, description) VALUES ($1, $2, $3, $4, $5)",
-            [req.user.id, lead_id, 10, 'Initiation', 'Points for creating a new lead']
+            [req.user.id, lead_id, 10, 'Initiation', is_direct_appraisal ? 'Direct Appraisal Creation' : 'Points for creating a new lead']
         );
 
         res.status(201).json({ ...lead, lqs_score, risk_category });
@@ -120,10 +131,17 @@ exports.getLeadDetails = async (req, res) => {
     try {
         const result = await db.query(`
             SELECT l.*, s.lqs_score, s.sv_score, s.fcs_score, s.risk_category, s.deviation_percentage, s.deviation_alerts,
-                   v.verified_income, v.verified_collateral_value, v.cib_report_status, v.kyc_status, v.verification_notes
+                   v.verified_income, v.verified_collateral_value, v.cib_report_status, v.kyc_status, v.verification_notes,
+                   u.name as initiator_name,
+                   va.id as valuation_assignment_id, va.status as valuation_status, 
+                   va.final_valuation_value, va.pre_valuation_value,
+                   val.name as valuator_name, val.firm_name as valuator_firm
             FROM leads l
             LEFT JOIN lead_scoring s ON l.lead_id = s.lead_id
             LEFT JOIN lead_verified_data v ON l.lead_id = v.lead_id
+            LEFT JOIN users u ON l.initiator_id = u.id
+            LEFT JOIN valuation_assignments va ON l.lead_id = va.lead_id
+            LEFT JOIN valuators val ON va.valuator_id = val.id
             WHERE l.lead_id = $1 OR l.id::text = $1
         `, [id]);
 

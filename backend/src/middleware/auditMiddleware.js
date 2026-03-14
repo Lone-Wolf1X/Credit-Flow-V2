@@ -18,8 +18,8 @@ const auditMiddleware = (req, res, next) => {
                 };
                 
                 // Exclude sensitive data from logs (like passwords)
-                if (details.body.password) details.body.password = '********';
-                if (details.body.newPassword) details.body.newPassword = '********';
+                if (req.body && details.body.password) details.body.password = '********';
+                if (req.body && details.body.newPassword) details.body.newPassword = '********';
 
                 logAction(user_id, action, details).catch(err => console.error('Delayed audit log error:', err));
             }

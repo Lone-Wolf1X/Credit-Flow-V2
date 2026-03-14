@@ -1,57 +1,47 @@
 -- Database Schema for Advanced Banking Credit Appraisal System
 
-DROP TABLE IF EXISTS audit_logs CASCADE;
-DROP TABLE IF EXISTS notifications CASCADE;
-DROP TABLE IF EXISTS memos CASCADE;
-DROP TABLE IF EXISTS workflows CASCADE;
-DROP TABLE IF EXISTS lead_verified_data CASCADE;
-DROP TABLE IF EXISTS lead_scoring CASCADE;
-DROP TABLE IF EXISTS point_logs CASCADE;
-DROP TABLE IF EXISTS leads CASCADE;
-DROP TABLE IF EXISTS branch_assignments CASCADE;
-DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS branches CASCADE;
-DROP TABLE IF EXISTS designations CASCADE;
-DROP TABLE IF EXISTS provinces CASCADE;
-
-CREATE TABLE provinces (
+CREATE TABLE IF NOT EXISTS provinces (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE designations (
+CREATE TABLE IF NOT EXISTS designations (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE,
     default_power_limit DECIMAL(15, 2) DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE branches (
+CREATE TABLE IF NOT EXISTS branches (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     short_name VARCHAR(50),
     sol_id VARCHAR(50) UNIQUE NOT NULL,
     location VARCHAR(255),
+    province VARCHAR(100),
     province_id INTEGER REFERENCES provinces(id),
+    hub_type VARCHAR(50) DEFAULT 'Branch', -- Branch, Province, Department
+    parent_hub_id INTEGER REFERENCES branches(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     staff_id VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    role VARCHAR(50) CHECK (role IN ('Admin', 'Staff')),
+    role VARCHAR(50) CHECK (role IN ('Admin', 'Staff', 'User')),
     branch_id INTEGER REFERENCES branches(id),
     province_id INTEGER REFERENCES provinces(id),
-    designation VARCHAR(100) REFERENCES designations(name),
+    designation VARCHAR(100),
+    limit_power NUMERIC DEFAULT 0,
     must_reset_password BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE branch_assignments (
+CREATE TABLE IF NOT EXISTS branch_assignments (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id),
     branch_id INTEGER REFERENCES branches(id),
@@ -61,7 +51,7 @@ CREATE TABLE branch_assignments (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE leads (
+CREATE TABLE IF NOT EXISTS leads (
     id SERIAL PRIMARY KEY,
     lead_id VARCHAR(50) UNIQUE NOT NULL,
     customer_name VARCHAR(255) NOT NULL,
@@ -92,11 +82,12 @@ CREATE TABLE leads (
     secondary_income DECIMAL(15, 2) DEFAULT 0,
     other_income_amount DECIMAL(15, 2) DEFAULT 0,
     other_income_source VARCHAR(255),
+    loan_connection_type VARCHAR(50), -- New, Renewal, Enhancement, Reduction, Restructure
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE workflows (
+CREATE TABLE IF NOT EXISTS workflows (
     id SERIAL PRIMARY KEY,
     lead_id VARCHAR(50) REFERENCES leads(lead_id) ON DELETE CASCADE,
     cap_id VARCHAR(50) UNIQUE,
@@ -110,7 +101,7 @@ CREATE TABLE workflows (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE lead_reviews (
+CREATE TABLE IF NOT EXISTS lead_reviews (
     id SERIAL PRIMARY KEY,
     lead_id VARCHAR(50) REFERENCES leads(lead_id) ON DELETE CASCADE,
     reviewer_id INTEGER REFERENCES users(id),
@@ -122,27 +113,28 @@ CREATE TABLE lead_reviews (
     review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE lead_appraisals (
+CREATE TABLE IF NOT EXISTS lead_appraisals (
     id SERIAL PRIMARY KEY,
     lead_id VARCHAR(50) REFERENCES leads(lead_id) ON DELETE CASCADE,
     monthly_income DECIMAL(15, 2),
-    monthly_expenses DECIMAL(15, 2),
-    emi_outflow DECIMAL(15, 2),
-    other_bfis_exposure DECIMAL(15, 2),
     fair_market_value DECIMAL(15, 2),
     distress_value DECIMAL(15, 2),
-    collateral_location TEXT,
-    cra_score INTEGER,
-    mitigating_factors TEXT,
-    unit_inspection_notes TEXT,
     recommended_limit DECIMAL(15, 2),
     interest_rate DECIMAL(5, 2),
     tenure_months INTEGER,
     appraiser_id INTEGER REFERENCES users(id),
+    appraisal_status VARCHAR(50) DEFAULT 'Draft',
+    borrower_details JSONB DEFAULT '{}',
+    income_details JSONB DEFAULT '{}',
+    collateral_details JSONB DEFAULT '{}',
+    risk_assessment JSONB DEFAULT '{}',
+    pricing_details JSONB DEFAULT '{}',
+    group_exposure JSONB DEFAULT '{}',
+    final_recommendation JSONB DEFAULT '{}',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE lead_scoring (
+CREATE TABLE IF NOT EXISTS lead_scoring (
     id SERIAL PRIMARY KEY,
     lead_id VARCHAR(50) REFERENCES leads(lead_id) ON DELETE CASCADE,
     lqs_score INTEGER DEFAULT 0, -- Lead Qualification Score (Phase 1)
@@ -154,7 +146,7 @@ CREATE TABLE lead_scoring (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE lead_verified_data (
+CREATE TABLE IF NOT EXISTS lead_verified_data (
     id SERIAL PRIMARY KEY,
     lead_id VARCHAR(50) REFERENCES leads(lead_id) ON DELETE CASCADE,
     verified_income DECIMAL(15, 2),
@@ -166,7 +158,7 @@ CREATE TABLE lead_verified_data (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE point_logs (
+CREATE TABLE IF NOT EXISTS point_logs (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id),
     lead_id VARCHAR(50) REFERENCES leads(lead_id) ON DELETE CASCADE,
@@ -176,7 +168,7 @@ CREATE TABLE point_logs (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE memos (
+CREATE TABLE IF NOT EXISTS memos (
     id SERIAL PRIMARY KEY,
     memo_id VARCHAR(100) UNIQUE NOT NULL,
     lead_id VARCHAR(50) REFERENCES leads(lead_id) ON DELETE CASCADE,
@@ -186,7 +178,7 @@ CREATE TABLE memos (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE notifications (
+CREATE TABLE IF NOT EXISTS notifications (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id),
     message TEXT NOT NULL,
@@ -195,7 +187,7 @@ CREATE TABLE notifications (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE audit_logs (
+CREATE TABLE IF NOT EXISTS audit_logs (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id),
     action VARCHAR(255) NOT NULL,
@@ -203,8 +195,91 @@ CREATE TABLE audit_logs (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Indexes
-CREATE INDEX idx_leads_lead_id ON leads(lead_id);
-CREATE INDEX idx_workflows_lead_id ON workflows(lead_id);
-CREATE INDEX idx_scoring_lead_id ON lead_scoring(lead_id);
-CREATE INDEX idx_points_user_id ON point_logs(user_id);
+-- New Tables for Appraisal System
+CREATE TABLE IF NOT EXISTS cap_id_config (
+    id SERIAL PRIMARY KEY,
+    loan_segment VARCHAR(50) NOT NULL,
+    loan_type VARCHAR(100) NOT NULL,
+    prefix VARCHAR(20) NOT NULL,
+    counter INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (loan_segment, loan_type)
+);
+
+CREATE TABLE IF NOT EXISTS escalation_matrix (
+    id SERIAL PRIMARY KEY,
+    loan_segment VARCHAR(50) NOT NULL,
+    loan_type VARCHAR(100) NOT NULL,
+    initiator_designation VARCHAR(100),
+    reviewer_designation VARCHAR(100) NOT NULL,
+    approver_designation VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (loan_segment, loan_type)
+);
+
+-- Indexes (Created only if they don't exist is handled by PostgreSQL or checking before creating)
+CREATE INDEX IF NOT EXISTS idx_leads_lead_id ON leads(lead_id);
+CREATE INDEX IF NOT EXISTS idx_workflows_lead_id ON workflows(lead_id);
+CREATE INDEX IF NOT EXISTS idx_scoring_lead_id ON lead_scoring(lead_id);
+CREATE INDEX IF NOT EXISTS idx_points_user_id ON point_logs(user_id);
+
+-- Epic 3 & 4: Valuator Management & Policies
+
+CREATE TABLE IF NOT EXISTS valuation_policies (
+    id SERIAL PRIMARY KEY,
+    loan_segment VARCHAR(50) NOT NULL,
+    collateral_type VARCHAR(100) NOT NULL,
+    max_financing_percentage DECIMAL(5, 2) NOT NULL, -- e.g. 60.00 for 60%
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (loan_segment, collateral_type)
+);
+
+CREATE TABLE IF NOT EXISTS valuation_payment_rules (
+    id SERIAL PRIMARY KEY,
+    rule_type VARCHAR(50), -- 'Fixed', 'Percentage'
+    min_loan_amount DECIMAL(15, 2) DEFAULT 0,
+    max_loan_amount DECIMAL(15, 2), -- NULL means infinity
+    field_charge DECIMAL(15, 2) DEFAULT 0, -- Amount given before final report
+    final_charge DECIMAL(15, 2) DEFAULT 0, -- Fixed amount OR Percentage basis
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS valuators (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    firm_name VARCHAR(255) NOT NULL,
+    license_number VARCHAR(100) UNIQUE NOT NULL,
+    experience_years INTEGER NOT NULL,
+    contact_number VARCHAR(20) NOT NULL,
+    email VARCHAR(255),
+    branch_id INTEGER REFERENCES branches(id), -- Branch that initiated onboarding
+    status VARCHAR(50) DEFAULT 'Pending', -- Pending, Active, Suspended, Blacklisted
+    blacklisted_date TIMESTAMP,
+    cooling_off_end_date TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS valuation_assignments (
+    id SERIAL PRIMARY KEY,
+    lead_id VARCHAR(50) REFERENCES leads(lead_id) ON DELETE CASCADE,
+    valuator_id INTEGER REFERENCES valuators(id),
+    status VARCHAR(50) DEFAULT 'Requested', -- Requested, Pre-Valuation, Final Valuation, Completed, Rejected
+    field_charge_paid BOOLEAN DEFAULT FALSE,
+    final_charge_paid BOOLEAN DEFAULT FALSE,
+    field_charge_amount DECIMAL(15, 2) DEFAULT 0,
+    final_charge_amount DECIMAL(15, 2) DEFAULT 0,
+    pre_valuation_value DECIMAL(15, 2),
+    final_valuation_value DECIMAL(15, 2),
+    assigned_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    completed_date TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS valuation_documents (
+    id SERIAL PRIMARY KEY,
+    assignment_id INTEGER REFERENCES valuation_assignments(id) ON DELETE CASCADE,
+    document_type VARCHAR(50), -- Pre-Valuation Report, Final Report, Site Photos
+    file_path VARCHAR(255) NOT NULL,
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

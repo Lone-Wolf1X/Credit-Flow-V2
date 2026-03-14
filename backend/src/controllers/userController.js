@@ -23,7 +23,7 @@ exports.getAllUsers = async (req, res) => {
     try {
         const result = await db.query(`
             SELECT u.id, u.name, u.email, u.staff_id, u.role, u.branch_id, u.designation, u.limit_power, u.province_id,
-                   b.name as branch_name, b.sol_id, p.name as province_name
+                   b.name as branch_name, b.sol_id, b.hub_type, p.name as province_name
             FROM users u
             LEFT JOIN branches b ON u.branch_id = b.id
             LEFT JOIN provinces p ON u.province_id = p.id
@@ -148,15 +148,57 @@ exports.adminResetPasswordEmail = async (req, res) => {
     }
 };
 
-exports.requestTransfer = async (req, res) => {
-    const { target_branch_id, target_province_id, reason } = req.body;
+exports.requestPermission = async (req, res) => {
+    const { permission_type, reason } = req.body;
     try {
         await db.query(
-            'INSERT INTO transfer_requests (user_id, target_branch_id, target_province_id, reason) VALUES ($1, $2, $3, $4)',
-            [req.user.id, target_branch_id, target_province_id, reason]
+            'INSERT INTO permission_requests (user_id, permission_type, reason) VALUES ($1, $2, $3)',
+            [req.user.id, permission_type, reason]
         );
-        res.json({ message: 'Transfer request submitted successfully' });
+        res.json({ message: 'Permission request submitted successfully' });
     } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+exports.getPermissionRequests = async (req, res) => {
+    try {
+        const result = await db.query(`
+            SELECT pr.*, u.name as user_name, u.staff_id, b.name as branch_name
+            FROM permission_requests pr
+            JOIN users u ON pr.user_id = u.id
+            LEFT JOIN branches b ON u.branch_id = b.id
+            ORDER BY pr.created_at DESC
+        `);
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+exports.reviewPermissionRequest = async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body; // Approved, Rejected
+    try {
+        await db.query('BEGIN');
+
+        const requestRes = await db.query(
+            'UPDATE permission_requests SET status = $1, reviewed_by = $2, reviewed_at = CURRENT_TIMESTAMP WHERE id = $3 RETURNING *',
+            [status, req.user.id, id]
+        );
+        const request = requestRes.rows[0];
+
+        if (status === 'Approved' && request.permission_type === 'CIC_Generator') {
+            await db.query(
+                'UPDATE users SET is_cic_generator = true WHERE id = $1',
+                [request.user_id]
+            );
+        }
+
+        await db.query('COMMIT');
+        res.json({ message: `Permission request ${status.toLowerCase()} successfully` });
+    } catch (err) {
+        await db.query('ROLLBACK');
         res.status(500).json({ error: err.message });
     }
 };

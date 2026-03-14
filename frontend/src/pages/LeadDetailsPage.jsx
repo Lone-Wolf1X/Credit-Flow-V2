@@ -5,10 +5,11 @@ import {
     Clock, User, Shield, CheckCircle, 
     XCircle, AlertCircle, Info, ArrowLeft, Send, 
     Activity, TrendingUp, AlertTriangle, FileText, CheckCircle2,
-    Calculator, ChevronRight, GitMerge
+    Calculator, ChevronRight, GitMerge, ShieldCheck
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
+import CICModule from '../components/CICModule';
 
 const LeadDetailsPage = () => {
     const { id } = useParams();
@@ -46,6 +47,10 @@ const LeadDetailsPage = () => {
     }, [id]);
 
     const fetchDetails = async () => {
+        if (!id || id === 'null') {
+            setLoading(false);
+            return;
+        }
         try {
             const [leadRes, workflowRes] = await Promise.all([
                 api.get(`/leads/${id}/details`),
@@ -94,18 +99,24 @@ const LeadDetailsPage = () => {
 
     const lead = data; // Backend returns merged object
     // Handle deviation_alerts which can be an array (JSONB) or string
-    const alerts = Array.isArray(lead.deviation_alerts) 
-        ? lead.deviation_alerts 
-        : (typeof lead.deviation_alerts === 'string' && lead.deviation_alerts.length > 0 
-            ? JSON.parse(lead.deviation_alerts) 
-            : []);
+    let alerts = [];
+    try {
+        if (Array.isArray(lead.deviation_alerts)) {
+            alerts = lead.deviation_alerts;
+        } else if (typeof lead.deviation_alerts === 'string' && lead.deviation_alerts.length > 0) {
+            alerts = JSON.parse(lead.deviation_alerts);
+        }
+    } catch (e) {
+        console.error("Error parsing deviation alerts", e);
+        alerts = [];
+    }
 
     // LQS Breakdown Logic (Phase 1)
     const getLQSBreakdown = () => {
         const breakdown = [];
         // 1. Income Source Stability
         const stabilityWeights = { 'Government': 20, 'Private': 10, 'Foreign': 8, 'Business': 15, 'Agriculture': 5, 'Self-Employed': 0 };
-        breakdown.push({ label: 'Income Stability', value: stabilityWeights[lead.income_source] || 0, max: 20 });
+        breakdown.push({ label: `Income Stability (${lead.income_source})`, value: stabilityWeights[lead.income_source] || 0, max: 20 });
         
         // 2. Risk Flags
         if (lead.is_pep) breakdown.push({ label: 'PEP Deduction', value: -20, max: 0 });
@@ -114,16 +125,23 @@ const LeadDetailsPage = () => {
         // 3. Family Burden
         const familySize = parseInt(lead.undivided_family_members || 1);
         let familyVal = 0;
-        if (familySize <= 4) familyVal = 10; else if (familySize <= 7) familyVal = 5;
-        breakdown.push({ label: 'Family Dynamics', value: familyVal, max: 10 });
+        let familyLabel = '';
+        if (familySize <= 4) { familyVal = 10; familyLabel = 'Small/Nuclear'; } 
+        else if (familySize <= 7) { familyVal = 5; familyLabel = 'Medium'; }
+        else { familyVal = 0; familyLabel = 'Large/Undivided'; }
+        breakdown.push({ label: `Family Dynamics (${familyLabel})`, value: familyVal, max: 10 });
 
         // 4. Repayment Capacity
         const totalInc = (parseFloat(lead.primary_income || 0) + parseFloat(lead.secondary_income || 0) + parseFloat(lead.other_income_amount || 0));
         const limit = parseFloat(lead.proposed_limit || 0);
         const ratio = limit > 0 ? (totalInc / limit) : 0;
         let capVal = 0;
-        if (ratio > 0.1) capVal = 30; else if (ratio > 0.05) capVal = 20; else if (ratio > 0.02) capVal = 10;
-        breakdown.push({ label: 'Repayment Cap', value: capVal, max: 30 });
+        let capLabel = '';
+        if (ratio > 0.1) { capVal = 30; capLabel = 'DTI/Ratio > 10%'; } 
+        else if (ratio > 0.05) { capVal = 20; capLabel = 'DTI/Ratio > 5%'; } 
+        else if (ratio > 0.02) { capVal = 10; capLabel = 'DTI/Ratio > 2%'; }
+        else { capVal = 0; capLabel = 'DTI/Ratio < 2%'; }
+        breakdown.push({ label: `Repayment Cap (${capLabel})`, value: capVal, max: 30 });
 
         return breakdown;
     };
@@ -132,7 +150,7 @@ const LeadDetailsPage = () => {
         <div className="form-group" style={{ flex: 1 }}>
             <label style={{ fontSize: '0.75rem', fontWeight: 'bold' }}>{label}</label>
             <select 
-                value={value} 
+                value={value || 'Acceptable'} 
                 onChange={(e) => onChange(name, e.target.value)}
                 style={{ 
                     padding: '8px', borderRadius: '8px', 
@@ -156,6 +174,19 @@ const LeadDetailsPage = () => {
             fetchDetails();
         } catch (err) {
             toast.error(err.response?.data?.error || 'Reappeal failed');
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    const handleInitiateValuation = async () => {
+        try {
+            setSubmitting(true);
+            await api.post('/valuators/assign', { lead_id: lead.lead_id });
+            toast.success('Randomly assigned an active valuator to this lead!');
+            fetchDetails();
+        } catch (err) {
+            toast.error(err.response?.data?.error || 'Failed to assign valuator');
         } finally {
             setSubmitting(false);
         }
@@ -195,7 +226,7 @@ const LeadDetailsPage = () => {
                             </div>
                         </div>
 
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px', marginTop: '30px', padding: '20px', background: '#f8fafc', borderRadius: '16px' }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '20px', marginTop: '30px', padding: '20px', background: '#f8fafc', borderRadius: '16px' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                 <Info size={20} className="text-primary" />
                                 <div>
@@ -217,11 +248,29 @@ const LeadDetailsPage = () => {
                                     <span style={{ fontWeight: '800' }}>{lead.relationship_date ? new Date(lead.relationship_date).toLocaleDateString() : 'New'}</span>
                                 </div>
                             </div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                <User size={20} className="text-primary" />
+                                <div>
+                                    <small style={{ display: 'block', color: 'var(--text-muted)', fontWeight: '700', fontSize: '0.65rem', textTransform: 'uppercase' }}>Initiator</small>
+                                    <span style={{ fontWeight: '800' }}>{lead.initiator_name || 'Staff Member'}</span>
+                                </div>
+                            </div>
                         </div>
                         
                         <div style={{ marginTop: '20px', padding: '15px', borderTop: '1px solid #e2e8f0' }}>
-                            <small style={{ color: 'var(--text-muted)', fontWeight: '700', fontSize: '0.65rem', textTransform: 'uppercase' }}>Address</small>
-                            <p style={{ margin: '5px 0 0 0', fontWeight: '600' }}>{lead.address || 'Not Provided'}</p>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                                <div>
+                                    <small style={{ color: 'var(--text-muted)', fontWeight: '700', fontSize: '0.65rem', textTransform: 'uppercase' }}>Contact Information</small>
+                                    <p style={{ margin: '5px 0 0 0', fontWeight: '800', color: 'var(--primary)' }}>{lead.contact_number || 'N/A'}</p>
+                                    <p style={{ margin: '5px 0 0 0', fontWeight: '600' }}>{lead.address || 'Address Not Provided'}</p>
+                                </div>
+                                <div>
+                                    <small style={{ color: 'var(--text-muted)', fontWeight: '700', fontSize: '0.65rem', textTransform: 'uppercase' }}>Entity / Borrower Type</small>
+                                    <p style={{ margin: '5px 0 0 0', fontWeight: '800' }}>
+                                        {lead.is_individual !== undefined ? (lead.is_individual ? 'Individual Borrower' : 'Institutional / Corporate Entity') : 'N/A'}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -253,6 +302,49 @@ const LeadDetailsPage = () => {
                             <span style={{ fontSize: '1.5rem', fontWeight: '900', color: 'var(--primary)' }}> {lead.lqs_score}</span>
                         </div>
                     </div>
+
+                    {/* Valuation Summary Card */}
+                    <div className="glass-card" style={{ padding: '30px', borderLeft: '5px solid var(--primary)' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                            <h3 style={{ margin: 0, fontWeight: '800', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                <ShieldCheck size={24} className="text-primary" /> Epic 3/4: Valuation & Collateral Management
+                            </h3>
+                            {lead.valuation_status && (
+                                <span style={{ 
+                                    padding: '4px 12px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '800',
+                                    background: '#dcfce7', color: '#166534'
+                                }}>
+                                    {lead.valuation_status}
+                                </span>
+                            )}
+                        </div>
+
+                        {!lead.valuation_assignment_id ? (
+                            <div style={{ textAlign: 'center', padding: '20px', background: '#f8fafc', borderRadius: '15px' }}>
+                                <p style={{ color: 'var(--text-muted)', marginBottom: '15px' }}>No valuator has been assigned to this lead yet.</p>
+                                <button className="btn btn-primary" onClick={handleInitiateValuation} disabled={submitting}>
+                                    Initiate Valuation (Assign Random)
+                                </button>
+                                <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '10px' }}>* Valuators are chosen randomly from the active panel.</p>
+                            </div>
+                        ) : (
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                                <div style={{ background: '#f1f5f9', padding: '15px', borderRadius: '12px' }}>
+                                    <small style={{ color: 'var(--text-muted)', fontWeight: '700', fontSize: '0.65rem' }}>ASSIGNED VALUATOR</small>
+                                    <div style={{ fontWeight: '800', marginTop: '4px' }}>{lead.valuator_name}</div>
+                                    <div style={{ fontSize: '0.8rem', color: 'var(--primary)' }}>{lead.valuator_firm}</div>
+                                </div>
+                                <div style={{ background: '#f1f5f9', padding: '15px', borderRadius: '12px' }}>
+                                    <small style={{ color: 'var(--text-muted)', fontWeight: '700', fontSize: '0.65rem' }}>VALUATION STATUS</small>
+                                    <div style={{ fontWeight: '800', marginTop: '4px' }}>{lead.valuation_status}</div>
+                                    <div style={{ fontSize: '0.8rem', color: '#16a34a' }}>Report Pending</div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Epic 7: CIC Data Collection (Branch Initiation & HO Workflow) */}
+                    <CICModule lead={lead} user={user} />
                     {/* Hierarchical Credit Review Action Panel */}
                     {workflow && (workflow.current_handler_id === user?.id || user?.role === 'Admin') && workflow.current_step !== 'Appraisal Ready' && (
                         <div className="glass-card" style={{ padding: '30px', borderTop: '5px solid var(--primary)', marginBottom: '24px' }}>
@@ -293,10 +385,10 @@ const LeadDetailsPage = () => {
                                         </div>
                                     )}
 
-                                    <div className="form-row">
+                                    <div className="grid-3">
                                         <div className="form-group">
                                             <label>Review Status</label>
-                                            <select value={reviewForm.status} onChange={(e) => setReviewForm({...reviewForm, status: e.target.value})}>
+                                            <select value={reviewForm.status || 'Approved'} onChange={(e) => setReviewForm({...reviewForm, status: e.target.value})}>
                                                 <option value="Approved">Recommend Approval</option>
                                                 <option value="Defended">Defend for Discussion</option>
                                                 <option value="Further Discussion">Send back for Analysis</option>
@@ -305,7 +397,7 @@ const LeadDetailsPage = () => {
                                         </div>
                                         <div className="form-group">
                                             <label>Confidence Level</label>
-                                            <select value={reviewForm.confidence_level} onChange={(e) => setReviewForm({...reviewForm, confidence_level: e.target.value})}>
+                                            <select value={reviewForm.confidence_level || 'High'} onChange={(e) => setReviewForm({...reviewForm, confidence_level: e.target.value})}>
                                                 <option value="High">High Confidence (Reliable)</option>
                                                 <option value="Medium">Medium (Moderate Risk)</option>
                                                 <option value="Low">Low (Requires Observation)</option>
@@ -314,11 +406,11 @@ const LeadDetailsPage = () => {
                                     </div>
                                     <div className="form-group">
                                         <label>Transparent Feedback / Discussion</label>
-                                        <textarea rows="2" value={reviewForm.feedback} onChange={(e) => setReviewForm({...reviewForm, feedback: e.target.value})} placeholder="Why is this lead good or bad?" required />
+                                        <textarea rows="2" value={reviewForm.feedback || ''} onChange={(e) => setReviewForm({...reviewForm, feedback: e.target.value})} placeholder="Why is this lead good or bad?" required />
                                     </div>
                                     <div className="form-group">
                                         <label>Specific Conditions </label>
-                                        <input type="text" value={reviewForm.conditions} onChange={(e) => setReviewForm({...reviewForm, conditions: e.target.value})} placeholder="e.g. Reduce limit by 20%, collateral visit required..." />
+                                        <input type="text" value={reviewForm.conditions || ''} onChange={(e) => setReviewForm({...reviewForm, conditions: e.target.value})} placeholder="e.g. Reduce limit by 20%, collateral visit required..." />
                                     </div>
                                     <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
                                         <button type="submit" className="btn btn-primary" disabled={submitting}>
@@ -458,12 +550,12 @@ const LeadDetailsPage = () => {
                                 Phase 2: Real Data Verification
                             </h3>
                             <form onSubmit={handleVerificationSubmit}>
-                                <div className="form-row">
+                                <div className="grid-3">
                                     <div className="form-group">
                                         <label>Verified Monthly Income (रु)</label>
                                         <input 
                                             type="number" 
-                                            value={verificationData.verified_income}
+                                            value={verificationData.verified_income || ''}
                                             onChange={(e) => setVerificationData({...verificationData, verified_income: e.target.value})}
                                             placeholder="Enter actual income" required 
                                         />
@@ -472,17 +564,15 @@ const LeadDetailsPage = () => {
                                         <label>Collateral Value (रु)</label>
                                         <input 
                                             type="number" 
-                                            value={verificationData.verified_collateral_value}
+                                            value={verificationData.verified_collateral_value || ''}
                                             onChange={(e) => setVerificationData({...verificationData, verified_collateral_value: e.target.value})}
                                             placeholder="Estimated value" required 
                                         />
                                     </div>
-                                </div>
-                                <div className="form-row">
                                     <div className="form-group">
                                         <label>CIB Report Status</label>
                                         <select 
-                                            value={verificationData.cib_report_status}
+                                            value={verificationData.cib_report_status || 'Clear'}
                                             onChange={(e) => setVerificationData({...verificationData, cib_report_status: e.target.value})}
                                         >
                                             <option value="Clear">Clear / Good</option>
@@ -493,7 +583,7 @@ const LeadDetailsPage = () => {
                                     <div className="form-group">
                                         <label>KYC Verification</label>
                                         <select 
-                                            value={verificationData.kyc_status}
+                                            value={verificationData.kyc_status || 'Completed'}
                                             onChange={(e) => setVerificationData({...verificationData, kyc_status: e.target.value})}
                                         >
                                             <option value="Completed">Completed & Authenticated</option>
@@ -569,17 +659,17 @@ const LeadDetailsPage = () => {
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '30px', marginBottom: '40px' }}>
                                 <div style={{ textAlign: 'center', padding: '20px', background: '#f0fdf4', borderRadius: '20px' }}>
                                     <small style={{ display: 'block', color: '#166534', fontWeight: '700' }}>FINAL RETAIL SCORE</small>
-                                    <div style={{ fontSize: '3rem', fontWeight: '950', color: '#15803d' }}>{lead.fcs_score}</div>
+                                    <div style={{ fontSize: '3rem', fontWeight: '950', color: '#15803d' }}>{lead.fcs_score || '0'}</div>
                                     <span style={{ fontSize: '0.8rem', fontWeight: '800' }}>Investment Grade</span>
                                 </div>
                                 <div style={{ textAlign: 'center', padding: '20px', background: '#f8fafc', borderRadius: '20px', border: '1px solid #e2e8f0' }}>
                                     <small style={{ display: 'block', color: 'var(--text-muted)', fontWeight: '700' }}>APPROVED LIMIT</small>
-                                    <div style={{ fontSize: '1.8rem', fontWeight: '900' }}>रु {parseFloat(lead.proposed_limit).toLocaleString()}</div>
+                                    <div style={{ fontSize: '1.8rem', fontWeight: '900' }}>रु {parseFloat(lead.proposed_limit || 0).toLocaleString()}</div>
                                     <span style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: '800' }}>Fixed Rate: 12.5%</span>
                                 </div>
                                 <div style={{ textAlign: 'center', padding: '20px', background: '#fffbeb', borderRadius: '20px', border: '1px solid #fde68a' }}>
                                     <small style={{ display: 'block', color: '#92400e', fontWeight: '700' }}>RISK DISCLOSURE</small>
-                                    <div style={{ fontSize: '1.2rem', fontWeight: '900', marginTop: '10px' }}>{lead.risk_category}</div>
+                                    <div style={{ fontSize: '1.2rem', fontWeight: '900', marginTop: '10px' }}>{lead.risk_category || 'General'}</div>
                                     <p style={{ fontSize: '0.7rem', color: '#b45309' }}>Requires collateral visit</p>
                                 </div>
                             </div>
@@ -696,21 +786,21 @@ const LeadDetailsPage = () => {
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                                 <div>
                                     <small style={{ color: 'var(--text-muted)' }}>Verified Income</small>
-                                    <div style={{ fontWeight: '800' }}>रु {parseFloat(lead.verified_income).toLocaleString()}</div>
+                                    <div style={{ fontWeight: '800' }}>रु {parseFloat(lead.verified_income || 0).toLocaleString()}</div>
                                 </div>
                                 <div>
                                     <small style={{ color: 'var(--text-muted)' }}>CIB Status</small>
                                     <div style={{ color: lead.cib_report_status === 'Clear' ? '#059669' : '#dc2626', fontWeight: '900' }}>
-                                        {lead.cib_report_status}
+                                        {lead.cib_report_status || 'Pending'}
                                     </div>
                                 </div>
                                 <div>
                                     <small style={{ color: 'var(--text-muted)' }}>KYC Status</small>
-                                    <div style={{ fontWeight: '800' }}>{lead.kyc_status}</div>
+                                    <div style={{ fontWeight: '800' }}>{lead.kyc_status || 'Pending'}</div>
                                 </div>
                                 <div>
                                     <small style={{ color: 'var(--text-muted)' }}>Verifier Note</small>
-                                    <p style={{ margin: 0, fontSize: '0.85rem', color: '#475569', fontStyle: 'italic' }}>"{lead.verification_notes}"</p>
+                                    <p style={{ margin: 0, fontSize: '0.85rem', color: '#475569', fontStyle: 'italic' }}>"{lead.verification_notes || 'No notes provided'}"</p>
                                 </div>
                             </div>
                         </div>

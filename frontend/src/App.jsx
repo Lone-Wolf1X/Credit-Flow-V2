@@ -16,6 +16,13 @@ import SecurityLogs from './pages/SecurityLogs';
 import AuthorityMatrix from './pages/AuthorityMatrix';
 import LeadDetailsPage from './pages/LeadDetailsPage';
 import Layout from './components/Layout';
+import AppraisalPage from './pages/AppraisalPage';
+import ValuatorsPage from './pages/ValuatorsPage';
+import ValuationPoliciesPage from './pages/ValuationPoliciesPage';
+import CICPage from './pages/CICPage';
+import NewCICPage from './pages/NewCICPage';
+import CICProfilePage from './pages/CICProfilePage';
+import { Toaster } from 'react-hot-toast';
 
 const ProtectedRoute = ({ children }) => {
     const { user, loading } = useAuth();
@@ -24,10 +31,6 @@ const ProtectedRoute = ({ children }) => {
     if (user.must_reset_password) return <PasswordReset />;
     return <Layout>{children}</Layout>;
 };
-
-import AppraisalPage from './pages/AppraisalPage';
-
-import { Toaster } from 'react-hot-toast';
 
 function App() {
     return (
@@ -41,11 +44,16 @@ function App() {
                         <Route path="/leads" element={<ProtectedRoute><LeadsPage /></ProtectedRoute>} />
                         <Route path="/workflows" element={<ProtectedRoute><WorkflowsPage /></ProtectedRoute>} />
                         <Route path="/memos" element={<ProtectedRoute><MemosPage /></ProtectedRoute>} />
+                        <Route path="/valuators" element={<ProtectedRoute><ValuatorsPage /></ProtectedRoute>} />
+                        <Route path="/cic" element={<ProtectedRoute><CICPage /></ProtectedRoute>} />
+                        <Route path="/cic/new" element={<ProtectedRoute><NewCICPage /></ProtectedRoute>} />
+                        <Route path="/cic/profile/:type/:id" element={<ProtectedRoute><CICProfilePage /></ProtectedRoute>} />
                         <Route path="/admin/users" element={<ProtectedRoute><UserManagement /></ProtectedRoute>} />
                         <Route path="/admin/branches" element={<ProtectedRoute><BranchManagement /></ProtectedRoute>} />
                         <Route path="/admin/scores" element={<ProtectedRoute><AdminDesignations /></ProtectedRoute>} />
                         <Route path="/admin/security" element={<ProtectedRoute><SecurityLogs /></ProtectedRoute>} />
                         <Route path="/admin/matrix" element={<ProtectedRoute><AuthorityMatrix /></ProtectedRoute>} />
+                        <Route path="/admin/policies" element={<ProtectedRoute><ValuationPoliciesPage /></ProtectedRoute>} />
                         <Route path="/leads/:id" element={<ProtectedRoute><LeadDetailsPage /></ProtectedRoute>} />
                         <Route path="/appraisals" element={<ProtectedRoute><AppraisalPage /></ProtectedRoute>} />
                         <Route path="/appraisal/:id" element={<ProtectedRoute><AppraisalPage /></ProtectedRoute>} />

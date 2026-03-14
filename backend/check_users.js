@@ -16,7 +16,7 @@ async function checkUsersSchema() {
         console.log('Columns in users table:');
         console.log(JSON.stringify(res.rows, null, 2));
 
-        const userRes = await pool.query('SELECT id, name, must_reset_password FROM users LIMIT 5');
+        const userRes = await pool.query('SELECT id, name, role, staff_id, must_reset_password FROM users LIMIT 10');
         console.log('\nSample users:');
         console.log(JSON.stringify(userRes.rows, null, 2));
     } catch (err) {
